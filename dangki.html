@@ -97,14 +97,14 @@
                             <!-- Top Search Area -->
                             <div class="top-search-area">
                                 <form action="index.html" method="post">
-                                    <input type="search" name="top-search" id="topSearch" placeholder="Search and hit enter...">
-                                    <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                    <input type="search" name="top-search" id="topSearch"
+                                        placeholder="Search and hit enter...">
+                                    <button type="submit" class="btn"><i class="fa fa-search"
+                                            aria-hidden="true"></i></button>
                                 </form>
                             </div>
                             <!-- Login -->
                             <a href="login.html" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
-                            <!-- Submit Video -->
-                            <a href="submit-video.html" class="submit-video"><span><i class="fa fa-cloud-upload"></i></span> <span class="video-text">Đăng video</span></a>
                         </div>
                     </div>
                 </nav>
@@ -138,25 +138,77 @@
                             <h5>Xin chào!</h5>
                         </div>
 
-                        <form action="index.html" method="post">
+                        <form name="myform" action="index.html" method="post">
                             <div class="form-group">
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email hoặc tên người dùng">
+                                <input type="text" class="form-control" id="hoten" placeholder="Họ và tên">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="mật khẩu">
+                                <label class="col-lg-2" id="gioitinh">Giới tính:</label>
+                                <label class="col-lg-2" for="nam"><input id="nam" type="radio" name="gioitinh"
+                                        value="Nam"> Nam</label>
+                                <label class="col-lg-2" for="nu"><input id="nu" type="radio" name="gioitinh" value="Nữ"
+                                        checked> Nữ</label>
+                            </div>
+                            <div class="form-group row">
+                                <label id="ngaysinh" class="control-label col-sm-2" for="day">Ngày sinh:</label>
+                                <div class="col-lg-2">
+                                    <select id="day" class="form-control"
+                                        style="background-image: linear-gradient(#f7f8f9,#e5e8ea, #dee1e5)">
+                                        <script>
+                                            for (var i = 1; i < 32; i++) {
+                                                var html = '<option value="' + i + '">' + i + '</option>';
+                                                document.writeln(html);
+                                            }
+                                        </script>
+                                    </select>
+                                </div>
+                                <div class="col-lg-2">
+                                    <select id="month" class="form-control"
+                                        style="background-image: linear-gradient(#f7f8f9,#e5e8ea, #dee1e5)">
+                                        <script>
+                                            for (var i = 1; i < 13; i++) {
+                                                var html = '<option value="' + i + '">' + i + '</option>';
+                                                document.writeln(html);
+                                            }
+                                        </script>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3">
+                                    <select id="year" class="form-control"
+                                        style="background-image: linear-gradient(#f7f8f9,#e5e8ea, #dee1e5)">
+                                        <script>
+                                            for (var i = 1990; i < 2006; i++) {
+                                                var html = '<option value="' + i + '">' + i + '</option>';
+                                                document.writeln(html);
+                                            }
+                                        </script>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Repeat Password" name="psw-repeat">
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <input id="ten" type="text" class="form-control" placeholder="Tên người dùng">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Mật khẩu">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Nhập lại mật khẩu"
+                                    name="psw-repeat" id="psw-repeat">
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-                                    <label class="custom-control-label" for="customControlAutosizing">Nhớ tài khoản</label>
+                                    <label class="custom-control-label" for="customControlAutosizing">Nhớ tài
+                                        khoản</label>
                                 </div>
                             </div>
-                            <div style="display: flex; justify-content: space-around">
-                            <div><button type="submit" class="btn mag-btn mt-30">Đăng kí</button></div>
-                        </div>
+                            <div style="display: flex; justify-content:center">
+                                <button type="submit" class="btn mag-btn mt-30" onclick="return DK()">Đăng kí</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -176,6 +228,67 @@
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    <script>
+        function checkDate() {
+            var day = Number(document.getElementById("day").value);
+            var month = Number(document.getElementById("month").value);
+            var year = Number(document.getElementById("year").value);
+            switch (month) {
+                case 4: case 6: case 9: case 11:
+                    if (day == 31) return false;
+                    else return true;
+                    break;
+                case 2:
+                    if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+                        if (day > 29) return false;
+                        else return true;
+                    }
+                    else {
+                        if (day > 28) return false;
+                        else return true;
+                    }
+                    break;
+            }
+            return true;
+        }
+        function DK() {
+            var hovaten = document.getElementById('hoten').value;
+            var gender = myform.gioitinh.value;
+            var day = Number(document.getElementById("day").value);
+            var month = Number(document.getElementById("month").value);
+            var year = Number(document.getElementById("year").value);
+            var ngaysinh = day + "/" + month + "/" + year;
+            var email=document.getElementById('exampleInputEmail1').value;
+            var ten = document.getElementById('ten').value;
+            var mk=document.getElementById('exampleInputPassword1').value;
+            var mk1=document.getElementById('psw-repeat').value;
+
+            if (hovaten == '') {
+                alert('Bạn chưa nhập họ tên');
+                document.getElementById('hoten').focus(); return false;
+            }
+            else if (checkDate() == false) {
+                alert('ngày tháng năm không hợp lệ!');
+                document.getElementById('ngaysinh').focus(); return false;
+            }
+            else if (email == '') {
+                alert('Bạn chưa nhập email!');
+                document.getElementById('exampleInputEmail1').focus(); return false;
+            }
+            else if (ten == '') {
+                alert('Bạn chưa nhập tên người dùng!');
+                document.getElementById('ten').focus(); return false;
+            }
+            else if (mk == '') {
+                alert('Bạn chưa nhập mật khẩu!');
+                document.getElementById('exampleInputPassword1').focus(); return false;
+            }
+            else if (mk!=mk1) {
+                alert('Mật khẩu không trùng khớp!');
+                document.getElementById('psw-repeat').focus(); return false;
+            }
+        }
+    </script>
 </body>
 
 </html>
