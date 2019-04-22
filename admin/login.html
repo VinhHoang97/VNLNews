@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+
+<head>
 	<meta charset=utf-8 />
-	<title>giao dien 1</title>
-		<link rel=stylesheet href="css/bootstrap.min.css" />
-		<script src="js/jquery-2.2.2.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<link  rel="stylesheet" href="css/scrolling-nav.css"/>	
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
-		<link rel="stylesheet" href="css/normalize.css"/>
-		<link  rel="stylesheet" href="css/style.css"/>
-		<script src="js/scrolling-nav.js"></script>	
-	</head>
-	<style>
-	.col-xs-4{
+	<title>Quản trị viên</title>
+	<!-- Favicon -->
+	<link rel="icon" href="../img/core-img/favicon.ico">
+
+	<link rel=stylesheet href="css/bootstrap.min.css" />
+	<script src="js/jquery-2.2.2.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/scrolling-nav.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/normalize.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<script src="js/scrolling-nav.js"></script>
+</head>
+<script >
+	function logIn(){
+		window.location="../admin/trangchu.html"
+	}
+</script>
+<style>
+	.col-xs-4 {
 		margin-top: 8%;
 	}
-	.btn{
-		width:100%;
+
+	.btn {
+		width: 100%;
 		margin-top: 15px;
 	}
-	</style>
-	<body>
-		<div class="container">
+</style>
+
+<body>
+	<div class="container">
 		<div class="row">
 			<div class="col-xs-4 col-xs-offset-4">
 				<h3 align="center" style="margin-bottom: 20px;">Đăng nhập quản trị </h3>
@@ -35,10 +46,10 @@
 						<label for="">Mật khẩu</label>
 						<input name="pass" type="password" class="form-control" required>
 					</div>
-					<input type="submit" value="Đăng nhập" class="btn btn-primary">
+					<input type="submit" value="Đăng nhập" onclick="logIn()" class="btn btn-primary">
 				</form>
 			</div>
 		</div>
 	</div>
-	</body>
+</body>
 <html>
