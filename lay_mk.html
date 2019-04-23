@@ -117,7 +117,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="breadcrumb-content">
-                        <h2>Đăng Nhập</h2>
+                        <h2>Lấy lại mật khẩu</h2>
                     </div>
                 </div>
             </div>
@@ -133,28 +133,16 @@
                     <div class="login-content bg-white p-30 box-shadow">
                         <!-- Section Title -->
                         <div class="section-heading">
-                            <h5>Xin chào!</h5>
+                            <h5>Hãy dùng tên đăng nhập lấy lại mật khẩu</h5>
                         </div>
 
                         <form action="index.html" method="post">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email hoặc tên người dùng">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu">
-                            </div>
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-                                    <label class="custom-control-label" for="customControlAutosizing">Nhớ tài khoản</label>
-                                </div>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
                             </div>
                             <div style="display: flex; justify-content: space-around">
-                            <div>
-                                <div><button type="submit" class="btn mag-btn mt-30" onclick="return dangnhap()">Đăng nhập</button></div>
-                                <div style="border: brown solid 1pt; border-top-style: none;border-radius: 20%;text-align: center;"><a href="lay_mk.html" style="color:brown;">Quên mật khẩu?</a></div>
-                            </div>
-                            <div><a href="dangki.html"  class="btn mag-btn mt-30" style="color:white">Đăng Kí</a></div>
+                            <div style="text-align: center;"><a href="login.html">Trở về trang đăng nhập</a></div>
+                            <div><button type="submit" style="border-radius: 15%; color:white; background-color:black; width: 100pt;height: 30pt;" onclick="return validate()">Thực hiện</button></div>
                         </div>
                         </form>
                     </div>
@@ -163,18 +151,13 @@
         </div>
     </div>
     <script>
-        function dangnhap(){
+        function validate(){
             var email=document.getElementById('exampleInputEmail1').value;
-            var mk=document.getElementById('exampleInputPassword1').value;
             if(email==''){
-                alert('Bạn chưa nhập email hoặc tên người dùng!');
-                document.getElementById('exampleInputEmail1').focus(); return false;
+                alert('Bạn chưa nhập email');
+                document.getElementById('exampleInputEmail1').focus();return false;
             }
-            else if(mk==''){
-                alert('Bạn chưa nhập mật khẩu!');
-                document.getElementById('exampleInputPassword1').focus(); return false;
-            }
-            else return true;
+            return true;
         }
     </script>
     <!-- ##### Login Area End ##### -->
