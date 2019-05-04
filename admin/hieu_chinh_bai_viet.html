@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset=utf-8 />
+    <title>Administrator</title>
+    <link rel=stylesheet href="css/bootstrap.min.css" />
+    <script src="js/jquery-2.2.2.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <div id="warper">
+        <div id="top">
+            <nav class="navbar navbar-default site-top">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <!-- <a class="navbar-brand" href="#" style="color: #ff9708;">lnv</a> -->
+                        <img src="img/logo.png">
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <p class="text-center" style="padding-top: 15px;">Xin chào <span
+                                        style="color: red">Phóng viên</span>
+                                </p>
+                            </li>
+                            <li><a href="login.html"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+        <!--end #top-->
+        <div class="col-md-2 left">
+            <div class="left-menu">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a href="phong_vien.html"><i class="fa fa-tachometer" aria-hidden="true"></i> Trang
+                                    chủ</a>
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#baiviet"> <i class="fa fa-newspaper-o"
+                                        aria-hidden="true"></i> Quản lý
+                                    bài viết</a>
+                            </h4>
+                        </div>
+                        <div id="baiviet" class="panel-collapse collapse">
+                            <ul id="home" class="baiviet">
+                                <li><a href="thembaiviet.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Thêm
+                                        bài viêt</a>
+                                </li>
+                                <li><a href="xem_danh_sach_cua_phong_vien.html"><i class="fa fa-angle-right"
+                                            aria-hidden="true"></i> Xem danh sách bài
+                                        viêt</a>
+                                </li>
+                                <li><a href="hieu_chinh_bai_viet.html"><i class="fa fa-angle-right"
+                                            aria-hidden="true"></i> Hiệu chỉnh bài
+                                        viêt</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--end .left-menu-->
+            <div class="clearfix"></div>
+        </div>
+        <div class="right">
+            <div class="col-md-10">
+                <div class="content">
+                    <div class="col-md-4 add-dm">
+                        <h4 class="text-center">Hiệu chỉnh bài viết</h4>
+                    </div>
+                    <div class="clearfix"></div>
+                    <form method="post">
+                        <div class="form">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <P>Tiêu đề danh mục</p>
+                                    </td>
+                                    <td><input type="text" name="title" class="form-control"
+                                            placeholder="Sản phẩm dừa Vietcoco chinh phục thị trường thế giới"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <P>Nội dung bài viết</p>
+                                    </td>
+                                    <td><textarea name="content" class="form-control" id="" cols="30"
+                                            rows="10">Tâm quyết của người con xứ dừa Bến Tre
+
+                                            Bén duyên với cây dừa của vùng đất Giồng Trôm (tỉnh Bến Tre) từ những năm 80 của thế kỷ trước, nhìn thấy cách ông cha mình khai thác quả dừa tươi với giá trị đầu ra rất thấp, doanh nhân Cù Văn Thành, người sáng lập, kiêm Giám đốc Công ty TNHH Chế biến Dừa Lương Quới luôn ấp ủ khát vọng nâng cao giá trị trái dừa cũng như ngành dừa và tạo đầu ra cho người nông dân trồng dừa tỉnh Bến Tre.
+                                            
+                                            Với chiếc máy ép dầu dừa cũ kỹ, bằng đam mê, nhiệt huyết của tuổi trẻ, ông Thành cùng các cộng sự quyết định thành lập Doanh nghiệp tư nhân ép dầu Lương Quới năm 1997, tiền thân của Công ty TNHH Chế biến Dừa Lương Quới hôm nay.
+                                            
+                                            Bước đầu khởi nghiệp, ông Thành cùng đội ngũ công nhân viên gặp nhiều khó khăn về công nghệ sản xuất lẫn thị trường tiêu thụ. Ông luôn băn khoăn, trăn trở để tìm ra đáp án cho câu hỏi: “Phải làm thế nào để cải tiến chất lượng, đa dạng hóa sản phẩm, nâng cao giá trị cho sản phẩm dừa?”.
+                                            
+                                            Từ sản phẩm đầu tiên khi mới thành lập là dầu dừa thô, chỉ với một phân xưởng sản xuất nhỏ công suất 2.000 tấn/năm, đến thời điểm hiện tại, Công ty đã xây dựng được nhà máy chế biến có trang bị thiết bị hiện đại với diện tích trên 6 ha, gần 1.000 công nhân viên làm việc, cung ứng ra thị trường hơn 60.000 tấn sản phẩm dừa với nhãn hiệu Vietcoco mỗi năm.
+                                            
+                                            Công ty TNHH Chế biến Dừa Lương Quới đang cung cấp các sản phẩm dừa đa dạng, có giá trị gia tăng cao như dầu dừa nguyên chất, dầu dừa tinh luyện, nước dừa, nước cốt dừa, sữa dừa uống, dừa sấy giòn, cơm dừa nạo sấy..., đáp ứng được nhu cầu của thị trường trong nước và quốc tế.</textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <P>Hình ảnh bài viết</p>
+                                    </td>
+                                    <td><input type="file" name="img" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Lựa chọn danh mục cha</p>
+                                    </td>
+                                    <td><select name="cat" class="form-control">
+                                            <option value="0">Lựa chọn danh mục</option>
+                                            <option value="" selected>Đời sống</option>
+                                            <option value="">Kinh doanh</option>
+                                            <option value="">Văn hóa</option>
+                                            <option value="">Giải trí</option>
+                                            <option value="">Thể thao</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-3 form-group pull-right">
+                            <input type="submit" name="ok" value="Lưu" class="btn btn-primary btn-block">
+                        </div>
+                    </form>
+                </div>
+                <!--end .content-->
+            </div>
+        </div>
+    </div>
+</body>
+<html>
