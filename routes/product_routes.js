@@ -1,10 +1,9 @@
-var express = require('express');
-var categoriesModel=require('../models/categories_model');
-var productModel = require('../models/product_model')
+var express = require('express ');
+var productModel=require('../routes/product_model');
 var router = express.Router();
 
 router.get('/',(req,res)=>{
-    var p =  categoriesModel.all();
+    var p =  productModel.all();
     p.then(rows =>{
         console.log(rows);
         res.render('/')

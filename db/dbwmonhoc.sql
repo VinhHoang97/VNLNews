@@ -1,5 +1,5 @@
 drop database vnlnews
-
+create database vnlnews
 create table PhanHeNguoiDung
 (	IDPhanHe varchar(10) not null primary key,
 	TenPhanHe varchar(50) not null
@@ -217,3 +217,4 @@ insert into baiviet_hinhanh(IDBaiViet,IdHinh) values('BV0001',1);
 --------------- insert table BinhLuan
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values ('BV0001', 10, 'Hay qua', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values ('BV0001', 11, 'Thật mong đợi', 0);
+
