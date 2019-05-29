@@ -1,17 +1,27 @@
 var express = require('express');
 var body_parser = require('body-parser');
 var express_handlebars = require('express-handlebars');
-var path=require('path');
+var path = require('path');
 var router = express.Router();
-var app=express();
-
+var app = express();
+var categoriesModal = require('./models/categories_model');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(__dirname+'/public'));
+app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'hbs');
-app.engine('hbs', express_handlebars({defaultLayout: 'main.hbs',layoutsDir:'views/_layouts'}));
-app.get('/',(req,res)=>{
-    res.render('index');
+app.engine('hbs', express_handlebars({
+    defaultLayout: 'main.hbs',
+    layoutsDir: 'views/_layouts'
+}));
+app.get('/', (req, res) => {
+    var p = categoriesModal.all().then(rows => {
+        console.log(rows)
+        res.render('index', {
+            category: rows
+        });
+    }).catch(err => {
+        console.log(err);
+    })
 })
 
 

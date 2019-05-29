@@ -5,11 +5,9 @@ var createConnection = () => {
         port: '3306',
         user: 'root',
         password: '',
-        database: '',
+        database: 'vnlnews',
     });
 }
-var connection = ;
-
 module.exports = {
     load: sql => {
         return new Promise((resolve, reject) => {
@@ -24,5 +22,21 @@ module.exports = {
                 connection.end();
             });
         });
+    },
+    add: (tableName,entity)=>{
+        return new Promise((resolve,reject)=>{
+            var sql =`insert into ${tableName} set ?`;
+            var connection = createConnection();
+            connection.connect();
+            connection.query(sql, entity,(erro,value) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(value.insertId);
+                }
+                connection.end();
+            });
+        })
     }
+    
 }
