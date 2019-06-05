@@ -27,6 +27,9 @@ app.get('/', (req, res) => {
 
 app.use('/category',categoriesRoutes);
 
+app.use('/login',(req,res)=> {
+    res.render('login')
+})
 
 app.listen(3000, () => {
     console.log('Site running on port 3000');
