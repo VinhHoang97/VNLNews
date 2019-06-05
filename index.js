@@ -5,6 +5,7 @@ var path = require('path');
 var router = express.Router();
 var app = express();
 var categoriesModal = require('./models/categories_model');
+var categoriesRoutes = require('./routes/categories_routes');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(__dirname + '/public'));
@@ -23,6 +24,8 @@ app.get('/', (req, res) => {
         console.log(err);
     })
 })
+
+app.use('/category',categoriesRoutes);
 
 
 app.listen(3000, () => {
