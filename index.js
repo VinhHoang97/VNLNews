@@ -31,6 +31,10 @@ app.use('/login',(req,res)=> {
     res.render('login')
 })
 
+
+app.use('/doc_gia',(req,res)=> {
+    res.render('doc_gia')
+})
 app.listen(3000, () => {
     console.log('Site running on port 3000');
 });
