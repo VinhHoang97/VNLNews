@@ -37,6 +37,10 @@ app.use('/lay_mk',(req,res)=> {
     res.render('lay_mk')
 })
 
+
+app.use('/doc_gia',(req,res)=> {
+    res.render('doc_gia')
+})
 app.listen(3000, () => {
     console.log('Site running on port 3000');
 });
