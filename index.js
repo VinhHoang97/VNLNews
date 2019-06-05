@@ -30,6 +30,12 @@ app.use('/category',categoriesRoutes);
 app.use('/login',(req,res)=> {
     res.render('login')
 })
+app.use('/dang_ki',(req,res)=> {
+    res.render('dang_ki')
+})
+app.use('/lay_mk',(req,res)=> {
+    res.render('lay_mk')
+})
 
 app.listen(3000, () => {
     console.log('Site running on port 3000');
