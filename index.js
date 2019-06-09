@@ -4,27 +4,21 @@ var express_handlebars = require('express-handlebars');
 var path = require('path');
 var router = express.Router();
 var app = express();
-var categoriesModal = require('./models/categories_model');
+var productRoutes = require('./routes/product_routes');
 var categoriesRoutes = require('./routes/categories_routes');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'hbs');
 app.engine('hbs', express_handlebars({
     defaultLayout: 'main.hbs',
     layoutsDir: 'views/_layouts'
 }));
+app.use(require('./utils/global_var'));
 app.get('/', (req, res) => {
-    var p = categoriesModal.all().then(rows => {
-        console.log(rows)
-        res.render('index', {
-            category: rows
-        });
-    }).catch(err => {
-        console.log(err);
-    })
+        res.render('index'); 
 })
-
+app.use('/products',productRoutes);
 app.use('/category',categoriesRoutes);
 
 app.use('/login',(req,res)=> {
@@ -36,7 +30,6 @@ app.use('/dang_ki',(req,res)=> {
 app.use('/lay_mk',(req,res)=> {
     res.render('lay_mk')
 })
-
 
 app.use('/doc_gia',(req,res)=> {
     res.render('doc_gia')

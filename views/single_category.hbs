@@ -1,54 +1,43 @@
  <!-- ##### Archive Post Area Start ##### -->
-    <div class="archive-post-area">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-xl-15">
-                    <div class="archive-posts-area bg-white p-30 mb-30 box-shadow">
-                        
-                        <!-- Single Catagory Post -->
-                         <div class="single-catagory-post d-flex flex-wrap">
-                                <!-- Thumbnail -->
-                                <div class="post-thumbnail bg-img">
-                                    <a href="dienanhdetail.html" target="_blank"><img src="img/bg-img/ds/xh.jpg"></i></a>
-                                </div>
-    
-                                <!-- Post Contetnt -->
-                                <div class="post-content">
-                                    <div class="post-meta">
-                                        <p>10/4/2019</p>
-                                    </div>
-                                    <a href="dienanhdetail.html" target="_blank" class="post-title">Dịch vụ tra cứu quá trình tham gia bảo hiểm bằng tin nhắn</a>
-                                    <!-- Post Meta -->
-                                    <p>Bắt đầu từ tháng 4/2019, người tham gia bảo hiểm xã hội (BHXH), bảo hiểm y tế (BHYT) có thể tự tra cứu quá trình đóng, hưởng BHXH, BHYT, bảo hiểm thất nghiệp (BHTN) của mình thông qua dịch vụ tin nhắn trên điện thoại di động. </p>
-                                </div>
-                            </div> 
-                        
-                        <!-- Single Catagory Post -->
-                          <div class="single-catagory-post d-flex flex-wrap">
-                                <!-- Thumbnail -->
-                                <div class="post-thumbnail bg-img">
-                                    <a href="dienanhdetail.html" target="_blank"><img src="img/bg-img/ds/xh1.jpg"></i></i></a>
-                                </div>
+ <div class="archive-post-area">
+     <div class="container">
+         <div class="row justify-content-center">
+             <div class="col-12 col-xl-15">
+                 <div class="archive-posts-area bg-white p-30 mb-30 box-shadow">
+
+
+                     {{#each products}}
+                     <!-- Single Catagory Post -->
+                     <div class="single-catagory-post d-flex flex-wrap">
+                         <!-- Thumbnail -->
+                         <div class="post-thumbnail bg-img">
+                             <a href="/products/{{IDBaiViet}}" target="_blank"><img src="/img/bg-img/ds/xh.jpg"></i></a>
+                         </div>
+
                          <!-- Post Contetnt -->
                          <div class="post-content">
-                                <div class="post-meta">
-                                    <p>10/4/2019</p>
-                                </div>
-                                <a href="dienanhdetail.html" target="_blank" class="post-title">Tiễn đưa Trung tướng Đồng Sỹ Nguyên về nơi an nghỉ cuối cùng</a>
-                                <!-- Post Meta -->
-                                <p>Vào lúc 12h30 ngày 4/10, Lễ Truy điệu Trung tướng Đồng Sỹ Nguyên đã được cử hành trọng thể tại Nhà tang lễ Quốc gia, số 5 Trần Thánh Tông.</p>
-                            </div>
-                        </div>
+                             <div class="post-meta">
+                                 <p>{{NgayDang}}</p>
+                             </div>
+                             <a href="/products/{{IDBaiViet}}" target="_blank" class="post-title">{{TieuDe_KhongDau}}</a>
+                             <!-- Post Meta -->
+                             <p>{{TomTat}} </p>
+                         </div>
+                     </div>
+                    {{/each}}
 
-                        <!-- Pagination -->
-                        <nav>
-                            <ul class="pagination">
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><i class="ti-angle-right"></i></a></li>
-                            </ul>
-                        </nav>
+                     <!-- Pagination -->
+                     <nav>
+                         <ul class="pagination">
+                             <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                             <li class="page-item"><a class="page-link" href="#">2</a></li>
+                             <li class="page-item"><a class="page-link" href="#">3</a></li>
+                             <li class="page-item"><a class="page-link" href="#"><i class="ti-angle-right"></i></a></li>
+                         </ul>
+                     </nav>
 
-                    </div>
-                </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>

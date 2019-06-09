@@ -13,4 +13,24 @@ router.get('/',(req,res)=>{
     });
 })
 
+
+router.get('/edit/:id',(req,res)=>{
+    var id = req.params.id;
+    categoriesModel.single(id).then(rows=>{
+        if(rows.length>0){
+            res.render('',{
+                error:false,
+                category:rows[0]
+            });
+        }else{
+            res,render('',{
+                error:true
+            })
+        }
+    }).catch(err =>{
+        console.log(err);
+        res.end('error occured.')
+    })
+})
+
 module.exports = router;
