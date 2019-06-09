@@ -11,17 +11,17 @@
                      <div class="single-catagory-post d-flex flex-wrap">
                          <!-- Thumbnail -->
                          <div class="post-thumbnail bg-img">
-                             <a href="/products/{{IDBaiViet}}" target="_blank"><img src="/img/bg-img/ds/xh.jpg"></i></a>
+                             <a href="/products/{{content.IDBaiViet}}" target="_blank"><img src="/{{img.urllinkHinh}}"></i></a>
                          </div>
 
                          <!-- Post Contetnt -->
                          <div class="post-content">
                              <div class="post-meta">
-                                 <p>{{NgayDang}}</p>
+                                 <p>{{content.NgayDang}}</p>
                              </div>
-                             <a href="/products/{{IDBaiViet}}" target="_blank" class="post-title">{{TieuDe_KhongDau}}</a>
+                             <a href="/products/{{content.IDBaiViet}}" target="_blank" class="post-title">{{content.TieuDe}}</a>
                              <!-- Post Meta -->
-                             <p>{{TomTat}} </p>
+                             <p>{{content.TomTat}} </p>
                          </div>
                      </div>
                     {{/each}}

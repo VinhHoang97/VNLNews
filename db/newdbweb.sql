@@ -304,7 +304,7 @@ Với sự tham gia của Hội Đầu Bếp Việt Nam (VICA), Hiệp Hội Du 
 ', 'Cá nướng Pa pỉnh tộp Tây Bắc tham dự Lễ hội văn hoá ẩm thực Hà Nội', 172, 6, 2, 1);
 
 insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
-values('Chương trình "Khai trương mùa du lịch biển" Đà Nẵng 2019 có gì mới?','Chuong trinh "Khai truong mua du lich bien" Đa Nang 2019 co gi moi?', 10, '2019-04-20 01:39:00',
+values('Chương trình "Khai trương mùa du lịch biển" Đà Nẵng 2019 có gì mới?','Chuong trinh "Khai truong mua du lich bien" Da Nang 2019 co gi moi?', 10, '2019-04-20 01:39:00',
 'Chương trình "Khai trương mùa du lịch biển" Đà Nẵng 2019 sẽ tiếp tục diễn ra từ ngày 26/4 đến ngày 01/5/2019 tại Công viên Biển Đông, các bãi biển du lịch Đà Nẵng.
 Chiều 22/3, Sở Du lịch Đà Nẵng cho hay, chương trình "Khai trương mùa du lịch biển Đà Nẵng" là sự kiện được UBND thành phố Đà Nẵng cho phép Ban quản lý bán đảo Sơn Trà và các bãi biển du lịch Đà Nẵng tổ chức thường niên vào dịp lễ 30/4 – 1/5 hàng năm, chương trình đã trở thành một sự kiện văn hóa, thể thao và du lịch thu hút đông đảo người dân và du khách tham gia.
 Năm 2019, Chương trình "Khai trương mùa du lịch biển" sẽ tiếp tục diễn ra từ ngày 26/4 đến ngày 01/5/2019 tại Công viên Biển Đông, các bãi biển du lịch Đà Nẵng, khu vực Lăng Ông và bán đảo Sơn Trà với các hoạt động tuyên truyền bảo vệ môi trường, quảng bá du lịch tại bán đảo Sơn Trà và các bãi biển du lịch Đà Nẵng.
@@ -321,7 +321,7 @@ Bên cạnh vịnh Vĩnh Hy thuộc Top 40 vịnh đẹp nhất thế giới, v�
 Vùng đất này còn được bao phủ bởi khí hậu nắng quanh năm, gió khô mát, thuận lợi cho mọi hoạt động của du khách. Ở Ninh Thuận, du lịch không có mùa vụ. 105km đường bờ biển, cùng 2 vườn quốc gia, bát ngát những cánh đồng nho, nhiều làng nghề truyền thống lâu đời, các tiểu sa mạc với cảnh quan độc đáo... là những lợi thế của Ninh Thuận.
 Tiềm năng tự nhiên đã biến Ninh Thuận thành xứ sở hội tụ của mọi hình thái du lịch xu hướng và hấp dẫn như: sinh thái, nghỉ dưỡng, du lịch biển, thể thao, trải nghiệm, MICE hay mạo hiểm.
 Nhờ tiềm năng tự nhiên phong phú, lại được mở đường bởi những chính sách ưu đãi đầu tư lớn, Ninh Thuận đang là trong những miền đất tụ hội các nhà phát triển du lịch, doanh nghiệp hàng đầu cả nước. Ngoài ra, những dự án hấp dẫn cùng nhau xuất hiện tạo điểu kiện cho Ninh Thuận triển toàn diện theo cả chiều rộng lẫn chiều sâu.
-', 'Ninh Thuận - trung tâm du lịch mới bên bờ biển Đông', 'Ninh Thuan - trung tam du lich moi ben bo bien Dong', 149, 7, 3, 2);
+', 'Ninh Thuận - trung tâm du lịch mới bên bờ biển Đông', 149, 7, 3, 2);
 
 
 insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
@@ -330,7 +330,7 @@ values('Hải sản bình thường ở Việt Nam, chích máu bán 300 triệu
 ','Hải sản bình thường ở Việt Nam, chích máu bán 300 triệu/lít', 10, 8, 3, 4);
 
 insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
-values('Nếu hay ăn cá biển, tốt nhất đừng ham... cá to, vì sao vậy?','Neu hay an ca bien, tot nhat đung ham... ca to, vi sao vay?', 9 ,  '2019-05-26 07:13:00',
+values('Nếu hay ăn cá biển, tốt nhất đừng ham... cá to, vì sao vậy?','Neu hay an ca bien, tot nhat dung ham... ca to, vi sao vay?', 9 ,  '2019-05-26 07:13:00',
 'Gia đình chị Hoa (Hà Nội) được biếu một khúc cá Thu to hơn 10kg. Nghĩ rằng cá ngon nên chị Hoa chế biến và mời bố mẹ hai bên nội ngoại sang ăn tối cùng gia đình.
 Tuy nhiên, nửa đêm hai con gái chị Hoa bị đau bụng, nôn mửa, tiêu chảy. Rất may sau gần một đêm cả nhà thức trắng vì các con chạy ra chạy vào toilet, gần sáng hai bé cũng yên bụng và ngủ tiếp.
 Chưa hết, sáng hôm sau, mẹ đẻ chị Hoa gọi điện cho con gái hỏi nguồn gốc các món ăn tối qua vì về nhà bà bị mẩn ngứa, nổi mề đay. Chị Hoa cũng kể cho mẹ chuyện hai con gái bị “miệng nôn, trôn tháo” tối qua. Hai mẹ con chị Hoa đã nghĩ đến nguyên nhân do thức ăn, nhưng lại gạt đi vì nghĩ cá biển tươi, sạch như thế thì làm sao gây ngộ độc được.
@@ -355,7 +355,7 @@ Với mức giá này, vú sữa Việt Nam nằm trong tốp những loại qu
 );
 
 insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
-values('Nông dân "đắng lòng" phá bỏ đồng ớt cao sản', 'Nong dan "dang long" pha bo đong ot cao san', 8, '2019-05-11 19:15:00',
+values('Nông dân "đắng lòng" phá bỏ đồng ớt cao sản', 'Nong dan "dang long" pha bo dong ot cao san', 8, '2019-05-11 19:15:00',
 'Cho rằng bị doanh nghiệp "ép giá" nên mặc dù mới thí điểm được 2 năm nhưng nhiều hộ nông dân đã mang cả máy lồng, cuốc, liềm phá bỏ những thửa ớt cao sản để lấy đất trồng lại các loại hoa màu truyền thống.
 Vụ việc ớt cao sản bị rớt giá thảm hại khiến bà con bức xúc tới mức phá bỏ cả cánh đồng ớt xảy ra tại xã Thăng Bình, huyện Nông Cống, tỉnh Thanh Hóa. 
 Theo phản ánh của người dân, loại ớt cao sản này được chính quyền vận động trồng thí điểm ở 3 thôn của xã là Ngọ Thượng, Ngọ Trung và Ngọ Hạ trong gần 2 năm nay. Và loại nông sản này được Công ty Rau quả Nga Sơn (huyện Nga Sơn, Thanh Hóa) cam kết thu mua. Một năm trước, bà con thu hoạch ớt và nhập bán bình thường cho doanh nghiệp với giá 9.000 đồng/kg, nhưng đến thời điểm bây giờ, giá ớt rớt xuống còn 4.500 đồng với điều kiện phải làm sạch cả tai ớt. 
@@ -419,3 +419,4 @@ insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (2, 13, 'Thì r
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (3, 12, 'Bác nhận xét gắt vậy', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (4, 14, 'Mãi mới thấy chị comeback', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (6, 14, 'Nhìn ngon ghê', 1);
+

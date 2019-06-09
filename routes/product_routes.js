@@ -1,14 +1,24 @@
 var express = require('express');
 var productModel=require('../models/product_model');
 var categoryModel = require('../models/categories_model');
+var imageModel = require('../models/image_model');
 var router = express.Router();
 
 router.get('/productByCategory/:id',(req,res)=>{
     var id = req.params.id;
-    console.log(id);
+    var products = [];
      productModel.singleByCategory(id).then(rows =>{
-        console.log(rows);
-        res.render('single_category',{products:rows})
+         rows.forEach(element => {
+            imageModel.getImgByProduct(element.IDBaiViet).then(result=>{
+                products.push({
+                    content:element,
+                    img: result[0]
+                });
+               
+            });
+          
+         });
+         res.render('single_category',{products:products});
     }).catch(err =>{
         console.log(err);
     });
@@ -16,10 +26,19 @@ router.get('/productByCategory/:id',(req,res)=>{
 
 router.get('/productByParentCategory/:id',(req,res)=>{
     var id = req.params.id;
-    console.log(id);
-     productModel.singleByParentCat(id).then(rows =>{
-        console.log(rows);
-        res.render('single_category',{products:rows})
+    var products = [];
+    productModel.singleByParentCat(id).then(rows =>{
+        rows.forEach(element => {
+           imageModel.getImgByProduct(element.IDBaiViet).then(result=>{
+               products.push({
+                   content:element,
+                   img: result[0]
+               });
+              
+           });
+         
+        });
+        res.render('single_category',{products:products});
     }).catch(err =>{
         console.log(err);
     });
