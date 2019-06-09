@@ -137,6 +137,7 @@ add constraint Fk_CMT_DocGia
 foreign key (DocGia)
 references NguoiDung(ID);
 
+
 alter table BaiViet
 add constraint Fk_BV_Duyet
 foreign key (DaDuyet)
@@ -217,4 +218,6 @@ insert into baiviet_hinhanh(IDBaiViet,IdHinh) values('BV0001',1);
 --------------- insert table BinhLuan
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values ('BV0001', 10, 'Hay qua', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values ('BV0001', 11, 'Thật mong đợi', 0);
+
+select * from baiviet where ChuyenMuc='CM013'
 

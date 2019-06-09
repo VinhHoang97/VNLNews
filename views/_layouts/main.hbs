@@ -12,10 +12,10 @@
     <title>Báo Điện Tử TH16-News</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="/img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
 </head>
 
@@ -38,7 +38,7 @@
                 <nav class="classy-navbar justify-content-between" id="magNav">
 
                     <!-- Nav brand -->
-                    <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                    <a href="/" class="nav-brand"><img src="/img/core-img/logo.png" alt=""></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -57,38 +57,18 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                   
-                                    <li class="active"><a href="index.html">Trang chủ</a></li>
-                                    <li><a href="doisong.html">Đời sống</a>
+                                    <li class="active"><a href="/">Trang chủ</a></li>
+                                    {{#each categoryFull}}
+                                    <li><a
+                                            href="/products/productByParentCategory/{{parentCategory.IDChuyenMuc}}">{{parentCategory.TenChuyenMuc}}</a>
                                         <ul class="dropdown">
-                                            <li><a href="/category/CM006">Xã Hội</a></li>
-                                            <li><a href="phapluat.html">Pháp luật</a></li>
+                                            {{#each childCategory}}
+                                            <li><a href="/products/productByCategory/{{IDChuyenMuc}}">{{TenChuyenMuc}}</a></li>
+                                            {{/each}}
                                         </ul>
+    
                                     </li>
-                                    <li><a href="kinhdoanh.html">Kinh doanh</a>
-                                        <ul class="dropdown">
-                                            <li><a href="nongsan.html">Nông sản</a></li>
-                                            <li><a href="haisan.html">Hải sản</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="vanhoa.html">Văn hóa</a>
-                                        <ul class="dropdown">
-                                            <li><a href="dulich.html">Du lịch</a></li>
-                                            <li><a href="amthuc.html">Ẩm Thực</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="giaitri.html">Giải trí</a>
-                                        <ul class="dropdown">
-                                            <li><a href="amnhac.html">Âm nhạc</a></li>
-                                            <li><a href="phim.html">Điện ảnh, truyền hình</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="thethao.html">Thể thao</a>
-                                        <ul class="dropdown">
-                                            <li><a href="bongda.html">Bóng đá</a></li>
-                                            <li><a href="khac.html">Các môn khác</a></li>
-                                        </ul>
-                                    </li>
+                                    {{/each}}
                                 </ul>
                             </div>
                             <!-- Nav End -->
@@ -129,7 +109,7 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="footer-widget">
                         <!-- Logo -->
-                        <a href="index.html" class="foo-logo"><img src="../img/core-img/logo.png" alt=""></a>
+                        <a href="index.html" class="foo-logo"><img src="/img/core-img/logo.png" alt=""></a>
                         <p>Tờ báo của người Việt dành cho người Việt</p>
                         <div class="footer-social-info">
                             <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
@@ -246,15 +226,15 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
     </script> --}}
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
+    <script src="/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
     <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
+    <script src="/js/plugins/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>
+    <script src="/js/active.js"></script>
 </body>
 
 </html>

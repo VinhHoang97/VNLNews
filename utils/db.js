@@ -4,8 +4,8 @@ var createConnection = () => {
         host: 'localhost',
         port: '3306',
         user: 'root',
-        password: '29011997',
-        database: 'test',
+        password: '',
+        database: 'vnlnews',
     });
 }
 module.exports = {
@@ -21,7 +21,9 @@ module.exports = {
                 }
                 connection.end();
             });
-        });
+        }).catch(err=>{
+            console.log(err);
+    });
     },
     add: (tableName,entity)=>{
         return new Promise((resolve,reject)=>{
@@ -37,6 +39,23 @@ module.exports = {
                 connection.end();
             });
         })
+    },
+
+    update: (tableName,idField,entity)=>{
+        return new Promise((resolve,reject)=>{
+            var id = entity[idField];
+            delete entity[idField]
+            var sql =`update ${tableName} set ? where ${idField} = ?`;
+            var connection = createConnection();
+            connection.connect();
+            connection.query(sql, [entity,id],(error,value) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(value.changeRows);
+                }
+                connection.end();
+            });
+        })
     }
-    
 }
