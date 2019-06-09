@@ -6,7 +6,9 @@ var router = express.Router();
 var app = express();
 var productRoutes = require('./routes/product_routes');
 var categoriesRoutes = require('./routes/categories_routes');
+var admin = require('./routes/admin/admin_categories_routes');
 // view engine setup
+
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'hbs');
@@ -34,6 +36,11 @@ app.use('/lay_mk',(req,res)=> {
 app.use('/doc_gia',(req,res)=> {
     res.render('doc_gia')
 })
+
+app.use('/admin',admin);
+
+
+
 app.listen(3000, () => {
     console.log('Site running on port 3000');
 });
