@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var adminLogin =require('./admin_account_routers');
+var auth = require('../../middlewares/auth');
 //require('../../middlewares/view-engine')(router);
 
 router.use('/admin_login',adminLogin)
@@ -9,6 +10,10 @@ router.get('/',(req,res)=>{
         layout:'main_admin.hbs'
     });
 })
+router.post('/logout', auth, (req, res, next) => {
+    req.logOut();
+    res.redirect('/admin/admin_login');
+  })
 router.get('/trang_chu',(req,res)=>{
     res.render('admin/admin',{
         layout:'main_admin.hbs'
