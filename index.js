@@ -2,11 +2,17 @@ var express = require('express');
 var body_parser = require('body-parser');
 var express_handlebars = require('express-handlebars');
 var path = require('path');
-var router = express.Router();
+var morgan = require('morgan');
+
 var app = express();
 var productRoutes = require('./routes/product_routes');
 var categoriesRoutes = require('./routes/categories_routes');
 var admin = require('./routes/admin/admin_categories_routes');
+app.use(morgan('dev'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+require('./middlewares/session')(app);
+require('./middlewares/passport')(app);
 // view engine setup
 
 app.set('views', path.join(__dirname, 'views'));
@@ -17,23 +23,25 @@ app.engine('hbs', express_handlebars({
     layoutsDir: 'views/_layouts'
 }));
 app.use(require('./utils/global_var'));
+
+
 app.get('/', (req, res) => {
         res.render('index'); 
 })
 app.use('/products',productRoutes);
 app.use('/category',categoriesRoutes);
 
-app.use('/login',(req,res)=> {
+app.get('/login',(req,res)=> {
     res.render('login')
 })
-app.use('/dang_ki',(req,res)=> {
+app.get('/dang_ki',(req,res)=> {
     res.render('dang_ki')
 })
-app.use('/lay_mk',(req,res)=> {
+app.get('/lay_mk',(req,res)=> {
     res.render('lay_mk')
 })
 
-app.use('/doc_gia',(req,res)=> {
+app.get('/doc_gia',(req,res)=> {
     res.render('doc_gia')
 })
 

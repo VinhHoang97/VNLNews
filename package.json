@@ -18,15 +18,21 @@
   },
   "homepage": "https://github.com/VinhHoang97/VNLNews#readme",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "crypto-js": "^3.1.9-1",
     "express": "^4.17.0",
     "express-handlebars": "^3.1.0",
+    "express-handlebars-sections": "^1.0.1",
+    "express-session": "^1.16.1",
     "handlebars": "^4.1.2",
     "moment": "^2.24.0",
+    "morgan": "^1.9.1",
     "mysql": "^2.17.1",
     "nodemon": "^1.19.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "promise": "^8.0.3"
   }
 }
