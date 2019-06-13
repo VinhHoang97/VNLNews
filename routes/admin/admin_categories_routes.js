@@ -19,7 +19,7 @@ router.get('/trang_chu',(req,res)=>{
         layout:'main_admin.hbs'
     });
 })
-router.get('them_danh_muc',(req,res)=> {
+router.get('/them_danh_muc',(req,res)=> {
     res.render('admin/them_danh_muc',{
         layout:'main_admin.hbs'
     })
@@ -52,4 +52,28 @@ router.use('/xem_editor',(req,res)=> {
         layout:'main_admin.hbs'
     })
 })
+
+router.use('/phong_vien',(req,res)=> {
+    res.render('admin/phong_vien',{
+        layout:'main_phong_vien.hbs'
+    })
+})
+
+router.use('/xem_danh_sach_bai_viet',(req,res)=> {
+    res.render('admin/xem_danh_sach_bai_viet',{
+        layout:'main_phong_vien.hbs'
+    })
+})
+
+router.use('/hieu_chinh_bai_viet',(req,res)=> {
+    res.render('admin/hieu_chinh_bai_viet',{
+        layout:'main_phong_vien.hbs'
+    })
+})
+
+router.get('/upload', (req, res, next) => {
+    res.render('admin/upload',{
+        layout:'main_phong_vien.hbs'
+    })
+  })
 module.exports = router;

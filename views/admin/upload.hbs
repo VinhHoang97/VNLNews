@@ -1,0 +1,76 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+  rel="stylesheet" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+<script>
+  $(function () {
+    $('#fuMain').fileinput({
+      theme: 'fa',
+      dropZoneEnabled: false,
+      allowedFileExtensions: ['png', 'jpg', 'mp3','mp4'],
+      uploadUrl: '/upload',
+      uploadAsync: false,
+    });
+  })
+</script>
+<div class="right">
+			<div class="col-md-10">
+				<div class="content">
+					<div class="col-md-4 add-dm">
+						<h4 class="text-center">Thêm bài viết</h4>
+					</div>
+					<div class="clearfix"></div>
+					<form method="post">
+						<div class="form">
+							<table class="table">
+								<tr>
+									<td>
+										<P>Tiêu đề danh mục</p>
+									</td>
+									<td><input type="text" name="title" class="form-control"></td>
+								</tr>
+								<tr>
+									<td>
+										<P>Nội dung bài viết</p>
+									</td>
+									<td><textarea name="content" class="form-control" id="" cols="30" rows="10"></textarea></td>
+								</tr>
+								<tr>
+									<td>
+										<P>Hình ảnh bài viết</p>
+									</td>
+									<td> <div class="card shadow">
+                        <div class="card-body">
+                        <form method="POST">
+                          <div class="form-group">
+                            <div class="file-loading">
+                              <input id="fuMain" name="fuMain" type="file" multiple>
+                            </div>
+                          </div>
+                        </form>
+                      </div> </div></td>
+								</tr>
+								<tr>
+									<td>
+										<p>Lựa chọn danh mục cha</p>
+									</td>
+									<td><select name="cat" class="form-control">
+											<option value="0">Lựa chọn danh mục</option>
+											<option value="">Đời sống</option>
+											<option value="">Kinh doanh</option>
+											<option value="">Văn hóa</option>
+											<option value="">Giải trí</option>
+											<option value="">Thể thao</option>
+										</select>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-md-3 form-group pull-right">
+							<input type="submit" name="ok" value="Lưu" class="btn btn-primary btn-block">
+						</div>
+					</form>
+				</div>
+				<!--end .content-->
+			</div>
+		</div>
