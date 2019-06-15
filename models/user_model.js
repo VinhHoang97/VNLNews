@@ -12,5 +12,8 @@ singleByUserName:username=>{
 },
 singleByPassword : password=>{
     return db.load(`select * from nguoidung where Password='${password}'`);
+}, 
+singleByPhanHe: phanhe=>{
+    return db.load(`select * from nguoidung where PhanHe='${phanhe}'`);
 }}
 //

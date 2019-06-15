@@ -2,7 +2,7 @@ var express = require('express');
 var bcrypt = require('bcrypt');
 var router = express.Router();
 var passport = require('passport');
-var auth = require('../../middlewares/auth');
+
 router.get('/',(req,res, next )=>{
     res.render('admin/admin_login',{
         layout:false
