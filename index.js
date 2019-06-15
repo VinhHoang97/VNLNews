@@ -7,6 +7,8 @@ var morgan = require('morgan');
 var app = express();
 var productRoutes = require('./routes/product_routes');
 var categoriesRoutes = require('./routes/categories_routes');
+var indexRoutes = require('./routes/index_routes');
+var productModel= require('./models/product_model');
 var admin = require('./routes/admin/admin_categories_routes');
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
@@ -26,9 +28,7 @@ app.engine('hbs', express_handlebars({
 app.use(require('./utils/global_var'));
 
 
-app.get('/', (req, res) => {
-        res.render('index'); 
-})
+app.use('/', indexRoutes);
 app.use('/products',productRoutes);
 app.use('/category',categoriesRoutes);
 

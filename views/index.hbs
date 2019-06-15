@@ -1,63 +1,26 @@
  <!-- ##### Hero Area Start ##### -->
  <div class="hero-area owl-carousel">
+     {{#each carousel}}
+    
      <!-- Single Blog Post -->
-     <div class="hero-blog-post bg-img bg-overlay" style="background-image: url(../../img/bg-img/ds/xh1.jpg);">
+     <div class="hero-blog-post bg-img bg-overlay" style="background-image: url(/{{img.urllinkHinh}});">
          <div class="container h-100">
              <div class="row h-100 align-items-center">
                  <div class="col-12">
                      <!-- Post Contetnt -->
                      <div class="post-content text-center">
                          <div class="post-meta" data-animation="fadeInUp" data-delay="100ms">
-                             <a href="#">Tháng Năm có gì ?</a>
-                             <a href="xahoi.html">Xã hội</a>
+                             <a href="#">Lượt xem: {{product.LuotXem}}</a>
+                             <a href="/products/productByCategory/{{product.ChuyenMuc}}">{{cat.TenChuyenMuc}}</a>
                          </div>
-                         <a href="dienanhdetail.html" class="post-title" data-animation="fadeInUp"
-                             data-delay="300ms">Tiễn đưa Trung tướng Đồng Sỹ Nguyên về nơi an nghỉ cuối cùng</a>
+                         <a href="/products/{{product.IDBaiViet}}" class="post-title" data-animation="fadeInUp"
+                             data-delay="300ms">{{product.TieuDe}}</a>
                      </div>
                  </div>
              </div>
          </div>
      </div>
-
-     <!-- Single Blog Post -->
-     <div class="hero-blog-post bg-img bg-overlay" style="background-image: url(../img/bg-img/ds/pl.jpg);">
-         <div class="container h-100">
-             <div class="row h-100 align-items-center">
-                 <div class="col-12">
-                     <!-- Post Contetnt -->
-                     <div class="post-content text-center">
-                         <div class="post-meta" data-animation="fadeInUp" data-delay="100ms">
-                             <a href="#">Tháng Năm có gì ?</a>
-                             <a href="doisong.html">Đời sống</a>
-                         </div>
-                         <a href="dienanhdetail.html" class="post-title" data-animation="fadeInUp"
-                             data-delay="300ms">Nam thanh niên chở da và xương hổ vượt biên sang Trung Quốc</a>
-
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
-
-     <!-- Single Blog Post -->
-     <div class="hero-blog-post bg-img bg-overlay" style="background-image: url(img/bg-img/gt/an.jpg);">
-         <div class="container h-100">
-             <div class="row h-100 align-items-center">
-                 <div class="col-12">
-                     <!-- Post Contetnt -->
-                     <div class="post-content text-center">
-                         <div class="post-meta" data-animation="fadeInUp" data-delay="100ms">
-                             <a href="#">Tháng Năm có gì ?</a>
-                             <a href="amnhac.html">Scandal</a>
-                         </div>
-                         <a href="dienanhdetail.html" class="post-title" data-animation="fadeInUp"
-                             data-delay="300ms">Giới trẻ và sự hâm mộ thần tượng mù quáng</a>
-
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
+    {{/each}} 
  </div>
  <!-- ##### Hero Area End ##### -->
  <!-- ##### Mag Posts Area Start ##### -->
@@ -73,14 +36,14 @@
              <div class="section-heading">
                  <h5>Thịnh hành</h5>
              </div>
-
+            {{#each top10}}
              <!-- Single Blog Post -->
              <div class="single-blog-post d-flex">
                  <div class="post-thumbnail">
-                     <img src="img/bg-img/tt/bd.jpg" alt="">
+                     <img src="/{{img.urllinkHinh}}" alt="">
                  </div>
                  <div class="post-content">
-                     <a href="dienanhdetail.html" class="post-title">Trực tiếp ĐT Việt Nam 2-0 Yemen (KT): Song Hải lập
+                     <a href="/products/{{product.IDBaiViet}}" class="post-title">Trực tiếp ĐT Việt Nam 2-0 Yemen (KT): Song Hải lập
                          công, Việt Nam rộng cửa đi tiếp</a>
                      <div class="post-meta d-flex justify-content-between">
                          <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
@@ -89,7 +52,7 @@
                      </div>
                  </div>
              </div>
-
+            {{/each}}
              <!-- Single Blog Post -->
              <div class="single-blog-post d-flex">
                  <div class="post-thumbnail">

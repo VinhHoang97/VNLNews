@@ -5,7 +5,7 @@ var createConnection = () => {
         port: '3306',
         user: 'root',
         password: '',
-        database: 'test_web',
+        database: 'vnlnews',
     });
 }
 module.exports = {

@@ -2,8 +2,7 @@ var db = require('../utils/db');
 
 module.exports={
     all:()=>{
-        
-        return db.load(`select * from chuyenmuc`);
+        return db.load(`select * from chuyenmuc order by IDChuyenMuc asc`);
     },
 
     single:id=>{
@@ -20,7 +19,7 @@ module.exports={
     },
 
     getChildrenByID: id=>{
-        return db.load(`select * from chuyenmuc where ChuyenMucCha='${id}'`)
+        return db.load(`select * from chuyenmuc where ChuyenMucCha='${id}' `)
     }
 
 }
