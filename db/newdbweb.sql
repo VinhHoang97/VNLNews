@@ -30,7 +30,7 @@ create table ChuyenMuc #category
 	);
 create table Nhan #tag
 ( IDTag int not null primary key auto_increment,
-  TenTag varchar(20) not null
+  TenTag varchar(20)  CHARACTER SET utf8 COLLATE utf8_unicode_ci not null
   );
 create table Duyet
 ( IDDuyet int not null primary key auto_increment,
@@ -53,6 +53,7 @@ create table urlHinhAnh
 ( IDHinh INT  primary KEY auto_increment,
   urllinkHinh VARCHAR(255) not null UNIQUE
   );
+		
 create table BinhLuan
 ( IDBinhLuan int auto_increment,
   BaiViet int not null,

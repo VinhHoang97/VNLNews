@@ -14,14 +14,12 @@ module.exports = (req, res, next) => {
                   childCategory: rows
                 });
               }
-              if (index === array.length - 1) resolve();
             })
             .catch(err => {
               console.log(err);
             });
-        }else{
-            if (index === array.length - 1) resolve();
         }
+        if (index === array.length - 1) resolve();
       });
     }).then(() => {
       next();

@@ -3,11 +3,11 @@ var body_parser = require('body-parser');
 var express_handlebars = require('express-handlebars');
 var path = require('path');
 var morgan = require('morgan');
-
 var app = express();
 var productRoutes = require('./routes/product_routes');
 var categoriesRoutes = require('./routes/categories_routes');
 var indexRoutes = require('./routes/index_routes');
+var searchRoutes = require('./routes/search_routes');
 var productModel= require('./models/product_model');
 var admin = require('./routes/admin/admin_categories_routes');
 app.use(morgan('dev'));
@@ -27,12 +27,13 @@ app.engine('hbs', express_handlebars({
     defaultLayout: 'main.hbs',
     layoutsDir: 'views/_layouts'
 }));
-app.use(require('./utils/global_var'));
+app.use(require('./middlewares/locals.mdw'));
 
 
 app.use('/', indexRoutes);
 app.use('/products',productRoutes);
 app.use('/category',categoriesRoutes);
+app.use('/search',searchRoutes);
 
 app.get('/login',(req,res)=> {
     res.render('login')
@@ -51,6 +52,16 @@ app.get('/doc_gia',(req,res)=> {
 app.use('/admin',admin);
 
 
+app.use((req,res,next)=>{
+    res.render('404');
+});
+
+app.use((error,req,res,next)=>{
+    res.render('error',{
+        message:error.message,
+        error
+    });
+});
 
 app.listen(3000, () => {
     console.log('Site running on port 3000');
