@@ -438,6 +438,25 @@
 
             </ul>
         </div>
+
+         <!-- Sidebar Widget -->
+        <div class="single-sidebar-widget p-30">
+            <!-- Section Title -->
+            <div class="section-heading">
+                <h5>Các nhãn</h5>
+            </div>
+
+            <!-- Tag Widget -->
+            <ul class="catagory-widgets">
+                {{#each Tag}}
+                <li><a href="/tag/{{IDTag}}"><span><i
+                                class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            #{{TenTag}}</span>
+                    </a></li>
+                {{/each}}
+
+            </ul>
+        </div>
     </div>
 </section>
 <!-- ##### Mag Posts Area End ##### -->

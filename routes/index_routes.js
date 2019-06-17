@@ -2,6 +2,7 @@ var express = require("express");
 var productModel = require("../models/product_model");
 var categoryModel = require("../models/categories_model");
 var imageModel = require("../models/image_model");
+var tagModel = require("../models/tag_model");
 var commentModel = require("../models/comment_model");
 var moment= require('moment');
 var router = express.Router();
@@ -15,9 +16,10 @@ router.get("/", (req, res, next) => {
     productModel.getMostView(4),
     productModel.getMostView(10),
     productModel.getNewest(10),
-    categoryModel.allChildren()
+    categoryModel.allChildren(),
+    tagModel.all()
   ])
-    .then(([carouselData, top10Data, newest10Data, category]) => {
+    .then(([carouselData, top10Data, newest10Data, category,tag]) => {
       new Promise((resolve, reject) => {
         carouselData.forEach((element, index, array) => {
           Promise.all([
@@ -109,7 +111,8 @@ router.get("/", (req, res, next) => {
                   category: category,
                   TenTopEachChuyenMuc1: TenTopEachChuyenMuc1,
                   TenTopEachChuyenMuc2: TenTopEachChuyenMuc2,
-                  RefTenTop: TenTopEachChuyenMuc[0]
+                  RefTenTop: TenTopEachChuyenMuc[0],
+                  Tag: tag,
                 });
               }, 1000);
             });

@@ -4,6 +4,7 @@ var categoryModel = require("../models/categories_model");
 var tagModel = require("../models/tag_model");
 var imageModel = require("../models/image_model");
 var commentModel = require("../models/comment_model");
+var moment = require('moment');
 var router = express.Router();
 
 router.get("/productByCategory/:id", (req, res, next) => {
@@ -45,7 +46,7 @@ router.get("/productByCategory/:id", (req, res, next) => {
             imageModel.getImgByProduct(element.IDBaiViet),
             tagModel.singelByBaiViet(element.IDBaiViet)
           ]).then(([result,tag]) => {
-            console.log(tag);
+            element.NgayDang= moment(element.NgayDang).format('LL');
             products.push({
               content: element,
               img: result[0],
@@ -100,6 +101,7 @@ router.get("/productByParentCategory/:id", (req, res, next) => {
             imageModel.getImgByProduct(element.IDBaiViet),
             tagModel.singelByBaiViet(element.IDBaiViet)
           ]).then(([result,tag]) => {
+            element.NgayDang= moment(element.NgayDang).format('LL');
             products.push({
               content: element,
               img: result[0],
@@ -114,9 +116,7 @@ router.get("/productByParentCategory/:id", (req, res, next) => {
         })
         .catch(next);
     })
-    .catch(() => {
-      throw new Error("Không tìm thấy bài viết phù hợp");
-    });
+    .catch(next);
 });
 
 router.get("/:id", (req, res, next) => {
@@ -129,9 +129,7 @@ router.get("/:id", (req, res, next) => {
         imageModel.getImgByProduct(rows[0].IDBaiViet),
         commentModel.singelByBaiViet(rows[0].IDBaiViet)
       ]).then(([category, img, comment]) => {
-        console.log(img);
-        console.log(category);
-        console.log(comment);
+        rows[0].NgayDang= moment(rows[0].NgayDang).format('LL');
         res.render("single_product", {
           product: rows[0],
           category: category[0],
