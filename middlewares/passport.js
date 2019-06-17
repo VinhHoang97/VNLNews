@@ -9,9 +9,8 @@ module.exports = function (app) {
 
   var ls = new LocalStrategy({
     usernameField: 'username',
-    passwordField: 'password',
-    phanheField: 'phanhe'
-  }, (username, password,phanhe,  done) => {
+    passwordField: 'password'
+  }, (username, password , done) => {
     userModel.singleByUserName(username).then(rows => {
       if (rows.length === 0) {
         return done(null, false, { message: 'Invalid username.' });
@@ -21,14 +20,10 @@ module.exports = function (app) {
       console.log(rows[0].Password);
       var user = rows[0];
       //var ret = bcrypt.compareSync(password, rows[0].Password);
-      var ret = password==rows[0].Password;
-      var ph = phanhe == rows[0].PhanHe;
+      var ret = password == rows[0].Password;
       console.log(ret);
-      console.log(ph);
-      if (ret) {
-        if(ph){
-        return done(null, user);}
-        return done(null, false, { message: 'Invalid phan he.' });
+      if (ret){  
+        return done(null, user);
       }
       return done(null, false, { message: 'Invalid password.' });
     }).catch(err => {

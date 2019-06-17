@@ -12,7 +12,7 @@ create table NguoiDung
 	UserName varchar(50) not null unique,
 	Password varchar(50) not null,
 	HoTen varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
-	GioiTinh varchar(10),
+	GioiTinh varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
 	NgaySinh date,
 	Email varchar(50) not null unique,
 	SDT varchar(15) not null unique,
@@ -27,7 +27,7 @@ create table ChuyenMuc #category
 	TenChuyenMuc varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci not null,
 	TenChuyenMuc_KhongDau varchar(50),
 	ChuyenMucCha int
-	);
+);
 create table Nhan #tag
 ( IDTag int not null primary key auto_increment,
   TenTag varchar(20) not null
@@ -36,7 +36,7 @@ create table Duyet
 ( IDDuyet int not null primary key auto_increment,
 Loai varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci
 );
-create table BaiViet
+create table BaiViet #0 is not vip
 ( IDBaiViet int not null primary key auto_increment,
   TieuDe varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci not null,
   TieuDe_KhongDau varchar(255),
@@ -47,8 +47,10 @@ create table BaiViet
   LuotXem int,
   PhongVien int,
   BienTapVien int,
-  DaDuyet int
+  DaDuyet int,
+  TinhTrang int default 0
   );
+  
 create table urlHinhAnh
 ( IDHinh INT  primary KEY auto_increment,
   urllinkHinh VARCHAR(255) not null UNIQUE
@@ -224,16 +226,16 @@ insert into TaiKhoanThe(SKT,ChuSoHuu, SoDu) values('192870972',12, 3200000);
 insert into TaiKhoanThe(SKT,ChuSoHuu, SoDu) values('197489891',13, 1600000);
 insert into TaiKhoanThe(SKT,ChuSoHuu, SoDu) values('889102383',14, 1500000);
 ---------------- insert table BaiViet
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet, TinhTrang)
 values('Iron Man & Captain America bắt tay làm hòa trong trailer Avengers: Endgame chỉ là cảnh quay giả?', 'Iron Man & Captain America bat tay lam hoa trong trailer Avengers: Endgame chi la canh quay gia?', 13, '2019-04-10 16:00:00',
 'Mặc dù liên tục quảng bá cho Avengers: Endgame (Hồi kết) suốt nhiều tháng trời nhưng Marvel Studios đặc biệt giữ bí mật về nội dung phim, không để lộ ra ngoài dù chỉ là một chi tiết nhỏ. Chính vì thế, những gì mà fan biết được qua các teaser, trailer hầu hết chỉ là hình ảnh rời rạc, không thể dự đoán chuyện gì sẽ xảy ra. Tuy nhiên gần đây, trong trailer mới nhất, các fan đã vô cùng thích thú khi chứng kiến cảnh hội ngộ giữa Iron Man và Captain America.
 Sau khi Iron Man bị kẹt ở hành tinh Titan không rõ sống chết, nhiều người cho rằng anh và Nebula sẽ trở về trái đất, tìm cách hội ngộ với các Avengers còn lại. Và cảnh Iron Man gặp Captain America cũng là một phân đoạn khi tất cả đoàn tụ. Thế nhưng khi được hỏi về điều này, chính đạo diễn Joe Russo cho biết cảnh đặc biệt đó sẽ không xuất hiện trong phim.
 Mặc dù câu trả lời khá bâng quơ và kết thúc bằng một nụ cười nhưng có lẽ điều mà Joe nói là sự thật. Sau đó, Anthony Russo cố gắng kể nhiều hơn về câu chuyện và đánh lạc hướng khán giả, nhằm không để Joe tiết lộ về nội dung phim. Cuối cùng, Joe cũng nói: “Cũng có thể cảnh đó sẽ xuất hiện trong phim”. Tuy nhiên lúc này, có rất ít người tin vào cách cả hai đang cố gắng che giấu sự thật.
 Iron Man & Captain America bắt tay làm hòa trong trailer Avengers: Endgame chỉ là cảnh quay giả? SaoStar 10/04/19 16:00 GMT+7122 liên quanGốc Thông tin được úp mở bởi chính Joe Russo - một trong cặp đôi anh em đạo diễn trong phim Avengers: Endgame (Hồi kết). Mặc dù liên tục quảng bá cho Avengers: Endgame (Hồi kết)suốt nhiều tháng trời nhưng Marvel Studios đặc biệt giữ bí mật về nội dung phim, không để lộ ra ngoài dù chỉ là một chi tiết nhỏ. Chính vì thế, những gì mà fan biết được qua các teaser, trailer hầu hết chỉ là hình ảnh rời rạc, không thể dự đoán chuyện gì sẽ xảy ra. Tuy nhiên gần đây, trong trailer mới nhất, các fan đã vô cùng thích thú khi chứng kiến cảnh hội ngộ giữa Iron Man và Captain America. Cảnh gặp nhau giữa 2 nhân vật trong trailer. Sau khi Iron Man bị kẹt ở hành tinh Titan không rõ sống chết, nhiều người cho rằng anh và Nebula sẽ trở về trái đất, tìm cách hội ngộ với các Avengers còn lại. Và cảnh Iron Man gặp Captain America cũng là một phân đoạn khi tất cả đoàn tụ. Thế nhưng khi được hỏi về điều này, chính đạo diễn Joe Russo cho biết cảnh đặc biệt đó sẽ không xuất hiện trong phim. Trailer cuối của Avengers: Endgame Mặc dù câu trả lời khá bâng quơ và kết thúc bằng một nụ cười nhưng có lẽ điều mà Joe nói là sự thật. Sau đó, Anthony Russo cố gắng kể nhiều hơn về câu chuyện và đánh lạc hướng khán giả, nhằm không để Joe tiết lộ về nội dung phim. Cuối cùng, Joe cũng nói: “Cũng có thể cảnh đó sẽ xuất hiện trong phim”. Tuy nhiên lúc này, có rất ít người tin vào cách cả hai đang cố gắng che giấu sự thật. Mặc dù nhiều lần bị sự cố “lỡ miệng” do diễn viên, những người được thưởng thức trước bộ phim hay chính ekip, thế nhưng nhìn chung, việc giữ bí mật về nội dung Avengers: Endgameđược thực hiện khá tốt. Chính bộ đôi đạo diễn cũng thừa nhận rằng đã đưa những cảnh quay không có trong phim vào trailer để nhằm đánh lạc hướng suy nghĩ và tạo bất ngờ cho mọi người khi thưởng thức tác phẩm. Đây là một điều khá thú vị, thúc đẩy trí tưởng tượng của khán giả về nội dung phim và nhận lại một cái kết bất ngờ nằm ngoài mong đợi. 
 Iron Man & Captain America bắt tay làm hòa trong trailer Avengers: Endgame chỉ là cảnh quay giả? SaoStar 10/04/19 16:00 GMT+7122 liên quanGốc Thông tin được úp mở bởi chính Joe Russo - một trong cặp đôi anh em đạo diễn trong phim Avengers: Endgame (Hồi kết). Mặc dù liên tục quảng bá cho Avengers: Endgame (Hồi kết)suốt nhiều tháng trời nhưng Marvel Studios đặc biệt giữ bí mật về nội dung phim, không để lộ ra ngoài dù chỉ là một chi tiết nhỏ. Chính vì thế, những gì mà fan biết được qua các teaser, trailer hầu hết chỉ là hình ảnh rời rạc, không thể dự đoán chuyện gì sẽ xảy ra. Tuy nhiên gần đây, trong trailer mới nhất, các fan đã vô cùng thích thú khi chứng kiến cảnh hội ngộ giữa Iron Man và Captain America. Cảnh gặp nhau giữa 2 nhân vật trong trailer. Sau khi Iron Man bị kẹt ở hành tinh Titan không rõ sống chết, nhiều người cho rằng anh và Nebula sẽ trở về trái đất, tìm cách hội ngộ với các Avengers còn lại. Và cảnh Iron Man gặp Captain America cũng là một phân đoạn khi tất cả đoàn tụ. Thế nhưng khi được hỏi về điều này, chính đạo diễn Joe Russo cho biết cảnh đặc biệt đó sẽ không xuất hiện trong phim. Trailer cuối của Avengers: Endgame Mặc dù câu trả lời khá bâng quơ và kết thúc bằng một nụ cười nhưng có lẽ điều mà Joe nói là sự thật. Sau đó, Anthony Russo cố gắng kể nhiều hơn về câu chuyện và đánh lạc hướng khán giả, nhằm không để Joe tiết lộ về nội dung phim. Cuối cùng, Joe cũng nói: “Cũng có thể cảnh đó sẽ xuất hiện trong phim”. Tuy nhiên lúc này, có rất ít người tin vào cách cả hai đang cố gắng che giấu sự thật. Mặc dù nhiều lần bị sự cố “lỡ miệng” do diễn viên, những người được thưởng thức trước bộ phim hay chính ekip, thế nhưng nhìn chung, việc giữ bí mật về nội dung Avengers: Endgameđược thực hiện khá tốt. Chính bộ đôi đạo diễn cũng thừa nhận rằng đã đưa những cảnh quay không có trong phim vào trailer để nhằm đánh lạc hướng suy nghĩ và tạo bất ngờ cho mọi người khi thưởng thức tác phẩm. Đây là một điều khá thú vị, thúc đẩy trí tưởng tượng của khán giả về nội dung phim và nhận lại một cái kết bất ngờ nằm ngoài mong đợi. Hơn ai hết, có lẽ anh em nhà Russo là những người mong chờ bộ phim lên sóng nhất, vì đến lúc họ được chứng kiến thành quả mà mình dày công tạo ra trong suốt thời gian dài. Đâu là những cảnh thật và đâu là cảnh thêm vào để “tung hỏa mù” trước người hâm mộ trong trailer của bộ phim? Câu trả lời sẽ được hé lộ khi tác phẩm chính thức công chiếu ngày 26/4 này!'
-,'Iron Man & Captain America bắt tay làm hòa trong trailer Avengers: Endgame chỉ là cảnh quay giả?', 100, 5, 2, 1);
+,'Iron Man & Captain America bắt tay làm hòa trong trailer Avengers: Endgame chỉ là cảnh quay giả?', 100, 5, 2, 1,1);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet,TinhTrang)
 values('Triệu Lệ Dĩnh che kín mặt trong lần đầu xuất hiện sau 2 tháng sinh con','Trieu Le Dinh che kin mat trong lan dau xuat hien sau 2 thang sinh con', 13, '2019-04-04 09:40:00',
 'Triệu Lệ Dĩnh không xuất hiện trước công chúng kể từ khi sinh con cách đây 2 tháng. Mới đây, phóng viên bắt gặp cô và chồng đến một trung tâm nghệ thuật.
 Ngày 4/6, trang Sohu đưa tin Triệu Lệ Dĩnh cùng chồng là nam diễn viên Phùng Thiệu Phong bị bắt gặp khi đi ăn cùng bạn bè. Đây là lần đầu tiên nữ diễn viên Minh Lan truyện xuất hiện sau thời gian ở cữ. Sohu cho rằng Triệu Lệ Dĩnh đang chuẩn bị cho sự trở lại của mình sau khoảng 10 tháng rời xa làng giải trí.
@@ -243,7 +245,7 @@ Ngoài ra cũng có tin đồn nữ diễn viên đang tích cực giảm cân �
 Triệu Lệ Dĩnh và Phùng Thiệu Phong thông báo kết hôn vào ngày 16/10/2018, trùng với ngày sinh nhật của nữ diễn viên. Cô sinh con trai đầu lòng vào ngày 8/3.
 Hiện tại, Triệu Lệ Dĩnh vẫn chưa nhận dự án nghệ thuật mới. Trong khi vợ ở nhà, Phùng Thiệu Phong vẫn chăm chỉ tham dự các sự kiện và chuẩn bị đóng phim. Anh thỉnh thoảng chia sẻ một số tin tức về con trai nhỏ.
 Triệu Lệ Dĩnh đã ký hợp đồng với công ty Hòa Tụng của Lý Băng Băng, nên người hâm mộ hy vọng cô sẽ tìm được những vai diễn hay. Mới đây, Triệu Lệ Dĩnh cũng được đề cử tranh giải Nữ chính xuất sắc nhất của Bạch Ngọc Lan cho phim Minh Lan truyện. Đây là một trong những giải thưởng truyền hình danh giá nhất của làng giải trí Trung Quốc.
-', 'Triệu Lệ Dĩnh che kín mặt trong lần đầu xuất hiện sau 2 tháng sinh con', 250, 7, 3, 2);
+', 'Triệu Lệ Dĩnh che kín mặt trong lần đầu xuất hiện sau 2 tháng sinh con', 250, 7, 3, 2, 1);
 
 insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
 values('Tuấn Ngọc chê học trò Hồ Hoài Anh hát nhạc Trịnh rời rạc', 'Tuan Ngoc che hoc tro Ho Hoai Anh hat nhac Trinh roi rac', 12, '2019-06-03 06:10:00',
@@ -312,7 +314,7 @@ Năm nay, bên cạnh việc duy trì chuỗi hoạt động đặc trưng như:
 Đặc biệt, chương trình Lễ khai mạc 16h30 - thứ 6 ngày 26/4 sẽ đem đến những tiết mục đặc sắc phục vụ người dân và du khách.', 'Chương trình "Khai trương mùa du lịch biển" Đà Nẵng 2019 có gì mới?', 102, 7,2,1);
 
 insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
-values('Ninh Thuận - trung tâm du lịch mới bên bờ biển Đông', 'Ninh Thuan - trung tam du lich moi ben bo bien Dong',10 , '2019-05-20 05:39:00',
+values('Ninh Thuận - trung tâm du lịch mới bên bờ biển Đông', 'Ninh Thuan - trung tam du lich moi ben bo bien Dong', 10 , '2019-05-20 05:39:00',
 'Sở hữu nhiều hạ tầng lưu trú 5 sao, tiện ích - dịch vụ quy mô lớn hiện đại... Ninh Thuận được kỳ vọng sẽ thu hút nhiều du khách.
 Ở vị trí "trái tim" của du lịch Nam miền Trung, Ninh Thuận được chọn để đặt nền móng cho những trải nghiệm đẳng cấp. Hệ sinh thái du lịch hoàn chỉnh từ lưu trú, nghỉ dưỡng, dịch vụ, giải trí... chuẩn 5 sao sẽ giúp Ninh Thuận thu hút du khách đến trải nghiệm và khám phá.
 Tiềm năng du lịch tại Ninh Thuận.
@@ -329,7 +331,7 @@ values('Hải sản bình thường ở Việt Nam, chích máu bán 300 triệu
 'Máu sam có giá trị rất lớn trong lĩnh vực y tế với những công dụng tuyệt vời. Máu của loài vật này có giá lên tới 60.000 USD cho 1 gallon (tương đương 3,8 lít).
 ','Hải sản bình thường ở Việt Nam, chích máu bán 300 triệu/lít', 10, 8, 3, 4);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet, TinhTrang)
 values('Nếu hay ăn cá biển, tốt nhất đừng ham... cá to, vì sao vậy?','Neu hay an ca bien, tot nhat dung ham... ca to, vi sao vay?', 9 ,  '2019-05-26 07:13:00',
 'Gia đình chị Hoa (Hà Nội) được biếu một khúc cá Thu to hơn 10kg. Nghĩ rằng cá ngon nên chị Hoa chế biến và mời bố mẹ hai bên nội ngoại sang ăn tối cùng gia đình.
 Tuy nhiên, nửa đêm hai con gái chị Hoa bị đau bụng, nôn mửa, tiêu chảy. Rất may sau gần một đêm cả nhà thức trắng vì các con chạy ra chạy vào toilet, gần sáng hai bé cũng yên bụng và ngủ tiếp.
@@ -340,7 +342,7 @@ Trong hải sản có thể chứa các độc tố từ tảo gây nguy hiểm 
 Cá biển cũng có thể nhiễm kim loại nặng như: asen, thủy ngân do môi trường ô nhiễm. Cá càng to thì thường bị nhiễm độc nặng hơn do quá trình tích lũy thức ăn. Vì vậy, các nhà khoa học khuyến cáo, không nên ăn các loại cá lớn như: cá mập, cá kiếm, cá thu loại lớn, cá kình… vì hàm lượng thủy ngân tích lũy trong chúng khá lớn. Ngoài ra, do các chất độc hại thường lắng đọng ở lớp bùn nên ngoài các loài cá biển to, các loài sống ở tầng đáy như: ngao, sò, ốc, hến… rất dễ bị nhiễm độc.
 Hải sản là loại thực phẩm có hàm lượng protein cao, chứa các axít béo omega 3, nhiều canxi, kẽm rất tốt cho sức khỏe trẻ em. Tuy nhiên, thủy - hải sản là một trong 20 loại thực phẩm dễ gây dị ứng, ngộ độc nhất.
 Các triệu chứng của dị ứng thường là mẩn ngứa, nổi mề đay, sổ mũi, mắt ngứa đỏ, tụt huyết áp, khó thở, nôn mửa, tiêu chảy… Nhiều người vẫn nghĩ rằng tiêu chảy là do thức ăn này lạnh, nhưng thực ra là do trong hải sản có độc tố.
-', 'Nếu hay ăn cá biển, tốt nhất đừng ham... cá to, vì sao vậy?', 780, 9, 1, 1);
+', 'Nếu hay ăn cá biển, tốt nhất đừng ham... cá to, vì sao vậy?', 780, 9, 1, 1, 1);
 
 insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
 values('Trái vú sữa Việt tại Mỹ có giá 350.000 đồng/kg','Trai vu sua Viet tai My co gia 350.000 dong/kg', 8, '2019-05-28 09:15:00',
@@ -419,4 +421,5 @@ insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (2, 13, 'Thì r
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (3, 12, 'Bác nhận xét gắt vậy', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (4, 14, 'Mãi mới thấy chị comeback', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (6, 14, 'Nhìn ngon ghê', 1);
+
 

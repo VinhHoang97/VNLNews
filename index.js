@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 require('./middlewares/session')(app);
 require('./middlewares/passport')(app);
-
+app.use(require('./middlewares/auth_locals_mdw'));
 // view engine setup
 
 app.set('views', path.join(__dirname, 'views'));

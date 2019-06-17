@@ -52,37 +52,42 @@
 						<label for="">Mật khẩu</label>
 						<input name="password" type="password" class="form-control" value="{{password}}" required>
 					</div>
-					<div class="form-group" >
+					<div class="form-group">
 						<div style="display: flex; justify-content: space-evenly;">
 							<label class="col-lg-2" id="phan_he">Phân hệ:</label>
 							<div class="form-check">
-								<input class="form-check-input" name="phanhe" type="radio"  id="phong_vien"
-									value="{{phanhe}}" checked>
+								<input class="form-check-input" name="phanhe" type="radio" id="phong_vien" value="PH003"
+									checked>
 								<label class="form-check-label" for="phong_vien">
 									Phóng viên
 								</label>
 							</div>
 							<div class="form-check">
-								<input class="form-check-input" name="phanhe" type="radio"  id="bien_tap_vien"
+								<input class="form-check-input" name="phanhe" type="radio" id="bien_tap_vien"
 									value="PH002">
 								<label class="form-check-label" for="bien_tap_vien">
 									Biên tập viên
 								</label>
 							</div>
 							<div class="form-check">
-								<input class="form-check-input" name="phanhe" type="radio"  id="admin"
-									value="PH001">
+								<input class="form-check-input" name="phanhe" type="radio" id="admin" value="PH001">
 								<label class="form-check-label" for="admin">
 									Admin
 								</label>
 							</div>
 						</div>
 					</div>
-					<input type="submit" value="Đăng nhập"  class="btn btn-primary">
+					<input type="submit" value="Đăng nhập" class="btn btn-primary">
 				</form>
 			</div>
 		</div>
 	</div>
-
+	{{!-- <script type="text/javascript">
+		$(document).ready(function () {
+			$("input[type='radio']").on('change', function () {
+				{{phanhe}} = $("input[name='phanhe']:checked").val();
+			});
+		});
+	</script> --}}
 </body>
 <html>
