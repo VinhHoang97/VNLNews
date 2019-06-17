@@ -2,24 +2,28 @@ var db = require('../utils/db');
 
 module.exports={
     all:()=>{
-        return db.load(`select * from chuyenmuc order by IDChuyenMuc asc`);
+        return db.load(`select * from ChuyenMuc order by IDChuyenMuc asc`);
+    },
+
+    allChildren:()=>{
+        return db.load(`select * from ChuyenMuc where ChuyenMucCha != 'null' order by IDChuyenMuc asc `);
     },
 
     single:id=>{
-        return db.load(`select * from chuyenmuc where IDChuyenMuc='${id}'`);
+        return db.load(`select * from ChuyenMuc where IDChuyenMuc='${id}'`);
     },
 
 
     add: entity =>{
-        return db.add('chuyenmuc',entity);
+        return db.add('ChuyenMuc',entity);
     },
 
     update: entity=>{
-        return db.update('chuyenmuc','IDChuyenMuc',entity);
+        return db.update('ChuyenMuc','IDChuyenMuc',entity);
     },
 
     getChildrenByID: id=>{
-        return db.load(`select * from chuyenmuc where ChuyenMucCha='${id}' `)
+        return db.load(`select * from ChuyenMuc where ChuyenMucCha='${id}' `)
     }
 
 }

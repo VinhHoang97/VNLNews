@@ -1,7 +1,9 @@
 var express = require("express");
 var productModel = require("../models/product_model");
 var categoryModel = require("../models/categories_model");
+var tagModel = require("../models/tag_model");
 var imageModel = require("../models/image_model");
+var commentModel = require("../models/comment_model");
 var router = express.Router();
 
 router.get("/productByCategory/:id", (req, res, next) => {
@@ -20,6 +22,9 @@ router.get("/productByCategory/:id", (req, res, next) => {
     productModel.countByCategory(id)
   ])
     .then(([rows, count_rows]) => {
+      if(rows.length <1){
+        throw new Error("Don't found this category")
+    }
       for (const c of res.locals.categoryFull) {
         if (c.Id === +id) {
           c.isActive = true;
@@ -36,10 +41,15 @@ router.get("/productByCategory/:id", (req, res, next) => {
 
       var bar = new Promise((resolve, reject) => {
         rows.forEach((element, index, array) => {
-          imageModel.getImgByProduct(element.IDBaiViet).then(result => {
+          Promise.all([
+            imageModel.getImgByProduct(element.IDBaiViet),
+            tagModel.singelByBaiViet(element.IDBaiViet)
+          ]).then(([result,tag]) => {
+            console.log(tag);
             products.push({
               content: element,
-              img: result[0]
+              img: result[0],
+              Tag:tag,
             });
             if (index === array.length - 1) resolve();
           });
@@ -53,7 +63,7 @@ router.get("/productByCategory/:id", (req, res, next) => {
     .catch(next);
 });
 
-router.get("/productByParentCategory/:id", (req, res,next) => {
+router.get("/productByParentCategory/:id", (req, res, next) => {
   var id = req.params.id;
   var page = req.query.page || 1;
   if (page < 1) page = 1;
@@ -67,6 +77,9 @@ router.get("/productByParentCategory/:id", (req, res,next) => {
     productModel.countByParentCategory(id)
   ])
     .then(([rows, count_rows]) => {
+      if(rows.length <1){
+        throw new Error("Don't found this category")
+    }
       for (const c of res.locals.categoryFull) {
         if (c.Id === +id) {
           c.isActive = true;
@@ -77,16 +90,20 @@ router.get("/productByParentCategory/:id", (req, res,next) => {
       if (total % limit > 0) nPages++;
       var pages = [];
       for (i = 1; i <= nPages; i++) {
-        var obj = { value: i,active: i=== +page };
+        var obj = { value: i, active: i === +page };
         pages.push(obj);
       }
       console.log(pages);
       var bar = new Promise((resolve, reject) => {
         rows.forEach((element, index, array) => {
-          imageModel.getImgByProduct(element.IDBaiViet).then(result => {
+          Promise.all([
+            imageModel.getImgByProduct(element.IDBaiViet),
+            tagModel.singelByBaiViet(element.IDBaiViet)
+          ]).then(([result,tag]) => {
             products.push({
               content: element,
-              img: result[0]
+              img: result[0],
+              Tag:tag,
             });
             if (index === array.length - 1) resolve();
           });
@@ -97,28 +114,29 @@ router.get("/productByParentCategory/:id", (req, res,next) => {
         })
         .catch(next);
     })
-    .catch(()=>{
-      throw new Error('Không tìm thấy bài viết phù hợp');
+    .catch(() => {
+      throw new Error("Không tìm thấy bài viết phù hợp");
     });
 });
 
-router.get("/:id", (req, res,next) => {
+router.get("/:id", (req, res, next) => {
   var id = req.params.id;
-  console.log(id);
-
   productModel
     .single(id)
     .then(rows => {
       var bar = Promise.all([
         categoryModel.single(rows[0].ChuyenMuc),
-        imageModel.getImgByProduct(rows[0].IDBaiViet)
-      ]).then(([category, img]) => {
+        imageModel.getImgByProduct(rows[0].IDBaiViet),
+        commentModel.singelByBaiViet(rows[0].IDBaiViet)
+      ]).then(([category, img, comment]) => {
         console.log(img);
         console.log(category);
+        console.log(comment);
         res.render("single_product", {
           product: rows[0],
           category: category[0],
-          img: img[0]
+          img: img[0],
+          comment: comment
         });
       });
     })

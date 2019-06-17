@@ -19,10 +19,12 @@
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"
-                                    aria-hidden="true"></i>Trang chủ</a></li>
-                        <li class="breadcrumb-item"><a href="/productByCategory/{{category.ChuyenMucCha}}"></i>Giải trí</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="/productByCategory/{{category.IDChuyenMuc}}">{{category.TenChuyenMuc}}</a></li>
+                        <li class="breadcrumb-item"><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Trang
+                                chủ</a></li>
+                        <li class="breadcrumb-item"><a href="/productByCategory/{{category.ChuyenMucCha}}"></i>Giải
+                                trí</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a
+                                href="/productByCategory/{{category.IDChuyenMuc}}">{{category.TenChuyenMuc}}</a></li>
                     </ol>
                 </nav>
             </div>
@@ -40,13 +42,13 @@
                         <h1 style="color:#1ac4c4">{{product.TieuDe}}</h1>
                         <p>{{product.NgayDang}}</p>
                         <h4 style="background-color: #EEEEEE">{{product.TomTat}}</h4>
-                        
+
                         <div style="display:flex;justify-content: center"> <img style="padding-bottom:10pt"
                                 src="/{{img.urllinkHinh}}" width="100%" height="300p"></div>
                         <div style="display:flex;justify-content: center"> <img style="padding-bottom:10pt"
                                 src="/{{img.urllinkHinh}}" width="100%" height="300p"></div>
-                            <p>{{product.NoiDung}}</p>
-                        <p>{{product.PhongVien}}</p>
+                        <p>{{product.NoiDung}}</p>
+                        <p>Phóng viên: {{product.HoTen}}</p>
                     </div>
                 </div>
             </div>
@@ -60,72 +62,24 @@
             </div>
 
             <ol>
+                {{#each comment}}
                 <!-- Single Comment Area -->
                 <li class="single_comment_area">
                     <!-- Comment Content -->
                     <div class="comment-content d-flex">
                         <!-- Comment Author -->
                         <div class="comment-author">
-                            <img src="/img/bg-img/ad/ad_img.jpg" alt="author">
+                            <img src="/img/product_img/totoro.jpg" alt="author">
                         </div>
                         <!-- Comment Meta -->
                         <div class="comment-meta">
                             <a href="#" class="comment-date">27 Aug 2019</a>
-                            <h6>Tomas Mandy</h6>
-                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                adipisci velit, sed quia non numquam eius</p>
-                            <div class="d-flex align-items-center">
-                                <a href="#" class="like">like</a>
-                                <a href="#" class="reply">Reply</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <ol class="children">
-                        <li class="single_comment_area">
-                            <!-- Comment Content -->
-                            <div class="comment-content d-flex">
-                                <!-- Comment Author -->
-                                <div class="comment-author">
-                                    <img src="/img/bg-img/ad/ad_img.jpg" alt="author">
-                                </div>
-                                <!-- Comment Meta -->
-                                <div class="comment-meta">
-                                    <a href="#" class="comment-date">27 Aug 2019</a>
-                                    <h6>Britney Millner</h6>
-                                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                        adipisci velit, sed quia non numquam eius</p>
-                                    <div class="d-flex align-items-center">
-                                        <a href="#" class="like">like</a>
-                                        <a href="#" class="reply">Reply</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ol>
-                </li>
-
-                <!-- Single Comment Area -->
-                <li class="single_comment_area">
-                    <!-- Comment Content -->
-                    <div class="comment-content d-flex">
-                        <!-- Comment Author -->
-                        <div class="comment-author">
-                            <img src="/img/bg-img/ad/ad_img.jpg" alt="author">
-                        </div>
-                        <!-- Comment Meta -->
-                        <div class="comment-meta">
-                            <a href="#" class="comment-date">27 Aug 2019</a>
-                            <h6>Simon Downey</h6>
-                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                adipisci velit, sed quia non numquam eius</p>
-                            <div class="d-flex align-items-center">
-                                <a href="#" class="like">like</a>
-                                <a href="#" class="reply">Reply</a>
-                            </div>
+                            <h6>{{HoTen}}</h6>
+                            <p>{{NoiDung}}</p>
                         </div>
                     </div>
                 </li>
+                 {{/each}}
             </ol>
         </div>
 

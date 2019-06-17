@@ -24,6 +24,12 @@
                                 class="post-title">{{content.TieuDe}}</a>
                             <!-- Post Meta -->
                             <p>{{content.TomTat}} </p>
+
+                            <ul class="tag">
+							{{#each Tag}}
+							<li><a href="/tag/{{IDTag}}">{{TenTag}}</a></li>
+							{{/each}}
+						</ul>
                         </div>
                     </div>
                     {{/each}}

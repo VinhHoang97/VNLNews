@@ -2,35 +2,52 @@ var db = require("../utils/db");
 
 module.exports = {
   all: () => {
-    return db.load(`select * from baiviet`);
+    return db.load(`select * from BaiViet`);
   },
 
   singleByCategory: id => {
-    return db.load(`select * from baiviet where ChuyenMuc='${id}'`);
+    return db.load(`select * from BaiViet where ChuyenMuc='${id}'`);
   },
 
   singleByParentCat: id => {
     return db.load(`select * 
-        from baiviet bv
+        from BaiViet bv
         join ChuyenMuc cm on bv.ChuyenMuc= cm.IDChuyenMuc
         where cm.ChuyenMucCha='${id}'`);
   },
 
   pageByCategory: (id, limit, offset) => {
     return db.load(
-      `select * from baiviet where ChuyenMuc='${id}' limit ${limit} offset ${offset}`
+      `select * from BaiViet where ChuyenMuc='${id}' limit ${limit} offset ${offset}`
     );
   },
 
   countByCategory: id => {
     return db.load(
-      `select count(*) as total from baiviet where ChuyenMuc='${id}'`
+      `select count(*) as total from BaiViet where ChuyenMuc='${id}'`
+    );
+  },
+
+  pageByTag: (id, limit, offset) => {
+    return db.load(
+      `select * from BaiViet bv 
+      join Nhan_BaiViet nbv on bv.IDBaiViet = nbv.IDBaiViet 
+      where nbv.IDTag=${id}
+      limit ${limit} offset ${offset}`
+    );
+  },
+
+  countByTag: id => {
+    return db.load(
+      `select count(*) as total from BaiViet bv 
+      join Nhan_BaiViet nbv on bv.IDBaiViet = nbv.IDBaiViet 
+      where nbv.IDTag=${id}`
     );
   },
 
   pageByParentCategory: (id, limit, offset) => {
     return db.load(
-      `select * from baiviet bv
+      `select * from BaiViet bv
       join ChuyenMuc cm on bv.ChuyenMuc= cm.IDChuyenMuc
       where cm.ChuyenMucCha='${id}'
       limit ${limit} offset ${offset}`
@@ -39,7 +56,7 @@ module.exports = {
 
   countByParentCategory: id => {
     return db.load(
-      `select count(*) as total from baiviet bv
+      `select count(*) as total from BaiViet bv
       join ChuyenMuc cm on bv.ChuyenMuc= cm.IDChuyenMuc
       where cm.ChuyenMucCha='${id}'`
     );
@@ -64,12 +81,20 @@ module.exports = {
   //   limit ${amount} ;`);
   // },
 
+  getNewestByCat: (idCat, amount) => {
+    return db.load(`select * from BaiViet bv
+    where bv.ChuyenMuc =${idCat}
+    order by bv.NgayDang desc
+    limit ${amount};`);
+  },
 
   add: entity => {
-    return db.add("baiviet", entity);
+    return db.add("BaiViet", entity);
   },
 
   single: id => {
-    return db.load(`select * from baiviet where IDBaiViet= '${id}'`);
+    return db.load(
+      `select * from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID where bv.IDBaiViet= '${id}'`
+    );
   }
 };

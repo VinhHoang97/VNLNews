@@ -2,18 +2,18 @@ var db = require('../utils/db');
 
 module.exports={
     all:()=>{  
-        return db.load(`select * from nguoidung`);
+        return db.load(`select * from NguoiDung`);
 },
 single:id=>{
-    return db.load(`select * from nguoidung where ID='${id}'`);
+    return db.load(`select * from NguoiDung where ID='${id}'`);
 },
 singleByUserName:username=>{
-    return db.load(`select * from nguoidung where UserName='${username}'`);
+    return db.load(`select * from NguoiDung where UserName='${username}'`);
 },
 singleByPassword : password=>{
-    return db.load(`select * from nguoidung where Password='${password}'`);
+    return db.load(`select * from NguoiDung where Password='${password}'`);
 }, 
 singleByPhanHe: phanhe=>{
-    return db.load(`select * from nguoidung where PhanHe='${phanhe}'`);
+    return db.load(`select * from NguoiDung where PhanHe='${phanhe}'`);
 }}
 //

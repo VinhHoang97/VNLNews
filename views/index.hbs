@@ -10,11 +10,14 @@
                     <!-- Post Contetnt -->
                     <div class="post-content text-center">
                         <div class="post-meta" data-animation="fadeInUp" data-delay="100ms">
-                            <a href="#">Lượt xem: {{product.LuotXem}}</a>
+                            <a href="/products/{{product.IDBaiViet}}">Lượt xem: {{product.LuotXem}}</a>
                             <a href="/products/productByCategory/{{product.ChuyenMuc}}">{{cat.TenChuyenMuc}}</a>
                         </div>
                         <a href="/products/{{product.IDBaiViet}}" class="post-title" data-animation="fadeInUp"
                             data-delay="300ms">{{product.TieuDe}}</a>
+                        <div class="post-meta" data-animation="fadeInUp" data-delay="100ms">
+                            <a href="/products/{{product.IDBaiViet}}">{{product.NgayDang}}</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,7 +106,8 @@
                 <div class="single-trending-post">
                     <img src="/{{img.urllinkHinh}}" alt="">
                     <div class="post-content">
-                        <a href="/products/productByCategory/{{product.ChuyenMuc}}" class="post-cata">{{cat.TenChuyenMuc}}</a>
+                        <a href="/products/productByCategory/{{product.ChuyenMuc}}"
+                            class="post-cata">{{cat.TenChuyenMuc}}</a>
                         <a href="/products/{{product.IDBaiViet}}" class="post-title">{{product.TieuDe}}</a>
                     </div>
                 </div>
@@ -126,28 +130,29 @@
                         <div class="single-featured-post">
                             <!-- Thumbnail -->
                             <div class="post-thumbnail mb-50">
-                                <img src="../img/bg-img/vh/dl1.jpg" alt="">
+                                <img src="/{{RefTenTop.img.urllinkHinh}}" alt="">
 
                             </div>
                             <!-- Post Contetnt -->
                             <div class="post-content">
                                 <div class="post-meta">
-                                    <a href="#">Tháng Năm có gì ?</a>
-                                    <a href="dulich.html">Du lịch</a>
+                                    <a
+                                        href="/products/{{RefTenTop.product.IDBaiViet}}">{{RefTenTop.product.NgayDang}}</a>
+                                    <a
+                                        href="/products/productByCategory/{{RefTenTop.cat.IDChuyenMuc}}">{{RefTenTop.cat.TenChuyenMuc}}</a>
                                 </div>
-                                <a href="dienanhdetail.html" class="post-title">Những điểm đến không thể bỏ qua ở Phú
-                                    Thọ dịp giỗ Tổ Hùng Vương</a>
-                                <p>Đến Phú Thọ dịp Giỗ Tổ Hùng Vương, khách du lịch cũng có thể khám phá những địa
-                                    danh nổi tiếng khác như đền Quốc Mẫu Âu Cơ, vườn Quốc gia Xuân Sơn, hang Lạng
-                                    hay Ao Giời - Suối Tiên...</p>
+                                <a href="/products/{{RefTenTop.product.IDBaiViet}}"
+                                    class="post-title">{{RefTenTop.product.TieuDe}}</a>
+                                <p>{{RefTenTop.product.TomTat}}</p>
                             </div>
                             <!-- Post Share Area -->
                             <div class="post-share-area d-flex align-items-center justify-content-between">
                                 <!-- Post Meta -->
                                 <div class="post-meta pl-3">
-                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
+                                    <a href="/products/{{RefTenTop.product.IDBaiViet}}"><i class="fa fa-eye"
+                                            aria-hidden="true"></i> {{RefTenTop.product.LuotXem}}</a>
+                                    <a href="/products/{{RefTenTop.product.IDBaiViet}}"><i class="fa fa-comments-o"
+                                            aria-hidden="true"></i> {{RefTenTop.countCmt.total}}</a>
                                 </div>
                                 <!-- Share Info -->
                                 <div class="share-info">
@@ -172,179 +177,52 @@
                         <div class="featured-video-posts-slide owl-carousel">
 
                             <div class="single--slide">
+                                {{#each TenTopEachChuyenMuc1}}
                                 <!-- Single Blog Post -->
                                 <div class="single-blog-post d-flex style-3">
-                                    <div class="post-thumbnail">
-                                        <img src="../img/bg-img/kd/ns.jpg" alt="">
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="dienanhdetail.html" class="post-title">Sản phẩm dừa Vietcoco chinh
-                                            phục thị trường
-                                            thế giới</a>
-                                        <div class="post-meta d-flex">
-                                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex style-3">
                                     <div class="post-thumbnail">
-                                        <img src="../img/bg-img/ds/pl1.jpg" alt="">
+                                        <img src="/{{img.urllinkHinh}}" alt="">
                                     </div>
                                     <div class="post-content">
-                                        <a href="dienanhdetail.html" class="post-title">4 nữ 'chiến binh' xinh đẹp,
-                                            gợi cảm của làng
-                                            võ thuật thế giới</a>
+                                        <a href="/products/{{product.IDBaiViet}}">{{product.NgayDang}}</a>
+                                        <a href="/products/{{product.IDBaiViet}}"
+                                            class="post-title">{{product.TieuDe}}</a>
                                         <div class="post-meta d-flex">
-                                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                            <a href="/products/{{product.IDBaiViet}}"><i class="fa fa-eye"
+                                                    aria-hidden="true"></i> {{product.LuotXem}}</a>
 
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex style-3">
-                                    <div class="post-thumbnail">
-                                        <img src="../img/bg-img/tt/qv.jpg" alt="">
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="dienanhdetail.html" class="post-title">BXH quần vợt 08/04: Djokovic
-                                            vững ngai vàng,
-                                            Federer "xả hơi" trước thềm tái xuất</a>
-                                        <div class="post-meta d-flex">
-                                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
+                                            <a href="/products/{{product.IDBaiViet}}"><i class="fa fa-comments-o"
+                                                    aria-hidden="true"></i> {{countCmt.total}}</a>
                                         </div>
                                     </div>
                                 </div>
+                                {{/each}}
 
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex style-3">
-                                    <div class="post-thumbnail">
-                                        <img src="../img/bg-img/tt/bd1.jpg" alt="">
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="dienanhdetail.html" class="post-title">“Đàn em” Công Phượng tập huấn
-                                            ở CLB từng vô
-                                            địch Champions League</a>
-                                        <div class="post-meta d-flex">
-                                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex style-3">
-                                    <div class="post-thumbnail">
-                                        <img src="../img/bg-img/ds/pl1.jpg" alt="">
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="dienanhdetail.html" class="post-title">Xây nhà không phép, Chánh
-                                            Thanh tra quận Thủ
-                                            Đức
-                                            thừa nhận… “thiếu gương mẫu</a>
-                                        <div class="post-meta d-flex">
-                                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="single--slide">
+                                {{#each TenTopEachChuyenMuc2}}
                                 <!-- Single Blog Post -->
                                 <div class="single-blog-post d-flex style-3">
                                     <div class="post-thumbnail">
-                                        <img src="../img/bg-img/kd/ns.jpg" alt="">
+                                        <img src="/{{img.urllinkHinh}}" alt="">
                                     </div>
                                     <div class="post-content">
-                                        <a href="dienanhdetail.html" class="post-title">Sản phẩm dừa Vietcoco chinh
-                                            phục thị trường
-                                            thế giới</a>
+                                        <a href="/products/{{product.IDBaiViet}}">{{product.NgayDang}}</a>
+                                        <a href="/products/{{product.IDBaiViet}}"
+                                            class="post-title">{{product.TieuDe}}</a>
                                         <div class="post-meta d-flex">
-                                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                            <a href="/products/{{product.IDBaiViet}}"><i class="fa fa-eye"
+                                                    aria-hidden="true"></i> {{product.LuotXem}}</a>
 
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex style-3">
-                                    <div class="post-thumbnail">
-                                        <img src="../img/bg-img/ds/pl1.jpg" alt="">
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="dienanhdetail.html" class="post-title">4 nữ 'chiến binh' xinh đẹp,
-                                            gợi cảm của làng
-                                            võ thuật thế giới</a>
-                                        <div class="post-meta d-flex">
-                                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
+                                            <a href="/products/{{product.IDBaiViet}}"><i class="fa fa-comments-o"
+                                                    aria-hidden="true"></i> {{countCmt.total}}</a>
                                         </div>
                                     </div>
                                 </div>
+                                {{/each}}
 
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex style-3">
-                                    <div class="post-thumbnail">
-                                        <img src="../img/bg-img/tt/qv.jpg" alt="">
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="dienanhdetail.html" class="post-title">BXH quần vợt 08/04: Djokovic
-                                            vững ngai vàng,
-                                            Federer "xả hơi" trước thềm tái xuất</a>
-                                        <div class="post-meta d-flex">
-                                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex style-3">
-                                    <div class="post-thumbnail">
-                                        <img src="../img/bg-img/tt/bd1.jpg" alt="">
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="dienanhdetail.html" class="post-title">“Đàn em” Công Phượng tập huấn
-                                            ở CLB từng vô
-                                            địch Champions League</a>
-                                        <div class="post-meta d-flex">
-                                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex style-3">
-                                    <div class="post-thumbnail">
-                                        <img src="../img/bg-img/ds/pl1.jpg" alt="">
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="dienanhdetail.html" class="post-title">Xây nhà không phép, Chánh
-                                            Thanh tra quận Thủ
-                                            Đức
-                                            thừa nhận… “thiếu gương mẫu</a>
-                                        <div class="post-meta d-flex">
-                                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                         </div>
@@ -368,12 +246,13 @@
                         <a href="/products/{{product.IDBaiViet}}"> <img src="/{{img.urllinkHinh}}" alt=""></a>
                     </div>
                     <div class="post-content">
+                        <a href="/products/{{product.IDBaiViet}}">{{product.NgayDang}}</a>
                         <a href="/products/{{product.IDBaiViet}}" class="post-title">{{product.TieuDe}}</a>
                         <div class="post-meta d-flex">
                             <a href="/products/{{product.IDBaiViet}}"><i class="fa fa-eye" aria-hidden="true"></i>
                                 {{product.LuotXem}}</a>
                             <a href="/products/{{product.IDBaiViet}}"><i class="fa fa-comments-o"
-                                    aria-hidden="true"></i> {{countCMT.total}}</a>
+                                    aria-hidden="true"></i> {{countCmt.total}}</a>
                         </div>
                     </div>
                 </div>
@@ -382,7 +261,7 @@
         </div>
 
         <!-- Sports Videos -->
-        <div class="sports-videos-area">
+        {{!-- <div class="sports-videos-area">
             <!-- Section Title -->
             <div class="section-heading">
                 <h5>DU LỊCH</h5>
@@ -512,7 +391,7 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
     </div>
 
     <!-- >>>>>>>>>>>>>>>>>>>>
@@ -524,15 +403,14 @@
             <!-- Social Followers Info -->
             <div class="social-followers-info">
                 <!-- Facebook -->
-                <a href="#" class="facebook-fans"><i class="fa fa-facebook"></i> 4,360 <span> Lượt Like</span></a>
+                <a href="https://www.facebook.com/" class="facebook-fans"><i class="fa fa-facebook"></i> 4,360 <span>
+                        Lượt Like</span></a>
                 <!-- Twitter -->
-                <a href="#" class="twitter-followers"><i class="fa fa-twitter"></i> 3,280 <span>Follower</span></a>
+                <a href="https://twitter.com/?lang=vi" class="twitter-followers"><i class="fa fa-twitter"></i> 3,280
+                    <span>Follower</span></a>
                 <!-- YouTube -->
-                <a href="#" class="youtube-subscribers"><i class="fa fa-youtube"></i> 1250
+                <a href="https://www.youtube.com/" class="youtube-subscribers"><i class="fa fa-youtube"></i> 1250
                     <span>Đã đăng ký</span></a>
-                <!-- Google -->
-                <a href="#" class="google-followers"><i class="fa fa-google-plus"></i> 1
-                    <span>Đă Follow</span></a>
             </div>
         </div>
 

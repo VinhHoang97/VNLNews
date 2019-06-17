@@ -2206,3 +2206,23 @@ textarea.form-control {
 /* ====== The End ====== */
 
 /*# sourceMappingURL=style.css.map */
+
+.tag{
+  display: inline-block;
+  font-size:0;
+}
+.tag li{
+  padding:6px;
+  font-size: 13px;
+  background-color: #ccc;
+  margin:5px;
+  border-radius: 5px;
+  transition: ease 0.3s all;
+}
+.tag li::before{content: "#";}
+.tag li:hover{
+  background-color: #0C0E68;
+}
+.tag a:hover{
+  color:#fff;
+}
