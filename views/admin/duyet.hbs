@@ -13,16 +13,16 @@
 				'table link image media',
 			],
 		});
-	}( jQuery ));
+	}(jQuery));
 </script>
 <div class="right">
 	<div class="col-md-10">
 		<div class="content">
 			<div class="col-md-4 add-dm">
-				<h4 class="text-center">Chỉnh sửa bài viết</h4>
+				<h4 class="text-center">Duyệt bài viết</h4>
 			</div>
 			<div class="clearfix"></div>
-			<form method="POST" action="/admin/hieu_chinh/1" enctype="multipart/form-data">
+			<form method="POST">
 				<div class="form">
 					<table class="table">
 						<tr>
@@ -43,25 +43,28 @@
 							</td>
 							<td>
 								<div class="card-body">
-									<textarea class="form-control" id="txtFullDes" name="FullDes">{{product.NoiDung}}</textarea>
+									<textarea class="form-control" id="txtFullDes"
+										name="FullDes">{{product.NoiDung}}</textarea>
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<td>
 								<p>Tình trạng bài viết</p>
-								<select name="premium" class="form-control" >
+								<select name="premium" class="form-control">
 									{{#if isVip}}
 									<option value="1" selected>VIP</option>
-									<option value="0"  >Thường</option>
+									<option value="0">Thường</option>
 									{{else}}
 									<option value="0" selected>Thường</option>
-									<option value="1"  >VIP</option>
+									<option value="1">VIP</option>
 									{{/if}}
 								</select>
 							</td>
-                            <td><p>Hình</p>
-                            <img></td>
+							<td>
+								<p>Ảnh bìa</p>
+								<img src="/{{img.urllinkHinh}}"/>
+							</td>
 						</tr>
 						<tr>
 							{{!-- <div style='display:flex;flex-direction:row;justify-content:space-between;'> --}}
@@ -84,16 +87,20 @@
 
 							{{!-- </div> --}}
 						</tr>
-
 			</form>
 
 			</table>
 		</div>
-		<div class="col-md-3 form-group pull-right">
-			<button type="submit" class="btn btn-primary btn-block">
-				<i class="fa fa-check" aria-hidden="true"></i>
-				Duyệt
-			</button>
+		<div class="col-md-3 form-group pull-right" style="display: flex; justify-content: space-around">
+			<div>
+					<button class="btn btn-primary btn-block">
+					<a href="/admin/da_duyet/{{product.IDBaiViet}}" style="color: white">
+				<i class="fa fa-check" aria-hidden="true"></i>Duyệt</a></button></div>
+			<div>
+				<button class="btn btn-primary btn-block">
+					<a href="/admin/tu_choi/{{product.IDBaiViet}}" style="color: white">
+				<i class="fa fa-times" aria-hidden="true"></i>Từ chối</a></button>
+			</div>
 		</div>
 		</form>
 	</div>

@@ -115,10 +115,15 @@ module.exports = {
       `select * from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID where bv.IDBaiViet= '${id}' and bv.DaDuyet= 4`
     );
   },
+writer: id=>{
+  return db.load(
+    `select count(*) as Tong from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID where nd.ID= ${id}`
+  );
+},
 
   allProductOfWriter: id =>{
     return db.load(
-      `select cm.TenChuyenMuc,bv.TieuDe,nd1.HoTen,d.Loai  from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID
+      `select cm.TenChuyenMuc,bv.TieuDe,nd1.HoTen,d.Loai from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID
       join chuyenmuc cm on cm.IDChuyenMuc=bv.ChuyenMuc
                   join NguoiDung nd1 on bv.BienTapVien=nd1.ID
                   join duyet d on bv.DaDuyet=d.IDDuyet
@@ -135,10 +140,21 @@ module.exports = {
                   where nd.ID=${id} and (d.IDDuyet=3 or d.IDDuyet=4) order by bv.DaDuyet desc`
     );
   },
+countEditor: id=>{
+  return db.load(
+    `select count(*) as Tong2 from BaiViet bv join NguoiDung nd on bv.BienTapVien = nd.ID where nd.ID= ${id} and bv.DaDuyet=4 `
+  );
+},
 
-  editor: id =>{
+countAllEditor: id=>{
+  return db.load(
+    `select count(*) as Tong1 from BaiViet bv join NguoiDung nd on bv.BienTapVien = nd.ID where nd.ID= ${id} and  (bv.DaDuyet=1 or bv.DaDuyet=2 or bv.DaDuyet=3 ) `
+  );
+},
+
+  updateEditor: id =>{
     return db.load(
-    ` select cm.TenChuyenMuc,bv.*,nd1.HoTen,d.Loai  from BaiViet bv join NguoiDung nd on bv.BienTapVien = nd.ID
+    ` select cm.TenChuyenMuc,bv.*,nd1.HoTen,d.Loai from BaiViet bv join NguoiDung nd on bv.BienTapVien = nd.ID
     join chuyenmuc cm on cm.IDChuyenMuc=bv.ChuyenMuc
                 join NguoiDung nd1 on bv.PhongVien=nd1.ID
                 join duyet d on bv.DaDuyet=d.IDDuyet
@@ -175,6 +191,20 @@ module.exports = {
     return db.load(
       `update BaiViet
       set DaDuyet = 2
+      where IDBaiViet=${id}`
+    );
+  },
+  updateDenied: id => {
+    return db.load(
+      `update BaiViet
+      set DaDuyet = 3
+      where IDBaiViet=${id}`
+    );
+  },
+  updateApprove: id => {
+    return db.load(
+      `update BaiViet
+      set DaDuyet = 1
       where IDBaiViet=${id}`
     );
   }
