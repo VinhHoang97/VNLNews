@@ -6,7 +6,9 @@ module.exports = {
   },
 
   singleByCategory: id => {
-    return db.load(`select * from BaiViet where ChuyenMuc='${id}' and DaDuyet= 2`);
+    return db.load(
+      `select * from BaiViet where ChuyenMuc='${id}' and DaDuyet= 2`
+    );
   },
 
   singleByParentCat: id => {
@@ -108,7 +110,7 @@ module.exports = {
     );
   },
 
-  allProductOfWriter: id =>{
+  allProductOfWriter: id => {
     return db.load(
       `select cm.TenChuyenMuc,bv.TieuDe,nd1.HoTen,d.Loai  from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID
       join chuyenmuc cm on cm.IDChuyenMuc=bv.ChuyenMuc
@@ -118,7 +120,7 @@ module.exports = {
     );
   },
 
-  updateProductOfWriter: id =>{
+  updateProductOfWriter: id => {
     return db.load(
       `select cm.TenChuyenMuc,bv.*,nd1.HoTen,d.Loai  from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID
       join chuyenmuc cm on cm.IDChuyenMuc=bv.ChuyenMuc
@@ -128,12 +130,26 @@ module.exports = {
     );
   },
 
-
-  seachProductFullText:string =>{
+  seachProductFullText: string => {
     return db.load(
       `SELECT * FROM  BaiViet
       WHERE MATCH(TieuDe, TomTat,NoiDung) 
       AGAINST ('${string}' IN NATURAL LANGUAGE MODE) limit 5; `
+    );
+  },
+  allProduct: () => {
+    return db.load(
+      `select bv.IDBaiViet,cm.TenChuyenMuc,bv.TieuDe, nd.HoTen as PhongVien, nd1.HoTen as BienTapVien, bv.DaDuyet, d.Loai  from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID 
+      join NguoiDung nd1 on  bv.BienTapVien=nd1.ID
+      join chuyenmuc cm on cm.IDChuyenMuc=bv.ChuyenMuc
+      join duyet d on bv.DaDuyet=d.IDDuyet`
+    );
+  },
+  allProductUpdate: id => {
+    return db.load(
+      `update BaiViet
+      set DaDuyet = 2
+      where IDBaiViet=${id}`
     );
   }
 };
