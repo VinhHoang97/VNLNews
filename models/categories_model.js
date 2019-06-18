@@ -13,6 +13,9 @@ module.exports={
         return db.load(`select * from ChuyenMuc where IDChuyenMuc='${id}'`);
     },
 
+    singleCatName:name=>{
+        return db.load(`select * from ChuyenMuc where TenChuyenMuc='${name}'`);
+    },
 
     add: entity =>{
         return db.add('ChuyenMuc',entity);
@@ -24,7 +27,10 @@ module.exports={
 
     getChildrenByID: id=>{
         return db.load(`select * from ChuyenMuc where ChuyenMucCha='${id}' `)
+    },
+
+    getParentCat: ()=>{
+        return db.load(`select * from ChuyenMuc where ChuyenMucCha is null `)
     }
 
-    
 }

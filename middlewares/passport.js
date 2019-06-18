@@ -23,6 +23,7 @@ module.exports = function (app) {
       var ret = password == rows[0].Password;
       console.log(ret);
       if (ret){  
+        console.log(user);
         return done(null, user);
       }
       return done(null, false, { message: 'Invalid password.' });

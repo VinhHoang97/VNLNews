@@ -5,14 +5,17 @@
                 <h4 class="text-center">Thêm danh mục</h4>
             </div>
             <div class="clearfix"></div>
-            <form method="post">
+            <form method="post" action="/admin/them_danh_muc">
                 <div class="form">
                     <table class="table">
                         <tr>
                             <td>
                                 <P>Tiêu đề danh mục</p>
                             </td>
-                            <td><input type="text" name="title" class="form-control"></td>
+                            <td>{{#if isDup}}<input type="text" name="title" class="form-control"><small>Đã bị trùng</small>{{else}}
+                            <input type="text" name="title" class="form-control">
+                            {{/if}}
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -20,11 +23,9 @@
                             </td>
                             <td><select name="cat" class="form-control">
                                     <option value="0">Là danh mục cha</option>
-                                    <option value="">Đời sống</option>
-                                    <option value="">Kinh doanh</option>
-                                    <option value="">Văn hóa</option>
-                                    <option value="">Giải trí</option>
-                                    <option value="">Thể thao</option>
+                                    {{#each cat}}
+                                    <option value="{{IDChuyenMuc}}">{{TenChuyenMuc}}</option>
+                                    {{/each}}
                                 </select>
                             </td>
                         </tr>

@@ -108,4 +108,5 @@ module.exports = {
       `select * from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID where bv.IDBaiViet= '${id}'`
     );
   }
+
 };

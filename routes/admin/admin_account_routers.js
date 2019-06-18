@@ -22,9 +22,23 @@ router.post('/', (req, res, next) => {
             })
         }
         req.logIn(user, err=>{
-            console.log("da toi day 3");
+            
+            console.log(user);
+            if(user.PhanHe==='PH001')
+            {
             if (err) { return next(err); }
-            return res.redirect('/admin/trang_chu')
+            return res.redirect('/admin/trang_chu');
+            }
+            if(user.PhanHe==='PH003')
+            {
+            if (err) { return next(err); }
+            return res.redirect('/admin/phong_vien');
+            } 
+            if(user.PhanHe==='PH002')
+            {
+            if (err) { return next(err); }
+            return res.redirect('/admin/phong_vien');
+            } 
         });
     })(req, res, next);
 });
@@ -32,7 +46,7 @@ router.post('/', (req, res, next) => {
 
 router.get('/profile', auth , (req, res, next)=>{
     console.log("da toi day 4");
-    res.render('admin');
+    res.end('admin');
 })
 
 module.exports = router;
