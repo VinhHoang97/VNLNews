@@ -1,158 +1,217 @@
+{{#section 'js'}}
+<script src="//cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>
+<script>
+    $(function () {
+        $('#registerForm').validate({
+            rules: {
+                hoten: {
+                    required: true
+                },
+                username:{
+                    required: true
+                },
+                password:{
+                    required: true,
+                    minlenght:6
+                },
+                rePassword:{
+                    required: true,
+                    equalTo:$('[name="password"]')
+                },
+                email:{
+                    required:true,
+                    email: true
+                }
+            },
+            messages: {
+                hoten: {
+                    required: "Họ và tên không được để trống"
+                },
+                username:{
+                    required: "Tên người dùng không được để trống"
+                },
+                password:{
+                    required: "Mật khẩu không được để trống",
+                    minlenght: "Mật khẩu phải có ít nhất 6 kí tự"
+                },
+                rePassword:{
+                    required: "Không được để trống phần này",
+                    equalTo: "Không giống với mật khẩu"
+                },
+                email:{
+                    required:"Không được để trống phần này",
+                    email:"Hãy nhập một email hợp lý"
+                }
+            },
+            errorElement: 'small',
+            errorClass: 'help-block text-danger',
+            highlight:function(e){
+                $(e).removeClass('is-valid').add('is-invalid');
+            },
+            unhighlight:function(e){
+                $(e).removeClass('is-invalid').add('is-valid');
+            }
+        });
+    })  
+</script>
+{{/section}}
 <!-- ##### Breadcrumb Area Start ##### -->
-    <section class="breadcrumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/40.jpg);">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12">
-                    <div class="breadcrumb-content">
-                        <h2>Đăng Kí</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ##### Breadcrumb Area End ##### -->
-
-    <!-- ##### Login Area Start ##### -->
-    <div class="mag-login-area py-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-8">
-                    <div class="login-content bg-white p-30 box-shadow">
-                        <!-- Section Title -->
-                        <div class="section-heading">
-                            <h5>Xin chào!</h5>
-                        </div>
-
-                        <form name="myform" action="doc_gia.html" method="post">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="hoten" placeholder="Họ và tên">
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2" id="gioitinh">Giới tính:</label>
-                                <label class="col-lg-2" for="nam"><input id="nam" type="radio" name="gioitinh"
-                                        value="Nam"> Nam</label>
-                                <label class="col-lg-2" for="nu"><input id="nu" type="radio" name="gioitinh" value="Nữ"
-                                        checked> Nữ</label>
-                            </div>
-                            <div class="form-group row">
-                                <label id="ngaysinh" class="control-label col-sm-2" for="day">Ngày sinh:</label>
-                                <div class="col-lg-2">
-                                    <select id="day" class="form-control"
-                                        style="background-image: linear-gradient(#f7f8f9,#e5e8ea, #dee1e5)">
-                                        <script>
-                                            for (var i = 1; i < 32; i++) {
-                                                var html = '<option value="' + i + '">' + i + '</option>';
-                                                document.writeln(html);
-                                            }
-                                        </script>
-                                    </select>
-                                </div>
-                                <div class="col-lg-2">
-                                    <select id="month" class="form-control"
-                                        style="background-image: linear-gradient(#f7f8f9,#e5e8ea, #dee1e5)">
-                                        <script>
-                                            for (var i = 1; i < 13; i++) {
-                                                var html = '<option value="' + i + '">' + i + '</option>';
-                                                document.writeln(html);
-                                            }
-                                        </script>
-                                    </select>
-                                </div>
-                                <div class="col-lg-3">
-                                    <select id="year" class="form-control"
-                                        style="background-image: linear-gradient(#f7f8f9,#e5e8ea, #dee1e5)">
-                                        <script>
-                                            for (var i = 1990; i < 2006; i++) {
-                                                var html = '<option value="' + i + '">' + i + '</option>';
-                                                document.writeln(html);
-                                            }
-                                        </script>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <input id="ten" type="text" class="form-control" placeholder="Tên người dùng">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="Mật khẩu">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Nhập lại mật khẩu"
-                                    name="psw-repeat" id="psw-repeat">
-                            </div>
-                           
-                            <div style="display: flex; justify-content:center">
-                                <button type="submit" class="btn mag-btn mt-30" onclick="return DK()">Đăng kí</button>
-                            </div>
-                        </form>
-                    </div>
+<section class="breadcrumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/40.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content">
+                    <h2>Đăng Kí</h2>
                 </div>
             </div>
         </div>
     </div>
-    <!-- ##### Login Area End ##### -->
-     <script>
-        function checkDate() {
-            var day = Number(document.getElementById("day").value);
-            var month = Number(document.getElementById("month").value);
-            var year = Number(document.getElementById("year").value);
-            switch (month) {
-                case 4: case 6: case 9: case 11:
-                    if (day == 31) return false;
-                    else return true;
-                    break;
-                case 2:
-                    if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
-                        if (day > 29) return false;
-                        else return true;
-                    }
-                    else {
-                        if (day > 28) return false;
-                        else return true;
-                    }
-                    break;
-            }
-            return true;
-        }
-        function DK() {
-            var hovaten = document.getElementById('hoten').value;
-            var gender = myform.gioitinh.value;
-            var day = Number(document.getElementById("day").value);
-            var month = Number(document.getElementById("month").value);
-            var year = Number(document.getElementById("year").value);
-            var ngaysinh = day + "/" + month + "/" + year;
-            var email=document.getElementById('exampleInputEmail1').value;
-            var ten = document.getElementById('ten').value;
-            var mk=document.getElementById('exampleInputPassword1').value;
-            var mk1=document.getElementById('psw-repeat').value;
+</section>
+<!-- ##### Breadcrumb Area End ##### -->
 
-            if (hovaten == '') {
-                alert('Bạn chưa nhập họ tên');
-                document.getElementById('hoten').focus(); return false;
-            }
-            else if (checkDate() == false) {
-                alert('ngày tháng năm không hợp lệ!');
-                document.getElementById('ngaysinh').focus(); return false;
-            }
-            else if (email == '') {
-                alert('Bạn chưa nhập email!');
-                document.getElementById('exampleInputEmail1').focus(); return false;
-            }
-            else if (ten == '') {
-                alert('Bạn chưa nhập tên người dùng!');
-                document.getElementById('ten').focus(); return false;
-            }
-            else if (mk == '') {
-                alert('Bạn chưa nhập mật khẩu!');
-                document.getElementById('exampleInputPassword1').focus(); return false;
-            }
-            else if (mk!=mk1) {
-                alert('Mật khẩu không trùng khớp!');
-                document.getElementById('psw-repeat').focus(); return false;
-            }
+<!-- ##### Login Area Start ##### -->
+<div class="mag-login-area py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="login-content bg-white p-30 box-shadow">
+                    <!-- Section Title -->
+                    <div class="section-heading">
+                        <h5>Xin chào!</h5>
+                    </div>
+
+                    <form novalidate name="myform" action="/" method="post" id="registerForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="hoten" id="hoten" placeholder="Họ và tên" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2" id="gioitinh">Giới tính:</label>
+                            <label class="col-lg-2" for="nam"><input id="nam" type="radio" name="gioitinh" value="Nam">
+                                Nam</label>
+                            <label class="col-lg-2" for="nu"><input id="nu" type="radio" name="gioitinh" value="Nữ"
+                                    checked> Nữ</label>
+                        </div>
+                        <div class="form-group row">
+                            <label id="ngaysinh"  class="control-label col-sm-2" for="day">Ngày sinh:</label>
+                            <div class="col-lg-2">
+                                <select id="day" name="day" class="form-control"
+                                    style="background-image: linear-gradient(#f7f8f9,#e5e8ea, #dee1e5)">
+                                    <script>
+                                        for (var i = 1; i < 32; i++) {
+                                            var html = '<option value="' + i + '">' + i + '</option>';
+                                            document.writeln(html);
+                                        }
+                                    </script>
+                                </select>
+                            </div>
+                            <div class="col-lg-2">
+                                <select id="month" name="month" class="form-control"
+                                    style="background-image: linear-gradient(#f7f8f9,#e5e8ea, #dee1e5)">
+                                    <script>
+                                        for (var i = 1; i < 13; i++) {
+                                            var html = '<option value="' + i + '">' + i + '</option>';
+                                            document.writeln(html);
+                                        }
+                                    </script>
+                                </select>
+                            </div>
+                            <div class="col-lg-3">
+                                <select id="year" name="year" class="form-control"
+                                    style="background-image: linear-gradient(#f7f8f9,#e5e8ea, #dee1e5)">
+                                    <script>
+                                        for (var i = 1990; i < 2006; i++) {
+                                            var html = '<option value="' + i + '">' + i + '</option>';
+                                            document.writeln(html);
+                                        }
+                                    </script>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <input id="ten" type="text" class="form-control" name="username" placeholder="Tên người dùng">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" id="exampleInputPassword1"
+                                placeholder="Mật khẩu">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="rePassword" placeholder="Nhập lại mật khẩu"
+                                name="psw-repeat" id="psw-repeat">
+                        </div>
+
+                        <div class="g-recaptcha" data-sitekey="6LelNakUAAAAAIK7Kq7XI6Q7ep4psAvh9n3A-SmO"></div>
+
+                        <div style="display: flex; justify-content:center">
+                            <button type="submit" class="btn mag-btn mt-30">Đăng kí</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Login Area End ##### -->
+<script>
+    function checkDate() {
+        var day = Number(document.getElementById("day").value);
+        var month = Number(document.getElementById("month").value);
+        var year = Number(document.getElementById("year").value);
+        switch (month) {
+            case 4: case 6: case 9: case 11:
+                if (day == 31) return false;
+                else return true;
+                break;
+            case 2:
+                if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+                    if (day > 29) return false;
+                    else return true;
+                }
+                else {
+                    if (day > 28) return false;
+                    else return true;
+                }
+                break;
         }
-    </script>
+        return true;
+    }
+    /* function DK() {
+        var hovaten = document.getElementById('hoten').value;
+        var gender = myform.gioitinh.value;
+        var day = Number(document.getElementById("day").value);
+        var month = Number(document.getElementById("month").value);
+        var year = Number(document.getElementById("year").value);
+        var ngaysinh = day + "/" + month + "/" + year;
+        var email = document.getElementById('exampleInputEmail1').value;
+        var ten = document.getElementById('ten').value;
+        var mk = document.getElementById('exampleInputPassword1').value;
+        var mk1 = document.getElementById('psw-repeat').value;
+
+        if (hovaten == '') {
+            alert('Bạn chưa nhập họ tên');
+            document.getElementById('hoten').focus(); return false;
+        }
+        else if (checkDate() == false) {
+            alert('ngày tháng năm không hợp lệ!');
+            document.getElementById('ngaysinh').focus(); return false;
+        }
+        else if (email == '') {
+            alert('Bạn chưa nhập email!');
+            document.getElementById('exampleInputEmail1').focus(); return false;
+        }
+        else if (ten == '') {
+            alert('Bạn chưa nhập tên người dùng!');
+            document.getElementById('ten').focus(); return false;
+        }
+        else if (mk == '') {
+            alert('Bạn chưa nhập mật khẩu!');
+            document.getElementById('exampleInputPassword1').focus(); return false;
+        }
+        else if (mk != mk1) {
+            alert('Mật khẩu không trùng khớp!');
+            document.getElementById('psw-repeat').focus(); return false;
+        }
+    } */
+</script>

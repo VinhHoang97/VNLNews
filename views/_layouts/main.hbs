@@ -11,9 +11,10 @@
     <!-- Title -->
     <title>Báo Điện Tử TH16-News</title>
 
+    {{{_sections.css}}}
     <!-- Favicon -->
     <link rel="icon" href="/img/core-img/favicon.ico">
-
+    <script src='https://www.google.com/recaptcha/api.js?hl=vi'></script>
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/css/style.css">
 
@@ -63,10 +64,12 @@
                                             href="/products/productByParentCategory/{{parentCategory.IDChuyenMuc}}">{{parentCategory.TenChuyenMuc}}</a>
                                         <ul class="dropdown">
                                             {{#each childCategory}}
-                                            <li><a href="/products/productByCategory/{{IDChuyenMuc}}">{{TenChuyenMuc}}</a></li>
+                                            <li><a
+                                                    href="/products/productByCategory/{{IDChuyenMuc}}">{{TenChuyenMuc}}</a>
+                                            </li>
                                             {{/each}}
                                         </ul>
-    
+
                                     </li>
                                     {{/each}}
                                 </ul>
@@ -77,7 +80,7 @@
                         <div class="top-meta-data d-flex align-items-center">
                             <!-- Top Search Area -->
                             <div class="top-search-area">
-                                <form action="tim_kiem_bai_viet.html" method="post">
+                                <form action="/search" method="post">
                                     <input type="search" name="top-search" id="topSearch" placeholder="tìm kiếm...">
                                     <button type="submit" class="btn"><i class="fa fa-search"
                                             aria-hidden="true"></i></button>
@@ -86,7 +89,7 @@
                             <!-- Login -->
                             <a href="/login" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
                             <!-- Submit Video -->
-                            <a href="/admin/login" class="submit-video"><span><i
+                            <a href="/admin/admin_login" class="submit-video"><span><i
                                         class="fa fa-cloud-upload"></i></span> <span class="video-text">Admin</span></a>
                         </div>
                     </div>
@@ -112,8 +115,7 @@
                         <a href="index.html" class="foo-logo"><img src="/img/core-img/logo.png" alt=""></a>
                         <p>Tờ báo của người Việt dành cho người Việt</p>
                         <div class="footer-social-info">
-                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                            <a href="https://www.facebook.com" class="facebook"><i class="fa fa-facebook"></i></a>
                             <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
                             <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
                             <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
@@ -127,93 +129,56 @@
                         <h6 class="widget-title">Danh mục</h6>
                         <nav class="footer-widget-nav">
                             <ul>
-                                <li><a href="xahoi.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Xã
-                                        hội</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Công
-                                        nghệ</a>
-                                </li>
-                                <li><a href="dulich.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Du
-                                        lịch</a>
-                                </li>
-                                <li><a href="amnhac.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Âm
-                                        nhạc</a>
-                                </li>
-                                <li><a href="amthuc.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Ẩm
-                                        thực</a>
-                                </li>
-                                <li><a href="nongsan.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                                        Nông sản</a>
-                                </li>
-                                <li><a href="phim.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                                        Truyền hình</a>
-                                </li>
-                                <li><a href="bongda.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                                        Bóng đá</a>
-                                </li>
-                                <li><a href="thethao.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                                        Thể thao</a>
-                                </li>
-                                <li><a href="phapluat.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                                        Pháp luật</a>
-                                </li>
+                                {{#each categoryFull}}
+                                <li><a href="/products/productByParentCategory/{{parentCategory.IDChuyenMuc}}"><i
+                                            class="fa fa-angle-double-right"
+                                            aria-hidden="true"></i>{{ parentCategory.TenChuyenMuc}}
+                                    </a></li>
+                                {{#each childCategory}}
+                                <li><a href="/products/productByCategory/{{IDChuyenMuc}}"><i
+                                            class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                        {{TenChuyenMuc}}</a></li>
+                                {{/each}}
+                                {{/each}}
+
                             </ul>
                         </nav>
                     </div>
                 </div>
 
 
-                <!-- Footer Widget Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="footer-widget">
-                        <h6 class="widget-title">Các kênh</h6>
-                        <ul class="footer-tags">
-                            <li><a href="dulich.html">Du lịch</a></li>
-                            <li><a href="#">Thời trang</a></li>
-                            <li><a href="amnhac.html">Âm nhạc</a></li>
-                            <li><a href="#">Thiết kế</a></li>
-                            <li><a href="#">Tin tức</a></li>
-                            <li><a href="#">Xu hướng</a></li>
-                            <li><a href="nongsan.html">Nông sản</a></li>
-                            <li><a href="haisan.html">Hải sản</a></li>
-                            <li><a href="thethao.html">Thể thao</a></li>
-                            <li><a href="xahoi.html">Xã hội</a></li>
-                            <li><a href="amthuc.html">Ẩm thực</a></li>
-                            <li><a href="phim.html">Truyền hình</a></li>
-                            <li><a href="phapluat.html">Pháp luật</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Copywrite Area -->
-        <div class="copywrite-area">
-            <div class="container">
-                <div class="row">
-                    <!-- Copywrite Text -->
-                    <div class="col-12 col-sm-6">
-                        <p class="copywrite-text">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>
-                                document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <nav class="footer-nav">
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Privacy</a></li>
-                                <li><a href="#">Advertisement</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
-                        </nav>
+
+                <!-- Copywrite Area -->
+                <div class="copywrite-area">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Copywrite Text -->
+                            <div class="col-12 col-sm-6">
+                                <p class="copywrite-text">
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>
+                                        document.write(new Date().getFullYear());
+                                    </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                        aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                        target="_blank">Colorlib</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <nav class="footer-nav">
+                                    <ul>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">Privacy</a></li>
+                                        <li><a href="#">Advertisement</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
     </footer>
     <!-- ##### Footer Area End ##### -->
 
@@ -235,6 +200,7 @@
     <script src="/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="/js/active.js"></script>
+    {{{_sections.js}}}
 </body>
 
 </html>
