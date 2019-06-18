@@ -126,6 +126,20 @@ module.exports = {
                   join duyet d on bv.DaDuyet=d.IDDuyet
                   where nd.ID=${id} and d.IDDuyet=3 or d.IDDuyet=4 `
     );
+  },
+  allProduct: ()=>{
+    return db.load(
+      `select bv.IDBaiViet,cm.TenChuyenMuc,bv.TieuDe, nd.HoTen as PhongVien, nd1.HoTen as BienTapVien, bv.DaDuyet, d.Loai  from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID 
+      join NguoiDung nd1 on  bv.BienTapVien=nd1.ID
+      join chuyenmuc cm on cm.IDChuyenMuc=bv.ChuyenMuc
+      join duyet d on bv.DaDuyet=d.IDDuyet`
+    );
+  },
+  allProductUpdate: id=>{
+    return db.load(
+      `update BaiViet
+      set DaDuyet = 2
+      where IDBaiViet=${id}`
+    );
   }
-
 };
