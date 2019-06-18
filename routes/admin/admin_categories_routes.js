@@ -300,15 +300,47 @@ router.use('/bien_tap_vien', (req, res) => {
     })
 })
 
-router.use('/duyet_bai_viet', (req, res) => {
-    res.render('admin/duyet_bai_viet', {
-        layout: 'main_bien_tap_vien.hbs'
+router.get('/duyet/:id', (req, res) => {
+    var id = req.params.id;
+    Promise.all([productModel.singleForEditor(id), catModel.allChildren(),tagModel.singelByBaiViet(id)]).then(([rows, cat,tag]) => {
+        var strTag ="";
+        tag.forEach((element,index,array) =>{
+            if(index === array.length -1)
+            strTag += element.TenTag;
+            else{
+                strTag += element.TenTag+',';
+            }
+        })
+        console.log(rows[0]);
+        res.render('admin/duyet', {
+            layout: 'main_bien_tap_vien.hbs',
+            product: rows[0],
+            isVip: rows[0].TinhTrangBV===1?true:false,
+            cat: cat,
+            tag:strTag,
+        });
     })
 })
 
-router.use('/bai_viet_da_duyet', (req, res) => {
-    res.render('admin/bai_viet_da_duyet', {
-        layout: 'main_bien_tap_vien.hbs'
+router.get('/duyet_bai_viet', (req, res) => {
+    productModel.editor(4).then(rows => {
+        res.render('admin/duyet_bai_viet', {
+            layout: 'main_bien_tap_vien.hbs',
+            dsbaiduyet: rows
+        })
+    }).catch(err => {
+        console.log(err);
+    })
+})
+
+router.get('/bai_viet_da_duyet', (req, res) => {
+    productModel.allEditor(4).then(rows => {
+        res.render('admin/bai_viet_da_duyet', {
+            layout: 'main_bien_tap_vien.hbs',
+            dsbaidaduyet: rows
+        })
+    }).catch(err => {
+        console.log(err);
     })
 })
 
