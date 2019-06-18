@@ -64,9 +64,14 @@
 						</tr>
 						<tr>
 							<td>
-								<P>Hình ảnh bài viết</p>
+								<p>Tình trạng bài viết</p>
+								<select name="premium" class="form-control">
+									<option value="0">Thường</option>
+									<option value="1">VIP</option>
+								</select>
 							</td>
 							<td>
+								<P>Hình ảnh bài viết</p>
 								<div class="card shadow">
 									<div class="card-body">
 										<div class="form-group">
@@ -85,7 +90,6 @@
 									<select name="cat" class="form-control">
 										{{#each cat}}
 										<option value="{{IDChuyenMuc}}">{{TenChuyenMuc}}</option>
-										
 										{{/each}}
 									</select>
 								</td>

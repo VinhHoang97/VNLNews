@@ -106,6 +106,26 @@ module.exports = {
     return db.load(
       `select * from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID where bv.IDBaiViet= '${id}' and bv.DaDuyet= 2`
     );
+  },
+
+  allProductOfWriter: id =>{
+    return db.load(
+      `select cm.TenChuyenMuc,bv.TieuDe,nd1.HoTen,d.Loai  from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID
+      join chuyenmuc cm on cm.IDChuyenMuc=bv.ChuyenMuc
+                  join NguoiDung nd1 on bv.BienTapVien=nd1.ID
+                  join duyet d on bv.DaDuyet=d.IDDuyet
+                  where nd.ID=${id}`
+    );
+  },
+
+  updateProductOfWriter: id =>{
+    return db.load(
+      `select cm.TenChuyenMuc,bv.*,nd1.HoTen,d.Loai  from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID
+      join chuyenmuc cm on cm.IDChuyenMuc=bv.ChuyenMuc
+                  join NguoiDung nd1 on bv.BienTapVien=nd1.ID
+                  join duyet d on bv.DaDuyet=d.IDDuyet
+                  where nd.ID=${id} and d.IDDuyet=3 or d.IDDuyet=4 `
+    );
   }
 
 };
