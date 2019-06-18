@@ -42,9 +42,13 @@ router.get('/trang_chu', (req, res) => {
     });
 })
 router.get('/them_danh_muc', (req, res) => {
-    res.render('admin/them_danh_muc', {
-        layout: 'main_admin.hbs'
+    catModel.getParentCat().then(rows=>{
+        res.render('admin/them_danh_muc', {
+            layout: 'main_admin.hbs',
+            cat:rows
+        })
     })
+    
 })
 router.get('/xem_danh_muc', (req, res) => {
     res.render('admin/xem_danh_muc', {
@@ -108,6 +112,31 @@ router.get('/upload', (req, res, next) => {
     })
 })
 
+router.post('/them_danh_muc', (req, res, next) => {
+    var title=req.body.title.trim();
+    var cat = req.body.cat;
+    catModel.singleCatName(title).then(rows=>{
+        if(rows.length>0){
+            catModel.getParentCat().then(rows=>{
+                res.render('admin/them_danh_muc', {
+                    layout: 'main_admin.hbs',
+                    cat:rows,
+                    isDup:true
+                })
+            })
+                  
+        }
+        else{
+            var catEntity={
+                TenChuyenMuc: title,
+                ChuyenMucCha:cat==='0'?null:cat
+            }
+            catModel.add(catEntity).then(id=>{
+                res.redirect('/admin/them_danh_muc');
+            });
+    }
+    }).catch(next);    
+});
 
 router.post('/upload', upload.single('fuMain'), (req, res, next) => {
     var cat = req.body.cat;
