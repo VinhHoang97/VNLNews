@@ -130,6 +130,7 @@ router.get("/:id", (req, res, next) => {
         commentModel.singelByBaiViet(rows[0].IDBaiViet)
       ]).then(([category, img, comment]) => {
         rows[0].NgayDang= moment(rows[0].NgayDang).format('LL');
+        img[0].urllinkHinh = img[0].urllinkHinh.replace(/\\/g,"/");
         res.render("single_product", {
           product: rows[0],
           category: category[0],

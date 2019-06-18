@@ -3,6 +3,10 @@ var router = express.Router();
 var adminLogin = require('./admin_account_routers');
 var productModel = require('../../models/product_model');
 var catModel = require("../../models/categories_model");
+var tagModel = require("../../models/tag_model");
+var tagProModel = require("../../models/tag_product_model");
+var imgProModel = require("../../models/img_product_model");
+var moment = require('moment');
 var imgModel = require('../../models/image_model');
 var auth = require('../../middlewares/auth');
 
@@ -96,8 +100,11 @@ router.use('/hieu_chinh', (req, res) => {
 })
 
 router.get('/upload', (req, res, next) => {
-    res.render('admin/upload', {
-        layout: 'main_phong_vien.hbs'
+    catModel.allChildren().then(rows => {
+        res.render('admin/upload', {
+            layout: 'main_phong_vien.hbs',
+            cat: rows
+        });
     })
 })
 
@@ -108,28 +115,60 @@ router.post('/upload', upload.single('fuMain'), (req, res, next) => {
     var FullDes = req.body.FullDes;
     var summary = req.body.summary;
     var tag = req.body.tag;
-
     if (!req.file) {
         res.json({
             // console.log(req.file);
-
         });
     } else {
         var entityProduct = {
-            TieuDe: "",
-            TieuDe_KhongDau:"",
-            ChuyenMuc:"",
-            
+            TieuDe: title,
+            TieuDe_KhongDau: "",
+            ChuyenMuc: cat,
+            NgayDang: moment().format('YYYY-MM-DD HH:mm:ss'),
+            NoiDung: FullDes,
+            TomTat: summary,
+            PhongVien: 8,
+            BienTapVien: 3,
+            DaDuyet: 4
         }
-        console.log(req.file.path);
 
+        var entityHinh = {
+            urllinkHinh: req.file.path.substring(7)
+        }
+        var TagArr = tag.split(",");
+        Promise.all([productModel.add(entityProduct), imgModel.add(entityHinh)]).then(([product, img]) => {
+            var bar = new Promise((resolve, reject) => {
+                TagArr.forEach((element, index, array) => {
+                    var tagEntity = {
+                        TenTag: element
+                    };
+                    tagModel.add(tagEntity).then(rows => {
+                        var entity = {
+                            IDBaiViet: product,
+                            IDTag: rows
+                        }
+                        tagProModel.add(entity)
+                    }
+                    );
+                    if (index === array.length - 1) resolve();
+                });
+            })
+            var imgProEntity = {
+                IDBaiViet: product,
+                IDHinh: img
+            }
+            Promise.all([bar, imgProModel.add(imgProEntity)]).then(([result, id]) => {
+                console.log(id);
+            }).then(() => { res.redirect('/admin/upload'); }
+            ).catch(next);
+            console.log(product, img);
+        }).catch(next);
+
+        console.log(req.file.path.substring(7));
         // var link = req.file.path;
         console.log(cat, title, FullDes, summary, tag)
-
-    
-        res.redirect('/admin/upload');
     }
-    
+
 
 })
 

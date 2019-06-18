@@ -83,11 +83,10 @@
 								<td>
 									<p>Lựa chọn danh mục cha</p>
 									<select name="cat" class="form-control">
-										<option value="">Đời sống</option>
-										<option value="">Kinh doanh</option>
-										<option value="">Văn hóa</option>
-										<option value="">Giải trí</option>
-										<option value="">Thể thao</option>
+										{{#each cat}}
+										<option value="{{IDChuyenMuc}}">{{TenChuyenMuc}}</option>
+										
+										{{/each}}
 									</select>
 								</td>
 								<td>
