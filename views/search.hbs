@@ -1,6 +1,6 @@
 
     <!-- ##### Breadcrumb Area Start ##### -->
-    <section class="breadcrumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/kd/hs.jpg);">
+    <section class="breadcrumb-area bg-img bg-overlay" style="background-image: url(/{{repProduct.img.urllinkHinh}});">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
@@ -19,27 +19,47 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-xl-15">
                     <div class="archive-posts-area bg-white p-30 mb-30 box-shadow">
-
+                        
+                        {{#each products}}
                         <!-- Single Catagory Post -->
                         <div class="single-catagory-post d-flex flex-wrap">
                             <!-- Thumbnail -->
                             <div class="post-thumbnail bg-img">
-                                <a href="dienanhdetail.html"
-                                    target="_blank"><img src="img/bg-img/kd/hs.jpg"></i></i></a>
+                                <a href="/products/{{content.IDBaiViet}}"
+                                    target="_blank"><img src="/{{img.urllinkHinh}}"></i></i></a>
                             </div>
                             <!-- Post Contetnt -->
                             <div class="post-content">
                                 <div class="post-meta">
-                                    <p>10/4/2019</p>
+                                    <p>{{content.NgayDang}}</p>
                                 </div>
-                                <a href="dienanhdetail.html"
-                                    target="_blank" class="post-title">Nghề "vớt vàng trắng" trên biển thu nhập cao hơn
-                                    đánh bắt cá</a>
+                                <a href="/products/{{content.IDBaiViet}}"
+                                    target="_blank" class="post-title">{{content.TieuDe}}</a>
                                 <!-- Post Meta -->
-                                <p>Ngư dân vốn gắn bó với biển bao đời nay. Do đó, dù có được hỗ trợ về tài chính, hay
-                                    chuyển đổi nghề mới, họ vẫn mong muốn được sớm trở lại mưu sinh trên biển.</p>
+                                <p>{{content.TomTat}}</p>
+                                 <ul class="tag">
+							{{#each Tag}}
+							<li><a href="/tag/{{IDTag}}">{{TenTag}}</a></li>
+							{{/each}}
                             </div>
+
+                            
+                           
                         </div>
+                        {{/each}}
+                         <!-- Pagination -->
+                    {{!-- <nav>
+                        <ul class="pagination">
+                            {{#each this.pages}}
+                            {{#if active}}
+                            <li class="page-item active "><a class="page-link" href="?page={{value}}">{{value}}</a></li>
+                            {{else}}
+                            <li class="page-item    "><a class="page-link" href="?page={{value}}">{{value}}</a></li>
+                            {{/if}}
+                            {{/each}}
+                            <li class="page-item"><a class="page-link" href="#"><i class="ti-angle-right"></i></a></li>
+                        </ul>
+                    </nav> --}}
                     </div>
                 </div>
             </div>

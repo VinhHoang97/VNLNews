@@ -80,17 +80,31 @@
                         <div class="top-meta-data d-flex align-items-center">
                             <!-- Top Search Area -->
                             <div class="top-search-area">
-                                <form action="/search" method="post">
-                                    <input type="search" name="top-search" id="topSearch" placeholder="tìm kiếm...">
+                                <form action="/search" method="POST">
+                                    <input type="search" name="topSearch" id="topSearch" placeholder="tìm kiếm...">
                                     <button type="submit" class="btn"><i class="fa fa-search"
                                             aria-hidden="true"></i></button>
                                 </form>
                             </div>
+                            {{#if isAuthenticated}}
                             <!-- Login -->
-                            <a href="/login" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
+                            <a href="/account/profile" class="login-btn"><i class="fa fa-user"
+                                    aria-hidden="true"></i></a>
+                            {{else}}
+                            <a href="/account/login" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
+                            {{/if}}
                             <!-- Submit Video -->
+
+                            {{#if isAuthenticated}}<form id="logOut" action="/account/logout" method="POST"></form>
+                                <a class="submit-video" href="javascript:$('#logOut').submit();"><span><i
+                                        class="fa fa-cloud-upload"></i></span> <span class="video-text">Đăng xuất</span></a>
+
+                            {{else}}
                             <a href="/admin/admin_login" class="submit-video"><span><i
                                         class="fa fa-cloud-upload"></i></span> <span class="video-text">Admin</span></a>
+
+                            {{/if}}
+
                         </div>
                     </div>
                 </nav>

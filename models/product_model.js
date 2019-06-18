@@ -126,6 +126,14 @@ module.exports = {
                   join duyet d on bv.DaDuyet=d.IDDuyet
                   where nd.ID=${id} and d.IDDuyet=3 or d.IDDuyet=4 `
     );
-  }
+  },
 
+
+  seachProductFullText:string =>{
+    return db.load(
+      `SELECT * FROM  BaiViet
+      WHERE MATCH(TieuDe, TomTat,NoiDung) 
+      AGAINST ('${string}' IN NATURAL LANGUAGE MODE) limit 5; `
+    );
+  }
 };

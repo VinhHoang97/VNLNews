@@ -24,6 +24,8 @@ app.use(express.static('public'));
 require('./middlewares/session')(app);
 require('./middlewares/passport')(app);
 app.use(require('./middlewares/auth_locals_mdw'));
+app.use(require('./middlewares/authUser_locals_mdw'));
+
 // view engine setup
 
 app.set("views", path.join(__dirname, "views"));
@@ -50,9 +52,7 @@ app.use("/category", categoriesRoutes);
 app.use("/search", searchRoutes);
 app.use("/tag", tagRoutes);
 
-app.get("/login", (req, res) => {
-  res.render("login");
-});
+
 app.use("/account",accountRoutes);
 app.get("/lay_mk", (req, res) => {
   res.render("lay_mk");

@@ -1,0 +1,157 @@
+{{#section 'js'}}
+<script src="//cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>
+<script>
+    $(function () {
+        $('#registerForm').validate({
+            rules: {
+                oldPassword: {
+                    required: true,
+                    minlenght: 6
+                },
+                newPassword: {
+                    required: true,
+                    minlenght: 6
+                },
+                repPassword: {
+                    required: true,
+                    equalTo: $('[name="password"]')
+                },
+            },
+            messages: {
+                password: {
+                    required: "Mật khẩu không được để trống",
+                    minlenght: "Mật khẩu phải có ít nhất 6 kí tự"
+                },
+                rePassword: {
+                    required: "Không được để trống phần này",
+                    equalTo: "Không giống với mật khẩu"
+                },
+                email: {
+                    required: "Không được để trống phần này",
+                    email: "Hãy nhập một email hợp lý"
+                }
+            },
+            errorElement: 'small',
+            errorClass: 'help-block text-danger',
+            highlight: function (e) {
+                $(e).removeClass('is-valid').add('is-invalid');
+            },
+            unhighlight: function (e) {
+                $(e).removeClass('is-invalid').add('is-valid');
+            }
+        });
+    })  
+</script>
+{{/section}}
+<!-- ##### Breadcrumb Area Start ##### -->
+<section class="breadcrumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/40.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content">
+                    <h2>Thông tin cá nhân</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Breadcrumb Area End ##### -->
+
+<!-- ##### Login Area Start ##### -->
+<div class="mag-login-area py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="login-content bg-white p-30 box-shadow">
+                    <!-- Section Title -->
+                    <div class="section-heading">
+                        <h5>Xin chào Vinh!</h5>
+                    </div>
+
+                    <form name="myform" action="/account/profile" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="hoten" value="{{authAccount.HoTen}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2" id="gioitinh">Giới tính:</label>
+                            {{#if gender}}
+                            <label class="col-lg-2" for="nam"><input id="nam" type="radio" name="gioitinh" value="Nam"
+                                    checked> Nam</label>
+                            <label class="col-lg-2" for="nu"><input id="nu" type="radio" name="gioitinh" value="Nữ">
+                                Nữ</label>
+                            {{else}}
+                            <label class="col-lg-2" for="nam"><input id="nam" type="radio" name="gioitinh" value="Nam">
+                                Nam</label>
+                            <label class="col-lg-2" for="nu"><input id="nu" type="radio" name="gioitinh" value="Nữ"
+                                    checked>
+                                Nữ</label>
+                            {{/if}}
+                        </div>
+                        <div class="form-group row">
+                            <label id="ngaysinh" class="control-label col-sm-2" for="day">Ngày sinh:</label>
+                            <div class="col-lg-2">
+                                <select id="day" name="day" class="form-control"
+                                    style="background-image: linear-gradient(#f7f8f9,#e5e8ea, #dee1e5)">
+                                    <script>
+                                        for (var i = 1; i < 32; i++) {
+                                            var html = '<option value="' + i + '">' + i + '</option>';
+                                            document.writeln(html);
+                                        }
+                                    </script>
+                                </select>
+                            </div>
+                            <div class="col-lg-2">
+                                <select id="month" name="month" class="form-control"
+                                    style="background-image: linear-gradient(#f7f8f9,#e5e8ea, #dee1e5)">
+                                    <script>
+                                        for (var i = 1; i < 13; i++) {
+                                            var html = '<option value="' + i + '">' + i + '</option>';
+                                            document.writeln(html);
+                                        }
+                                    </script>
+                                </select>
+                            </div>
+                            <div class="col-lg-3">
+                                <select id="year" name="year" class="form-control"
+                                    style="background-image: linear-gradient(#f7f8f9,#e5e8ea, #dee1e5)">
+                                    <script>
+                                        for (var i = 1990; i < 2006; i++) {
+                                            var html = '<option value="' + i + '">' + i + '</option>';
+                                            document.writeln(html);
+                                        }
+                                    </script>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                placeholder="myemail@gmail.com" value="{{authAccount.Email}}">
+                        </div>
+                        <div class="form-group">
+                            <input id="ten" type="text" class="form-control" placeholder="Vinh Hoàng"
+                                value="{{authAccount.UserName}}">
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="oldPassword"
+                                placeholder="Mật khẩu cũ">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="newPassword"
+                                placeholder="Mật khẩu mới">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Nhập lại mật khẩu mới"
+                                name="repPassword" name="psw-repeat" id="psw-repeat">
+                        </div>
+                        <div style="display: flex; justify-content:space-evenly">
+                            <button type="submit" class="btn mag-btn mt-30">Lưu</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

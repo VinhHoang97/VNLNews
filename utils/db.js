@@ -5,7 +5,7 @@ var createConnection = () => {
         port: '3306',
         user: 'root',
         password: '',
-        database: 'test_web',
+        database: 'vnlnews',
     });
 }
 module.exports = {
@@ -57,5 +57,20 @@ module.exports = {
                 connection.end();
             });
         })
-    }
+    },
+    delete: (tableName, idField, id) => {
+        return new Promise((resolve, reject) => {
+          var sql = `delete from ${tableName} where ${idField} = ?`;
+          var connection = createConnection();
+          connection.connect();
+          connection.query(sql, id, (error, value) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve(value.affectedRows);
+            }
+            connection.end();
+          });
+        });
+      },
 }

@@ -10,7 +10,7 @@ create table TaiKhoanThe
 create table NguoiDung
 ( ID INT  not null primary KEY auto_increment,
 	UserName varchar(50) not null unique,
-	Password varchar(50) not null,
+	Password varchar(100) not null,
 	HoTen varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
 	GioiTinh varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
 	NgaySinh date,
@@ -566,4 +566,7 @@ insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (17, 10, 'Thíc
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (19, 11, 'Thành đập đá rồi trời ạ', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (21, 11, 'Karate mà đẹp trai nhỉ', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (21, 10, 'Không biết ông này là ai luôn', 1);
+
+alter table BaiViet add FULLTEXT INDEX(TieuDe, NoiDung,TomTat);
+
 
