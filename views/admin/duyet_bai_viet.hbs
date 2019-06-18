@@ -19,55 +19,21 @@
                                         <P>Phóng viên</p>
                                     </td>
                                     <td>
-                                        <p>Biên tập viên</p>
-                                    </td>
-                                    <td>
                                         <p>Hành động</p>
                                     </td>
                                 </tr>
+                               {{#each dsbaiduyet}}
                                 <tr>
                                     <td>
-                                        <P>Giải trí</p>
+                                        <P>{{TenChuyenMuc}}</p>
                                     </td>
-                                    <td>Khắc Việt đạo nhạc</td>
-                                    <td>Nguyễn Mỹ Linh</td>
-                                    <td>Nguyễn Mỹ Linh</td>
-                                    <td><a href="#">Duyệt</a>
-                                        <a href="#">Từ chối</a>
-                                        </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <P>Giải trí</p>
+                                    <td>{{TieuDe}}</td>
+                                    <td>{{HoTen}}</td>
+                                     <td><a href="/tuchoi/{{IDBaiViet}}">Từ chối</a>
+                                    <a href="/admin/duyet/{{IDBaiViet}}">Duyệt</a>
                                     </td>
-                                    <td>Khắc Việt đạo nhạc</td>
-                                    <td>Nguyễn Mỹ Linh</td>
-                                    <td>Nguyễn Mỹ Linh</td>
-                                    <td><a href="#">Duyệt</a>
-                                        <a href="#">Từ chối</a>
-                                        </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <P>Giải trí</p>
-                                    </td>
-                                    <td>Khắc Việt đạo nhạc</td>
-                                    <td>Nguyễn Mỹ Linh</td>
-                                    <td>Nguyễn Mỹ Linh</td>
-                                    <td><a href="#">Duyệt</a>
-                                        <a href="#">Từ chối</a>
-                                       </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <P>Giải trí</p>
-                                    </td>
-                                    <td>Khắc Việt đạo nhạc</td>
-                                    <td>Nguyễn Mỹ Linh</td>
-                                    <td>Nguyễn Mỹ Linh</td>
-                                    <td><a href="#">Duyệt</a>
-                                        <a href="#">Từ chối</a></td>
-                                </tr>
+                                {{/each}}
                             </table>
                         </div>
                     </form>
