@@ -185,8 +185,8 @@ insert into Nhan( TenTag) values('Cắt tay');
 insert into Nhan( TenTag) values('Hỗn chiến');
 insert into Nhan( TenTag) values('Tai nạn');
 insert into Nhan( TenTag) values('Bóng đá');
-insert into Nhan( TenTag) values('Huawei');
-insert into Nhan( TenTag) values('Boeing');
+insert into Nhan( TenTag) values('Bóng chuyền');
+insert into Nhan( TenTag) values('Karate');
 insert into Nhan( TenTag) values('Nhà');
 insert into Nhan( TenTag) values('Giang hồ');
 insert into Nhan( TenTag) values('Chém');
@@ -443,34 +443,42 @@ Mùa hè này, nửa đỏ thành Manchester đã mất Ander Herrera và Antoni
 'Bất đồng chấm dứt, Man Utd sắp ký hợp đồng mới với nhà vô địch EURO', 1243,6,2,2);
 
 insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
-values('CEO Huawei nói đã đánh giá thấp lệnh cấm của Mỹ', 'CEO Huawei noi da danh gia thap lenh cam cua My', 15,  '2019-06-17 11:09:00',
-'Ông Nhậm Chính Phi cảnh báo doanh thu Huawei xuống dưới 100 tỷ USD năm nay và năm tới.
-"Chúng tôi không dự đoán được Mỹ sẽ tấn công Huawei kiên quyết đến thế. Chúng tôi cũng không nghĩ rằng Mỹ sẽ tác động đến chuỗi cung ứng của mình với quy mô lớn đến vậy. Họ không chỉ chặn nguồn cung, mà còn ngăn chúng tôi tham gia các tổ chức quốc tế. Việc này sẽ kéo doanh thu năm nay và năm tới của Huawei về quanh 100 tỷ USD", CEO Huawei Technologies Nhậm Chính Phi hôm nay cho biết trong một cuộc họp tại trụ sở ở Thâm Quyến (Trung Quốc).
-Ông Nhậm cũng dự báo số smartphone Huawei bán ra trên thị trường quốc tế giảm 40%, nhưng không cho biết khoảng thời gian cụ thể. Bloomberg hôm qua cũng đưa tin Huawei đang chuẩn bị cho kịch bản lượng smartphone quốc tế bán ra trong năm nay có thể giảm 40-60 triệu chiếc.
-Đây là lần đầu tiên Huawei ước tính ảnh hưởng từ các động thái của Mỹ lên hoạt động của công ty. Những bình luận này được đưa ra vài tuần sau các tuyên bố từ lãnh đạo Huawei rằng họ sẽ nỗ lực tự chủ về công nghệ.
-Tháng trước, Mỹ đưa Huawei vào danh sách đen, cấm các công ty Mỹ làm ăn với hãng này, với cáo buộc Trung Quốc có thể sử dụng sản phẩm của Huawei để do thám các hãng viễn thông Mỹ. Lệnh cấm đã khiến nhiều công ty, trong đó có Google, phải hạn chế hoặc ngừng kinh doanh với Huawei.
-Năm ngoái, doanh thu Huawei đạt 721,2 tỷ NDT (104,16 tỷ USD). Vài tháng trước, họ dự báo doanh thu năm nay sẽ lên 125 tỷ USD.
-Dù vậy, ông Nhậm cho biết Huawei sẽ không giảm chi cho hoạt động R&D (nghiên cứu và phát triển) và không sa thải lao động quy mô lớn. Ông cũng khẳng định Huawei không cài phần mềm gián điệp trong các sản phẩm của mình và sẵn sàng ký cam kết nếu cần thiết. "Chúng tôi sẽ tái sinh năm 2021", ông nói.',
-'CEO Huawei nói đã đánh giá thấp lệnh cấm của Mỹ', 1600, 7,3,2);
+values('Hot girl bóng chuyền Việt Nam cao 1m93 được HLV Mỹ mời sang thi đấu', 'Hot girl bong chuyen Viet Nam cao 1m93 duoc HLV My moi sang thi đau', 15,  '2019-06-17 11:09:00',
+'Trần Thị Thanh Thuý đã nhận được lời mời trực tiếp từ HLV CLB BIP (Mỹ) sau màn trình diễn ấn tượng tại VTV9 Bình Điền.
+Trần Thị Thanh Thúy sinh ngày 12 tháng 11 năm 1997, thành viên của Đội tuyển bóng chuyền nữ quốc gia Việt Nam, đồng thời là nữ VĐV bóng chuyền cao nhất Việt Nam với chiều cao 1m93.
+Từ năm 2012, khi được lên thi đấu cho đội 1 của câu lạc bộ VTV Bình Điền Long An, Thanh Thúy đã gây ấn tượng mạnh với những pha nhảy phát bóng tấn công và đập bóng biên uy lực.
+Thanh Thuý đã gây ấn tượng mạnh ở giải đấu VTV9 Bình Điền Long An cách đây không lâu. Chứng kiến màn trình diễn của VĐV Việt Nam, HLV Kyle Robinson của CLB Bóng chuyền BIP (Mỹ) cho biết: “Theo quan điểm của tôi, cô ấy có thể đến Mỹ để thi đấu, cô ấy rất xuất sắc. Nhưng đội hiện tại của cô ấy cũng rất hay, chúng tôi đã phải tính toán nhiều khi đối đầu với họ”.
+Thanh Thuý đã thi đấu ấn tượng, tuy nhiên cô không thể giúp VTV Bình Điền Long An đánh bại BIP (Mỹ) ở bán kết.
+Thanh Thuý đã chính thức chuyển sang CLB Denso Airy (Nhật Bản) thi đấu. Ở một môi trường chuyên nghiệp hơn, Thanh Thuý sẽ có cơ hội thi đấu với nhiều VĐV có đẳng cấp và kinh nghiệm.
+Đây là cơ hội tuyệt vời để Thúy rèn luyện bản lĩnh và nâng cao khả năng thi đấu, trước khi trở về cống hiến cho đội tuyển Việt Nam tại SEA Games 30.',
+ 'Hot girl bóng chuyền Việt Nam cao 1m93 được HLV Mỹ mời sang thi đấu', 160, 7,3,2);
 insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
-values('Airbus giành đơn hàng 100 máy bay trước Boeing tại Paris Air Show', 'Airbus gianh don hang 100 may bay truoc Boeing tai Paris Air Show', 15,  '2019-04-19 11:09:00',
-'Ngay ngày đầu tiên tại Paris Air Show, Airbus đã nhận đơn đặt mua lớn, trong đó có 27 máy bay thế hệ mới A321XLR.
-Hôm nay, Airbus đã giành được đơn đặt hàng cho 100 máy bay tại Paris Air Show. Nhà sản xuất máy bay châu Âu cho biết, hãng Air Lease đã đặt mua 27 máy bay thế hệ mới A321XLR, 23 chiếc A321neo và 50 chiếc A220. Theo giá trị niêm yết, đơn hàng 100 máy bay này có trị giá khoảng 11 tỷ USD trước giảm giá.
-Việc Airbus nhận đơn hàng 27 chiếc A321XLR ngay ngày đầu tiên của triển lãm hàng không Paris cũng góp phần tạo áp lực lên đối thủ Boeing trong bối cảnh hãng này đang phải đối mặt với sự cố dừng hoạt động dòng máy bay bán chạy nhất – 737 Max sau hai tai nạn liên tiếp.
-Với tầm hoạt động hơn 7.500 km, dòng máy bay mới của Airbus có thể bay các chặng xuyên Đại Tây Dương. A321XLR có 240 ghế là một biến thể của A320neo family và sẽ bay xa hơn dòng XL hiện tại 15%.
-Trong khi đó, Boeing đã cân nhắc khoản đầu tư 15 tỷ USD vào một dòng máy bay tầm trung mới (hay NMA). Tuy nhiên, sau các sự cố liên quan đến 737, nhà sản xuất Mỹ vẫn chưa đẩy nhanh tốc độ phát triển dòng máy bay này và dự kiến đến năm 2025 mới có thể đưa vào hoạt động. Đây có thể coi là chiến thắng bước đầu của Airbus với Boeing tại Paris Air Show năm nay.
-', 'Airbus giành đơn hàng 100 máy bay trước Boeing tại Paris Air Show', 0, 9, 4, 4);
+values('Đổ máu vào Chung kết, võ sĩ Việt vẫn lỡ HCV đáng tiếc', 'Do mau vào Chung ket, vo si Viet van lo HCV dang tiec', 15,  '2019-04-19 11:09:00',
+'Võ sĩ Minh Phụng đã vô cùng nỗ lực ở nội dung Karate 84 kg nhưng chỉ có thể mang về chiếc HCB cho thể thao Việt Nam.
+Cách đây ít phút, võ sĩ Karate Việt Nam Minh Phụng đã thi đấu trận Chung kết đối kháng hạng cân 84 kg. Đáng tiếc, anh thất bại trước võ sĩ người Iran, Sajadgan Jzadeh với tỷ số 5-2. Minh Phụng và Sajadgan Jzadeh đều ghi được 2 điểm Yuko, tuy nhiên võ sĩ người Iran ghi được 1 đòn Ippon.
+Trước đó, Minh Phụng đã gây ấn tượng khi đổ máu để vượt qua võ sĩ người Kazakhstan ở Bán kết.
+Trước HCB của Minh Phụng, đoàn TTVN đứng thứ 17 trên BXH huy chương với 1 HCV, 6 HCB và 9 HCĐ. Có thêm 1 HCB, Việt Nam không thay đổi được thứ hạng, do 16 nước xếp trên đều đã có ít nhất 2 HCV.
+','Đổ máu vào Chung kết, võ sĩ Việt vẫn lỡ HCV đáng tiếc',  0, 9, 4, 4);
 insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
-values('Giá nhà Sài Gòn tăng 50% trong nửa thập niên', 'Gia nha Sai Gon tang 50% trong nua thap nien', 15,  '2019-04-29 14:19:00',
-'Trung bình mỗi năm giá nhà ở tại TP HCM tăng 10%, kéo dài trong giai đoạn 2014-2018.
-Savills vừa công bố báo cáo thị trường nhà ở TP HCM trong nửa thập niên trở lại đây. Trong giai đoạn 2014-2018, số lượng giao dịch căn hộ đã tăng đáng kể ở đô thị trên 10 triệu dân này. Mức tăng trung bình ghi nhận 44% mỗi năm, với đỉnh cao nhất là 49.000 giao dịch năm 2018.
-Giá bán trung bình ở TP HCM ghi nhận ở cuối chu kỳ này đạt 1.600 USD mỗi m2, tăng bình quân 10% mỗi năm và kéo dài trong 5 năm qua do giá leo thang ở tất cả các phân khúc. Hạng A ghi nhận mức tăng giá cao nhất do nguồn cung mới đạt những tiêu chuẩn ngày càng cao hơn so với trước đây (hạng sang và siêu sang) trong khi hạng B và C tăng giá với tốc độ chậm hơn. 
-Tỷ lệ hấp thụ của thị trường nhà ở trong giai đoạn này đạt 87%, mức cao nhất trong 5 năm vừa qua. Sự phát triển thể hiện rõ nhất ở phân khúc nhà giá rẻ, (nhà hạng C), là phân khúc chính của thị trường trong giai đoạn 2014 – 2018, chiếm 60% tổng số giao dịch.
-Người mua nhà để ở có xu hướng chiếm đa số trong phân khúc hạng C, trong khi đó hạng B thu hút các khách hàng có nhu cầu nâng cấp nhà ở và các nhà đầu tư mua để cho thuê. Phần lớn người mua căn hộ hạng A là nhà đầu tư dài hạn. Theo dự báo của Savills, đến năm 2020, phần lớn nguồn cung ở TP HCM sẽ rơi vào phân khúc hạng C.
-Tuy nhiên, khảo sát của VnExpress, một thực tế đang diễn ra trong năm 2019 là toàn thị trường nhà ở Sài Gòn đang dần suy giảm nguồn cung nhà giá rẻ. Nguyên nhân của sự sụt giảm này là do thành phố hạn chế cấp phép phát triển các dự án nhà ở mới giai đoạn 2018-2020 cũng như tăng cường rà soát, thanh tra pháp lý các dự án. Sự khan hiếm dự án cục bộ đã đẩy giá nhà trên thị trường sơ cấp lẫn thứ cấp tăng vọt và các dự án nhà ở giá rẻ đang dạt ra tỉnh giáp ranh với TP HCM như Bình Dương, Đồng Nai, Long An.
-Mặt khác, do báo cáo này tập trung khảo sát giá nhà bình quân giai đoạn nửa 2014-2018 nên chưa cập nhật biến động giá nhà trong nửa đầu năm 2019. Hồi quý I, CBRE Việt Nam cho biết, trong 3 tháng đầu năm giá bán căn hộ trung bình tại thị trường sơ cấp TP HCM "đội" thêm 3,1% so với quý trước và tăng 14,9% so với cùng kỳ năm trước.
-Mức tăng này được lý giải do ảnh hưởng từ dự án hạng sang mới được chào bán trong quý I có mức giá cao kỷ lục từ 7.500 đến 12.000 USD mỗi m2. Hiện giá nhà tại Sài Gòn vẫn tiếp tục leo thang trong quý II với các dự án mới chào bán đều đang vươn lên mặt bằng giá cao hơn trước đây.',
-'Giá nhà Sài Gòn tăng 50% trong nửa thập niên', 1532, 9, 4, 2);
+values('Cuộc đời vị đệ tử thành công nhất của Lý Tiểu Long, đồng thời là cha đẻ của bộ môn Kickboxing',' Cuoc doi vi de tu thanh cong nhat cua Ly Tieu Long, dong thoi la cha de cua bo mon Kickboxing', 15,  '2019-04-29 14:19:00',
+'Lý Tiểu Long từng nói: “Tôi có thể biến người yếu thành mạnh, kẻ mạnh càng mạnh hơn”. Joe Lewis chính là minh chứng hoàn hảo nhất cho điều đó.
+Nhắc đến vua Kungfu, người ta sẽ nghĩ ngay đến Lý Tiểu Long. Ông là người đặt nền móng cho dòng phim Kungfu và mở đường cho sự "tiến quân" của diễn viên người Hoa vào Hollywood. Đáng tiếc, ngôi sao võ thuật này tài hoa mà bạc mệnh. Ông sớm qua đời ở tuổi 32, khi đang trên đỉnh cao của sự nghiệp. 
+Lý Tiểu Long từng nói: "Tôi có thể biến người yếu thành mạnh, kẻ mạnh càng mạnh hơn". Joe Lewis – người học trò thành công nhất của ông - chính là minh chứng hoàn hảo nhất cho câu nói này.
+Lần gặp gỡ định mệnh
+Joe Lewis, tên đầy đủ là Joseph Henry Lewis, sinh ngày 7/3/1944 tại Knightdale, North Carolina là một tay kickboxer người Mỹ, một võ sư karate và một diễn viên nổi tiếng những thập niên 90 của thế kỷ trước. 
+Đẹp trai và cao to vạm vỡ, với biệt danh "The All - American Boy" (Chàng trai thuần Mỹ), Joe Lewis đã trở thành võ sĩ hạng nặng vĩ đại nhất và những năm 60, 70 của thế kỷ trước, cũng thuộc top 3 những võ sĩ có tầm ảnh hưởng nhất trong lịch sử võ thuật thế giới.
+Năm 18 tuổi, Joe Lewis từng là một trong những cựu binh đầu tiên tham chiến tại Việt Nam. Sau khi xuất ngũ, vào năm 1963, Joe Lewis bắt đầu học Karate. 3 năm sau, ông tham gia giải thi đấu giải Karate toàn nước Mỹ do Lý Tuấn Cửu tổ chức và giành được giải quán quân.
+Joe Lewis lần đầu gặp gỡ Lý Tiểu Long là trong trận chung kết Karate toàn quốc vào tháng 6 năm 1967. Vốn là một võ sĩ chuyên nghiệp hạng nặng, ban đầu Lewis khá xem thường chàng trai châu Á nhỏ con mà mình phải đối đầu. Mọi chuyện thay đổi khi Lewis chứng kiến thứ kungfu từ Trung Quốc mà khi đó vẫn vô cùng thần bí. Ngay sau đó, ông lập tức trở thành đệ tử nhập môn của vị sư phụ kungfu Vịnh Xuân, nhà sáng lập Triệt quyền đạo, huyền thoại điện ảnh  Lý Tiểu Long trong suốt 18 tháng ròng.
+Nhớ lại quãng thời gian đó, Joe Lewis cho biết: "Suốt quá trình theo học với Lý Tiểu Long, thầy không bao giờ chuẩn bị sẵn bài tập mà hoàn toàn sử dụng phương pháp trực tiếp đối kháng để rèn luyện thực chiến, phá hoại tiết tấu của đối thủ. Trong vài năm sau khi gặp gỡ Lý Tiểu Long, tôi đã liên tiếp 11 lần đoạt ngôi quán quân thế giới, leo tới đỉnh cao của sự nghiệp."
+Cha đẻ của môn Kickboxing
+Tháng 1 năm 1970, Joe Lewis sáng lập môn võ Kick-Boxing mà ngày nay rất thịnh hành trên thế giới. 
+Kick-boxing là một nhóm các môn thể thao chiến đấu độc lập dựa trên đá và đấm, lịch sử phát triển từ karate, Muay Thái và boxing của phương Tây. Nếu như boxing cổ điển chỉ sử dụng những cú đấm thì kick-boxing kết hợp cả đấm và đá. Hiện môn võ này được được giới trẻ yêu chuộng không chỉ để tự vệ, đối kháng mà còn để rèn luyện sức khỏe. Quá trình di chuyển bằng chân, quan sát và đấm đỡ bằng tay của kick-boxing tạo sự vận động tối đa cho mọi cơ bắp. Chính việc vừa vận động vừa quan sát sẽ giúp người tập rèn luyện thêm về độ nhanh nhạy - một sự khác biệt lớn so với việc tập thể hình hay chạy điền kinh.
+Điều đáng nói là vào thời đó, Lewis đã sử dụng phương thức đối kháng trực tiếp từ Triệt quyền đạo để lập kỷ lục 10 lần vô địch đối kháng tự do.
+Năm 1971, Lý Tiểu Long từng có ý định mời Lewis diễn vai phản diện Colt trong bộ phim kinh điển "Mãnh long quá giang". Có tin đồn lúc này giữa thầy trò nảy sinh một số mâu thuẫn, khiến mong muốn của Lý Tiểu Long không thể được thực hiện. 
+Vai diễn này sau đó được giao cho Chuck Norris. Đây cũng là người mà sau khi Lý Tiểu Long qua đời đã nổi danh với hàng loạt phim võ thuật kiểu Mỹ. Thế nhưng có một sự thật là, bản thân Chuck Norris và anh trai đều từng chiến bại dưới tay Joe Lewis.
+Vào tháng 7 năm 2011, Joe Lewis bị chẩn đoán có một khối u ác tính trong não. Các bác sĩ cho biết nếu không làm gì, ông sẽ chỉ có thể sống 6-8 tuần. Ngày 18 tháng đó, Joe Lewis được phẫu thuật cắt bỏ khối u. Phẫu thuật rất thành công nhưng chỉ 1 năm và 45 ngày sau, vào ngày 31 tháng 8 năm 2012, Joe Lewis qua đời tại Pennsylvania.
+Trong thời đại của Lewis, ông là một trong những võ sĩ ưu tú nhất. Ông đã chứng minh hiệu quả của Triệt Quyền Đạo và là người thể nghiệm thành công lý luận võ thuật lôi đài của Lý Tiểu Long. Bởi vậy, nói Joe Lewis chính là vị đệ tử thành công nhất của ông vua Kungfu Lý Tiểu Long cũng không hề ngoa.
+', 'Cuộc đời vị đệ tử thành công nhất của Lý Tiểu Long, đồng thời là cha đẻ của bộ môn Kickboxing', 1532, 9, 4, 2);
 
 insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
 values('Những vụ lấy `số má` của đại ca giang hồ vây ôtô chở công an','Nhung vu lay `so ma` cua dai ca giang ho vay ota cho cong an',7, '2019-06-17 14:29:00',
@@ -553,6 +561,6 @@ insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (4, 14, 'Mãi m
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (12, 14, 'Tội người nông dân', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (17, 10, 'Thích HVL Part nhất', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (19, 11, 'Thành đập đá rồi trời ạ', 1);
-insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (21, 11, 'Ra đường ở thôi anh em tôi ơi', 1);
-insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (21, 10, 'Kiểu này thì gầm cầu, gầm cống bị chen không còn chỗ luôn', 1);
+insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (21, 11, 'Karate mà đẹp trai nhỉ', 1);
+insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (21, 10, 'Không biết ông này là ai luôn', 1);
 
