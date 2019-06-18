@@ -177,5 +177,16 @@ module.exports = {
       set DaDuyet = 2
       where IDBaiViet=${id}`
     );
-  }
+  },
+  singleProductDelete:is=>{
+    return db.load(
+      `delete from BaiViet bv
+      join urlHinhAnh ha on bvha.IDHinh=ha.IDHinh
+      join BaiViet_HinhAnh bvha on bv.IDBaiViet=bvha.IDBaiViet
+      where bv.IDBaiViet=${id}`
+    );
+  },
+  allCountBV: () => {
+    return db.load(`select count(*) as Total from BaiViet`);
+  },
 };

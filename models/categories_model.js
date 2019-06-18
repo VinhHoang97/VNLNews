@@ -31,6 +31,16 @@ module.exports={
 
     getParentCat: ()=>{
         return db.load(`select * from ChuyenMuc where ChuyenMucCha is null `)
-    }
+    },
+    allCount:()=>{
+        return db.load(`select count(*) as Total from ChuyenMuc `);
+    },
+    
+  singleForCate: id => {
+    return db.load(
+      `select * from ChuyenMuc cm  where cm.IDChuyenMuc= '${id}'`
+    );
+  }
+
 
 }

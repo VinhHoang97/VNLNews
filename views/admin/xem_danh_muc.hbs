@@ -19,105 +19,37 @@
                                 <P>Hành động</p>
                             </td>
                         </tr>
+                        {{#each categoryFull}}
+                        <tr>
+                            <td rowspan="{{length}}">
+                                <P>{{parentCategory.TenChuyenMuc}}</p>
+                            </td>
+                            <td>
+                                <p>{{firstChild.TenChuyenMuc}}</p>
 
-                        <tr>
-                            <td rowspan="2">
-                                <P>Đời sống</p>
                             </td>
-                            <td>
-                                <p>Xã hội</p>
-                            </td>
-                            <td><a href="#">Sửa</a>
+                            <td><a href="/admin/sua_danh_muc/{{category.IDChuyenMuc}}">Sửa</a>
                                 <a href="#">Xóa</a></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Pháp luật</p>
-                            </td>
-                            <td><a href="#">Sửa</a>
-                                <a href="#">Xóa</a></td>
+
                         </tr>
 
-
-
-
-                        <tr>
-                            <td rowspan="2">
-                                <P>Kinh doanh</p>
-                            </td>
-                            <td>
-                                <p>Nông sản</p>
-                            </td>
-                            <td><a href="#">Sửa</a>
-                                <a href="#">Xóa</a></td>
-                        </tr>
+                        {{#each leftChild}}
                         <tr>
                             <td>
-                                <p>Hải sản</p>
+
+                                <p>{{TenChuyenMuc}}</p>
                             </td>
-                            <td><a href="#">Sửa</a>
+                            <td><a href="./sua_danh_muc">Sửa</a>
                                 <a href="#">Xóa</a></td>
                         </tr>
 
-                        <tr>
-                            <td rowspan="2">
-                                <P>Văn hóa</p>
-                            </td>
-                            <td>
-                                <p>Du lịch</p>
-                            </td>
-                            <td><a href="#">Sửa</a>
-                                <a href="#">Xóa</a></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Ẩm thực</p>
-                            </td>
-                            <td><a href="#">Sửa</a>
-                                <a href="#">Xóa</a></td>
-                        </tr>
-
-                        <tr>
-                            <td rowspan="2">
-                                <P>Giải trí</p>
-                            </td>
-                            <td>
-                                <p>Âm nhạc</p>
-                            </td>
-                            <td><a href="#">Sửa</a>
-                                <a href="#">Xóa</a></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Điện ảnh và truyền hình</p>
-                            </td>
-                            <td><a href="#">Sửa</a>
-                                <a href="#">Xóa</a></td>
-                        </tr>
-
-
-                        <tr>
-                            <td rowspan="2">
-                                <P>Thể thao</p>
-                            </td>
-                            <td>
-                                <p>Bóng đá</p>
-                            </td>
-                            <td><a href="#">Sửa</a>
-                                <a href="#">Xóa</a></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Các mục khác</p>
-                            </td>
-                            <td><a href="#">Sửa</a>
-                                <a href="#">Xóa</a></td>
-                        </tr>
+                        {{/each}}
+                        {{/each}}
                     </table>
                 </div>
-                <div class="col-md-3 form-group pull-right">
+                {{!-- <div class="col-md-3 form-group pull-right">
                     <input type="submit" name="ok" value="Lưu" class="btn btn-primary btn-block">
-                </div>
+                </div> --}}
             </form>
         </div>
         <!--end .content-->
