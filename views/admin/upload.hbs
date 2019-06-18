@@ -1,76 +1,115 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
-  rel="stylesheet" type="text/css">
+	rel="stylesheet" type="text/css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+<script
+	src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ezd73nxbzc7bu6e86g2l82jbbffke0mwevwrnyvc5q8h89j6"></script>
 <script>
-  $(function () {
-    $('#fuMain').fileinput({
-      theme: 'fa',
-      dropZoneEnabled: false,
-      allowedFileExtensions: ['png', 'jpg', 'mp3','mp4'],
-      uploadUrl: '/upload',
-      uploadAsync: false,
-    });
-  })
+	$(function () {
+		tinymce.init({
+			selector: '#txtFullDes',
+			height: 500,
+			menubar: false,
+			plugins: 'paste image link autolink lists table media',
+			toolbar: [
+				'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright',
+				'forecolor backcolor',
+				'table link image media',
+			],
+		});
+	})
+</script>
+<script>
+	$(function () {
+		$('#fuMain').fileinput({
+			theme: 'fa',
+			dropZoneEnabled: false,
+			allowedFileExtensions: ['png', 'jpg', 'mp3', 'mp4'],
+			uploadUrl: '/admin/upload',
+			uploadAsync: false,
+		});
+	})
 </script>
 <div class="right">
-			<div class="col-md-10">
-				<div class="content">
-					<div class="col-md-4 add-dm">
-						<h4 class="text-center">Thêm bài viết</h4>
-					</div>
-					<div class="clearfix"></div>
-					<form method="post">
-						<div class="form">
-							<table class="table">
-								<tr>
-									<td>
-										<P>Tiêu đề danh mục</p>
-									</td>
-									<td><input type="text" name="title" class="form-control"></td>
-								</tr>
-								<tr>
-									<td>
-										<P>Nội dung bài viết</p>
-									</td>
-									<td><textarea name="content" class="form-control" id="" cols="30" rows="10"></textarea></td>
-								</tr>
-								<tr>
-									<td>
-										<P>Hình ảnh bài viết</p>
-									</td>
-									<td> <div class="card shadow">
-                        <div class="card-body">
-                        <form method="POST">
-                          <div class="form-group">
-                            <div class="file-loading">
-                              <input id="fuMain" name="fuMain" type="file" multiple>
-                            </div>
-                          </div>
-                        </form>
-                      </div> </div></td>
-								</tr>
-								<tr>
-									<td>
-										<p>Lựa chọn danh mục cha</p>
-									</td>
-									<td><select name="cat" class="form-control">
-											<option value="0">Lựa chọn danh mục</option>
-											<option value="">Đời sống</option>
-											<option value="">Kinh doanh</option>
-											<option value="">Văn hóa</option>
-											<option value="">Giải trí</option>
-											<option value="">Thể thao</option>
-										</select>
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div class="col-md-3 form-group pull-right">
-							<input type="submit" name="ok" value="Lưu" class="btn btn-primary btn-block">
-						</div>
-					</form>
-				</div>
-				<!--end .content-->
+	<div class="col-md-10">
+		<div class="content">
+			<div class="col-md-4 add-dm">
+				<h4 class="text-center">Thêm bài viết</h4>
 			</div>
+			<div class="clearfix"></div>
+			<form method="POST" action="/admin/upload"  enctype="multipart/form-data">
+				<div class="form">
+					<table class="table">
+						<tr>
+							<td>
+								<P>Tiêu đề bài viết</p>
+							</td>
+							<td><input type="text" name="title" class="form-control"></td>
+						</tr>
+						<tr>
+							<td>
+								<P>Tóm tắt nội dung</p>
+							</td>
+							<td> <input type="text" name="summary" class="form-control"></td>
+						</tr>
+						<tr>
+							<td>
+								<P>Nội dung bài viết</p>
+							</td>
+							<td>
+								<div class="card-body">
+									<textarea class="form-control" id="txtFullDes" name="FullDes"></textarea>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<P>Hình ảnh bài viết</p>
+							</td>
+							<td>
+								<div class="card shadow">
+									<div class="card-body">
+										<div class="form-group">
+											<div class="file-loading">
+												<input id="fuMain" name="fuMain" type="file" multiple>
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							{{!-- <div style='display:flex;flex-direction:row;justify-content:space-between;'> --}}
+								<td>
+									<p>Lựa chọn danh mục cha</p>
+									<select name="cat" class="form-control">
+										<option value="">Đời sống</option>
+										<option value="">Kinh doanh</option>
+										<option value="">Văn hóa</option>
+										<option value="">Giải trí</option>
+										<option value="">Thể thao</option>
+									</select>
+								</td>
+								<td>
+									<P>Nhãn tag</p>
+									<input type="text" name="tag" class="form-control">
+								</td>
+								
+							{{!-- </div> --}}
+						</tr>
+
+			</form>
+
+			</table>
 		</div>
+		<div class="col-md-3 form-group pull-right">
+			<button type="submit" class="btn btn-primary btn-block">
+				<i class="fa fa-check" aria-hidden="true"></i>
+				Save
+			</button>
+		</div>
+		</form>
+	</div>
+	<!--end .content-->
+</div>
+</div>

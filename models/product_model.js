@@ -20,6 +20,14 @@ module.exports={
         return db.add('baiviet',entity);
     },
 
+    update: entity => {
+        return db.update('baiviet', 'IDBaiViet', entity);
+      },
+    
+      delete: id => {
+        return db.delete('baiviet', 'IDBaiViet', id);
+      },
+
     single:id=>{
         return db.load(`select * from baiviet where IDBaiViet= '${id}'`);
     },

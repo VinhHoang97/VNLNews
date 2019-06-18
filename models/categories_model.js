@@ -23,4 +23,5 @@ module.exports={
         return db.load(`select * from chuyenmuc where ChuyenMucCha='${id}'`)
     }
 
+    
 }

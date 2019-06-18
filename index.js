@@ -13,8 +13,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 require('./middlewares/session')(app);
 require('./middlewares/passport')(app);
-require('./middlewares/upload')(app);
-
 
 // view engine setup
 
