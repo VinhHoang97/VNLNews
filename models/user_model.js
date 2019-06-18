@@ -15,6 +15,9 @@ module.exports = {
   },
   singleByPhanHe: phanhe => {
     return db.load(`select * from NguoiDung where PhanHe='${phanhe}'`);
+  },
+  add:entity=>{
+      return db.add("NguoiDung",entity);
   }
 };
 

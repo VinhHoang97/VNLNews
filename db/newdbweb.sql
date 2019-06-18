@@ -551,6 +551,10 @@ insert into baiviet_hinhanh(IDBaiViet,IDHinh) values(19,19);
 insert into baiviet_hinhanh(IDBaiViet,IDHinh) values(20,20);
 insert into baiviet_hinhanh(IDBaiViet,IDHinh) values(21,21);
 insert into baiviet_hinhanh(IDBaiViet,IDHinh) values(22,22);
+insert into baiviet_hinhanh(IDBaiViet,IDHinh) values(23,23);
+
+insert into baiviet_hinhanh(IDBaiViet,IDHinh) values(5,5);
+
 --------------- insert table BinhLuan
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (1, 10, 'Hay qua', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (1, 11, 'Thật mong đợi', 0);
