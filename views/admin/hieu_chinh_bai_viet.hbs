@@ -2,7 +2,7 @@
             <div class="col-md-10">
                 <div class="content">
                     <div class="col-md-4 add-dm">
-                        <h4 class="text-center">Danh sách bài viét</h4>
+                        <h4 class="text-center">Danh sách bài viết</h4>
                     </div>
                     <div class="clearfix"></div>
                     <form method="post">
@@ -23,41 +23,18 @@
                                         <p>Trạng thái</p>
                                     </td>
                                 </tr>
-                                <tr>
+                                {{#each dshieuchinh}}
+                                     <tr>
                                     <td>
-                                        <P>Giải trí</p>
+                                        <P>{{TenChuyenMuc}}</p>
                                     </td>
-                                    <td>Khắc Việt đạo nhạc</td>
+                                    <td>{{TieuDe}}</td>
 
-                                    <td>Nguyễn Mỹ Linh</td>
-                                    <td><a href="#">Chờ Duyệt</a>
-                                    <a href="./hieu_chinh"> Chỉnh sửa</a> </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <P>Giải trí</p>
-                                    </td>
-                                    <td>Khắc Việt đạo nhạc</td>
-
-                                    <td>Nguyễn Mỹ Linh</td>
-                                    <td>
-                                        <a href="#"> Bị Từ chối</a>
-                                        <a href="./hieu_chinh"> Chỉnh sửa</a>
+                                    <td>{{HoTen}}</td>
+                                    <td><a href="/admin/hieu_chinh/{{IDBaiViet}}">{{Loai}}</a>
                                     </td>
                                 </tr>
-
-                                <tr>
-                                        <td>
-                                            <P>Giải trí</p>
-                                        </td>
-                                        <td>Khắc Việt đạo nhạc</td>
-    
-                                        <td>Nguyễn Mỹ Linh</td>
-                                        <td>
-                                            <a href="#"> Bị Từ chối</a>
-                                            <a href="./hieu_chinh"> Chỉnh sửa</a>
-                                        </td>
-                                    </tr>
+                                {{/each}}
                             </table>
                         </div>
                     </form>
