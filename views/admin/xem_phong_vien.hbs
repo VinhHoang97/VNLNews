@@ -13,51 +13,25 @@
                                         <P>Tên đăng nhập</p>
                                     </td>
                                     <td>
-                                        <P>Mật khẩu</p>
-                                    </td>
-                                    <td>
                                         <P>Họ và tên</p>
                                     </td>
                                     <Td>Hành động</Td>
                                 </tr>
+                                   {{#each dsphongvien}}
                                 <tr>
                                     <td>
-                                        <P>NTML</p>
+                                        <P>{{UserName}}</p>
                                     </td>
+                                    <td>{{HoTen}}</td>
                                     <td>
-                                        <p>123</p>
-                                    </td>
-                                    <td>Nguyễn Mỹ Linh</td>
-                                    <td><a href="#">Sửa</a>
                                         <a href="#">Xóa</a></td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <P>NTML</p>
-                                    </td>
-                                    <td>
-                                        <p>123</p>
-                                    </td>
-                                    <td>Nguyễn Mỹ Linh</td>
-                                    <td><a href="#">Sửa</a>
-                                        <a href="#">Xóa</a></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <P>NTML</p>
-                                    </td>
-                                    <td>
-                                        <p>123</p>
-                                    </td>
-                                    <td>Nguyễn Mỹ Linh</td>
-                                    <td><a href="#">Sửa</a>
-                                        <a href="#">Xóa</a></td>
-                                </tr>
+                                 {{/each}}
                             </table>
                         </div>
-                        <div class="col-md-3 form-group pull-right">
+                        {{!-- <div class="col-md-3 form-group pull-right">
                             <input type="submit" name="ok" value="Lưu" class="btn btn-primary btn-block">
-                        </div>
+                        </div> --}}
                     </form>
                 </div>
                 <!--end .content-->

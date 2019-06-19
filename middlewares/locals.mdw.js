@@ -11,7 +11,10 @@ module.exports = (req, res, next) => {
               if (rows != []) {
                 res.locals.categoryFull.push({
                   parentCategory: element,
-                  childCategory: rows
+                  childCategory: rows,
+                  length:rows.length,
+                  firstChild:rows[0],
+                  leftChild:rows.filter((value,index,arr)=>{return index!=0})
                 });
               }
             })

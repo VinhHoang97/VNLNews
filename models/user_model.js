@@ -22,6 +22,18 @@ module.exports = {
   },
   update:entity=>{
     return db.update("NguoiDung","ID",entity)
+  },
+  allPV:() => {
+    return db.load(`select * from NguoiDung where PhanHe='PH003'`);
+  },
+  allBTV:() => {
+    return db.load(`select * from NguoiDung where PhanHe='PH002'`);
+  },
+  allDG:() => {
+    return db.load(`select * from NguoiDung where PhanHe='PH004'`);
+  },
+  allCountTV:() => {
+    return db.load(`select count(*) as Total from NguoiDung`);
   }
 };
 
