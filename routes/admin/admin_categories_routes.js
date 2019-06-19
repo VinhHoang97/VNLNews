@@ -31,10 +31,12 @@ router.get("/", (req, res) => {
     layout: "main_admin.hbs"
   });
 });
+
 router.post("/logout", auth, (req, res, next) => {
   req.logOut();
   res.redirect("/admin/admin_login");
 });
+
 router.get("/trang_chu", (req, res) => {
   Promise.all([
     category.allCount(),
@@ -53,6 +55,7 @@ router.get("/trang_chu", (req, res) => {
       console.log(err);
     });
 });
+
 router.get("/them_danh_muc", (req, res) => {
   catModel
     .getParentCat()
@@ -109,14 +112,6 @@ router.get("/xem_editor", (req, res) => {
     });
 });
 
-router.use("/phong_vien", (req, res) => {
-  if (res.locals.isPv) {
-    res.render("admin/phong_vien", {
-      layout: "main_phong_vien.hbs"
-    });
-  }
-});
-
 router.get("/xem_danh_muc", (req, res) => {
   category
     .all()
@@ -160,6 +155,7 @@ router.get("/xem_bai_viet", (req, res) => {
       console.log(err);
     });
 });
+
 router.get("/xuat_ban/:id", (req, res) => {
   var id = req.params.id;
   productModel
@@ -170,137 +166,6 @@ router.get("/xuat_ban/:id", (req, res) => {
     .catch(err => {
       console.log(err);
     });
-});
-router.get("/xem_danh_sach_bai_viet", (req, res) => {
-  productModel
-    .allProductOfWriter(7)
-    .then(rows => {
-      res.render("admin/xem_danh_sach_bai_viet", {
-        layout: "main_phong_vien.hbs",
-        dsbaiviet: rows
-      });
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
-
-router.get("/hieu_chinh_bai_viet", (req, res) => {
-  productModel
-    .updateProductOfWriter(7)
-    .then(rows => {
-      console.log(rows);
-
-      res.render("admin/hieu_chinh_bai_viet", {
-        layout: "main_phong_vien.hbs",
-        dshieuchinh: rows
-      });
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
-
-router.get("/hieu_chinh/:id", (req, res) => {
-  var id = req.params.id;
-  Promise.all([
-    productModel.single(id),
-    catModel.allChildren(),
-    tagModel.singelByBaiViet(id)
-  ]).then(([rows, cat, tag]) => {
-    var strTag = "";
-    tag.forEach((element, index, array) => {
-      if (index === array.length - 1) strTag += element.TenTag;
-      else {
-        strTag += element.TenTag + ",";
-      }
-    });
-    console.log(rows[0]);
-    res.render("admin/hieu_chinh", {
-      layout: "main_phong_vien.hbs",
-      product: rows[0],
-      isVip: rows[0].TinhTrangBV === 1 ? true : false,
-      cat: cat,
-      tag: strTag
-    });
-  });
-});
-
-router.post("/hieu_chinh/:id", (req, res) => {
-  var cat = req.body.cat;
-  var title = req.body.title;
-  var FullDes = req.body.FullDes;
-  var summary = req.body.summary;
-  var tag = req.body.tag;
-  var premium = req.body.premium;
-  if (!req.file) {
-    next;
-  } else {
-    var entityProduct = {
-      TieuDe: title,
-      TieuDe_KhongDau: "",
-      ChuyenMuc: cat,
-      NgayDang: moment().format("YYYY-MM-DD HH:mm:ss"),
-      NoiDung: FullDes,
-      TomTat: summary,
-      PhongVien: 8,
-      BienTapVien: 3,
-      DaDuyet: 4,
-      TinhTrangBV: premium
-    };
-
-    var entityHinh = {
-      urllinkHinh: req.file.path.substring(7)
-    };
-    var TagArr = tag.split(",");
-    Promise.all([
-      productModel.update(entityProduct),
-      imgModel.update(entityHinh)
-    ])
-      .then(([product, img]) => {
-        var bar = new Promise((resolve, reject) => {
-          TagArr.forEach((element, index, array) => {
-            var tagEntity = {
-              TenTag: element
-            };
-            tagModel.update(tagEntity).then(rows => {
-              var entity = {
-                IDBaiViet: product,
-                IDTag: rows
-              };
-              tagProModel.update(entity);
-            });
-            if (index === array.length - 1) resolve();
-          });
-        });
-        var imgProEntity = {
-          IDBaiViet: product,
-          IDHinh: img
-        };
-        Promise.all([bar, imgProModel.update(imgProEntity)])
-          .then(([result, id]) => {
-            console.log(id);
-          })
-          .then(() => {
-            res.redirect("/admin/upload");
-          })
-          .catch(next);
-        console.log(product, img);
-      })
-      .catch(next);
-
-    console.log(req.file.path.substring(7));
-    // var link = req.file.path;
-    console.log(cat, title, FullDes, summary, tag, premium);
-  }
-});
-router.get("/upload", (req, res, next) => {
-  catModel.allChildren().then(rows => {
-    res.render("admin/upload", {
-      layout: "main_phong_vien.hbs",
-      cat: rows
-    });
-  });
 });
 
 router.post("/them_danh_muc", (req, res, next) => {
@@ -328,146 +193,6 @@ router.post("/them_danh_muc", (req, res, next) => {
       }
     })
     .catch(next);
-});
-
-router.post("/upload", upload.single("fuMain"), (req, res, next) => {
-  var cat = req.body.cat;
-  var title = req.body.title;
-  var FullDes = req.body.FullDes;
-  var summary = req.body.summary;
-  var tag = req.body.tag;
-  var premium = req.body.premium;
-  if (!req.file) {
-    res.json({
-      // console.log(req.file);
-    });
-  } else {
-    var entityProduct = {
-      TieuDe: title,
-      TieuDe_KhongDau: "",
-      ChuyenMuc: cat,
-      NgayDang: moment().format("YYYY-MM-DD HH:mm:ss"),
-      NoiDung: FullDes,
-      TomTat: summary,
-      PhongVien: 8,
-      BienTapVien: 3,
-      DaDuyet: 4,
-      TinhTrangBV: premium
-    };
-
-    var entityHinh = {
-      urllinkHinh: req.file.path.substring(7)
-    };
-    var TagArr = tag.split(",");
-    Promise.all([productModel.add(entityProduct), imgModel.add(entityHinh)])
-      .then(([product, img]) => {
-        var bar = new Promise((resolve, reject) => {
-          TagArr.forEach((element, index, array) => {
-            var tagEntity = {
-              TenTag: element
-            };
-            tagModel.add(tagEntity).then(rows => {
-              var entity = {
-                IDBaiViet: product,
-                IDTag: rows
-              };
-              tagProModel.add(entity);
-            });
-            if (index === array.length - 1) resolve();
-          });
-        });
-        var imgProEntity = {
-          IDBaiViet: product,
-          IDHinh: img
-        };
-        Promise.all([bar, imgProModel.add(imgProEntity)])
-          .then(([result, id]) => {
-            console.log(id);
-          })
-          .then(() => {
-            res.redirect("/admin/upload");
-          })
-          .catch(next);
-        console.log(product, img);
-      })
-      .catch(next);
-
-    console.log(req.file.path.substring(7));
-    // var link = req.file.path;
-    console.log(cat, title, FullDes, summary, tag, premium);
-  }
-});
-
-router.use("/bien_tap_vien", (req, res) => {
-  res.render("admin/bien_tap_vien", {
-    layout: "main_bien_tap_vien.hbs"
-  });
-});
-router.get("/sua_danh_muc/:id", (req, res) => {
-  var id = req.params.id;
-  catModel
-    .singleForCate(id)
-    .then(rows => {
-      res.render("admin/sua_danh_muc", {
-        layout: "main_admin.hbs",
-        cat: rows[0]
-      });
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
-router.get("/duyet/:id", (req, res) => {
-  var id = req.params.id;
-  Promise.all([
-    productModel.singleForEditor(id),
-    catModel.allChildren(),
-    tagModel.singelByBaiViet(id)
-  ]).then(([rows, cat, tag]) => {
-    var strTag = "";
-    tag.forEach((element, index, array) => {
-      if (index === array.length - 1) strTag += element.TenTag;
-      else {
-        strTag += element.TenTag + ",";
-      }
-    });
-    console.log(rows[0]);
-    res.render("admin/duyet", {
-      layout: "main_bien_tap_vien.hbs",
-      product: rows[0],
-      isVip: rows[0].TinhTrangBV === 1 ? true : false,
-      cat: cat,
-      tag: strTag
-    });
-  });
-});
-
-router.get("/duyet_bai_viet", (req, res) => {
-  productModel
-    .editor(4)
-    .then(rows => {
-      res.render("admin/duyet_bai_viet", {
-        layout: "main_bien_tap_vien.hbs",
-        dsbaiduyet: rows
-      });
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
-
-router.get("/bai_viet_da_duyet", (req, res) => {
-  productModel
-    .allEditor(4)
-    .then(rows => {
-      res.render("admin/bai_viet_da_duyet", {
-        layout: "main_bien_tap_vien.hbs",
-        dsbaidaduyet: rows
-      });
-    })
-    .catch(err => {
-      console.log(err);
-    });
 });
 
 module.exports = router;

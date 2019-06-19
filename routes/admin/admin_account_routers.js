@@ -2,7 +2,9 @@ var express = require('express');
 var bcrypt = require('bcrypt');
 var router = express.Router();
 var passport = require('passport');
-var auth= require('../../middlewares/auth')
+var auth= require('../../middlewares/auth');
+var editorRoutes = require("./editor_routes");
+var writerRoutes = require("./writer_routes");
 router.get('/',(req,res, next )=>{
     res.render('admin/admin_login',{
         layout:false
@@ -43,7 +45,8 @@ router.post('/', (req, res, next) => {
     })(req, res, next);
 });
 
-
+router.use('/edior',editorRoutes);
+router.use('/writer',writerRoutes);
 router.get('/profile', auth , (req, res, next)=>{
     console.log("da toi day 4");
     res.end('admin');
