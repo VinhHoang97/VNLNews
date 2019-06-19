@@ -24,6 +24,11 @@ module.exports = {
     );
   },
 
+  
+  add: entity => {
+    return db.add("BaiViet", entity);
+  },
+
   update: entity => {
     return db.update("baiviet", "IDBaiViet", entity);
   },
@@ -100,13 +105,16 @@ module.exports = {
     limit ${amount};`);
   },
 
-  add: entity => {
-    return db.add("BaiViet", entity);
-  },
 
   single: id => {
     return db.load(
       `select * from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID where bv.IDBaiViet= '${id}' and bv.DaDuyet= 2`
+    );
+  },
+
+  updatesingle:id=>{
+    return db.load(
+      `select * from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID where bv.IDBaiViet= '${id}'`
     );
   },
 

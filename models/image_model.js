@@ -9,4 +9,8 @@ module.exports = {
     add: entity => {
         return db.add("urlHinhAnh", entity);
     },
+
+    update: entity => {
+        return db.update("urlHinhAnh", entity);
+      },
 }

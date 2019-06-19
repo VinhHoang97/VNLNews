@@ -5,6 +5,6 @@ module.exports = {
         return db.add("BaiViet_HinhAnh", entity);
     },
     update: entity=>{
-        return db.update('BaiViet_HinhAnh','ID',entity);
+        return db.update('BaiViet_HinhAnh','IDBaiViet',entity);
     },
 }
