@@ -36,7 +36,7 @@ router.post('/logout', auth, (req, res, next) => {
     req.logOut();
     res.redirect('/admin/admin_login');
 })
-router.get('/trang_chu', (req, res) => {
+router.get('/trang_chu', auth,(req, res) => {
     res.render('admin/admin', {
         layout: 'main_admin.hbs'
     });
@@ -76,6 +76,7 @@ router.use('/xem_editor', (req, res) => {
 })
 
 router.use('/phong_vien', (req, res) => {
+    if(res.locals.isPv){
     res.render('admin/phong_vien', {
         layout: 'main_phong_vien.hbs'
     })

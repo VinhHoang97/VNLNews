@@ -18,6 +18,11 @@
                         <div class="post-meta" data-animation="fadeInUp" data-delay="100ms">
                             <a href="/products/{{product.IDBaiViet}}">{{product.NgayDang}}</a>
                         </div>
+                        {{#if isPremium}}
+                        <div class="post-meta" data-animation="fadeInUp" data-delay="100ms">
+                            <img src="/img/bg-img/favourites.png" style="max-width: 5%;height: auto;text-align: left" />
+                        </div>
+                        {{/if}}
                     </div>
                 </div>
             </div>
@@ -52,6 +57,12 @@
                             {{product.LuotXem}}</a>
                         <a href="/products/{{product.IDBaiViet}}"><i class="fa fa-comments-o" aria-hidden="true"></i>
                             {{countCmt.total}}</a>
+                        {{#if isPremium}}
+                        <a href="/products/{{product.IDBaiViet}}">
+                            <img src="/img/bg-img/favourites.png"
+                                style="max-width: 100%;height: auto;text-align: left" />
+                        </a>
+                        {{/if}}
                     </div>
                 </div>
             </div>
@@ -81,6 +92,12 @@
 
                         <a href="/products/{{product.IDBaiViet}}"><i class="fa fa-comments-o" aria-hidden="true"></i>
                             {{countCmt.total}}</a>
+                        {{#if isPremium}}
+                        <a href="/products/{{product.IDBaiViet}}">
+                            <img src="/img/bg-img/favourites.png"
+                                style="max-width: 100%;height: auto;text-align: left" />
+                        </a>
+                        {{/if}}
                     </div>
                 </div>
             </div>
@@ -109,6 +126,11 @@
                         <a href="/products/productByCategory/{{product.ChuyenMuc}}"
                             class="post-cata">{{cat.TenChuyenMuc}}</a>
                         <a href="/products/{{product.IDBaiViet}}" class="post-title">{{product.TieuDe}}</a>
+                        {{#if isPremium}}
+                        <a href="/products/{{product.IDBaiViet}}">
+                            <img src="/img/bg-img/favourites.png" style="max-width: 10%;height: 10%;text-align: left" />
+                        </a>
+                        {{/if}}
                     </div>
                 </div>
                 {{/each}}
@@ -153,6 +175,12 @@
                                             aria-hidden="true"></i> {{RefTenTop.product.LuotXem}}</a>
                                     <a href="/products/{{RefTenTop.product.IDBaiViet}}"><i class="fa fa-comments-o"
                                             aria-hidden="true"></i> {{RefTenTop.countCmt.total}}</a>
+                                    {{#if RefTenTopIsPremium}}
+                                    <a href="/products/{{product.IDBaiViet}}">
+                                        <img src="/img/bg-img/favourites.png"
+                                            style="max-width: 10%;height: 10%;text-align: left" />
+                                    </a>
+                                    {{/if}}
                                 </div>
                                 <!-- Share Info -->
                                 <div class="share-info">
@@ -194,6 +222,12 @@
 
                                             <a href="/products/{{product.IDBaiViet}}"><i class="fa fa-comments-o"
                                                     aria-hidden="true"></i> {{countCmt.total}}</a>
+                                            {{#if isPremium}}
+                                            <a href="/products/{{product.IDBaiViet}}">
+                                                <img src="/img/bg-img/favourites.png"
+                                                    style="max-width: 100%;height: auto;text-align: left" />
+                                            </a>
+                                            {{/if}}
                                         </div>
                                     </div>
                                 </div>
@@ -218,6 +252,12 @@
 
                                             <a href="/products/{{product.IDBaiViet}}"><i class="fa fa-comments-o"
                                                     aria-hidden="true"></i> {{countCmt.total}}</a>
+                                            {{#if isPremium}}
+                                            <a href="/products/{{product.IDBaiViet}}">
+                                                <img src="/img/bg-img/favourites.png"
+                                                    style="max-width: 100%;height: auto;text-align: left" />
+                                            </a>
+                                            {{/if}}
                                         </div>
                                     </div>
                                 </div>
@@ -253,145 +293,18 @@
                                 {{product.LuotXem}}</a>
                             <a href="/products/{{product.IDBaiViet}}"><i class="fa fa-comments-o"
                                     aria-hidden="true"></i> {{countCmt.total}}</a>
+                            {{#if isPremium}}
+                            <a href="/products/{{product.IDBaiViet}}">
+                                <img src="/img/bg-img/favourites.png"
+                                    style="max-width: 100%;height: auto;text-align: left" />
+                            </a>
+                            {{/if}}
                         </div>
                     </div>
                 </div>
                 {{/each}}
             </div>
         </div>
-
-        <!-- Sports Videos -->
-        {{!-- <div class="sports-videos-area">
-            <!-- Section Title -->
-            <div class="section-heading">
-                <h5>DU LỊCH</h5>
-            </div>
-
-            <div class="sports-videos-slides owl-carousel mb-30">
-                <!-- Single Featured Post -->
-                <div class="single-featured-post">
-                    <!-- Thumbnail -->
-                    <div class="post-thumbnail mb-50">
-
-                        <a href="dienanhdetail.html"> <img src="../img/bg-img/vh/dl1.jpg" alt=""></a>
-                    </div>
-                    <!-- Post Contetnt -->
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <a href="#">Tháng Năm có gì ?</a>
-                            <a href="dulich.html">Du lịch</a>
-                        </div>
-                        <a href="dienanhdetail.html" class="post-title">Những điểm đến không thể bỏ qua ở Phú Thọ dịp
-                            giỗ Tổ Hùng Vương </a>
-                        <p>Đến Phú Thọ dịp Giỗ Tổ Hùng Vương, khách du lịch cũng có thể khám phá những địa danh nổi
-                            tiếng khác như đền Quốc Mẫu Âu Cơ, vườn Quốc gia Xuân Sơn, hang Lạng hay Ao Giời - Suối
-                            Tiên...</p>
-                    </div>
-                    <!-- Post Share Area -->
-                    <div class="post-share-area d-flex align-items-center justify-content-between">
-                        <!-- Post Meta -->
-                        <div class="post-meta pl-3">
-                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                        </div>
-                        <!-- Share Info -->
-                        <div class="share-info">
-                            <a href="#" class="sharebtn"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                            <!-- All Share Buttons -->
-                            <div class="all-share-btn d-flex">
-                                <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#" class="google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                <a href="#" class="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Featured Post -->
-                <div class="single-featured-post">
-                    <!-- Thumbnail -->
-                    <div class="post-thumbnail mb-50">
-                        <a href="dienanhdetail.html"><img src="../img/bg-img/vh/dl.jpg" alt=""></a>
-                    </div>
-                    <!-- Post Contetnt -->
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <a href="#">Tháng Năm có gì ?</a>
-                            <a href="dulich.html">Du lịch</a>
-                        </div>
-                        <a href="dienanhdetail.html" class="post-title">Nhếch nhác tại festival văn hóa ở Hoàng thành
-                            Thăng Long</a>
-                        <p>Nhiều khách đến với Festival văn hóa truyền thống VN 2019 và giao lưu văn hóa quốc tế tổ
-                            chức tại Hoàng thành Thăng Long, Hà Nội (diễn ra từ ngày 5 - 9.4) đã tỏ ra rất thất
-                            vọng.</p>
-                    </div>
-                    <!-- Post Share Area -->
-                    <div class="post-share-area d-flex align-items-center justify-content-between">
-                        <!-- Post Meta -->
-                        <div class="post-meta pl-3">
-                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                        </div>
-                        <!-- Share Info -->
-                        <div class="share-info">
-                            <a href="#" class="sharebtn"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                            <!-- All Share Buttons -->
-                            <div class="all-share-btn d-flex">
-                                <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#" class="google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                <a href="#" class="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <!-- Single Blog Post -->
-                <div class="col-12 col-lg-6">
-                    <div class="single-blog-post d-flex style-3 mb-30">
-                        <div class="post-thumbnail">
-                            <img src="../img/bg-img/vh/dl.jpg" alt="">
-                        </div>
-                        <div class="post-content">
-                            <a href="dienanhdetail.html" class="post-title">Nhếch nhác tại festival văn hóa ở Hoàng
-                                thành
-                                Thăng Long</a>
-                            <div class="post-meta d-flex">
-                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Blog Post -->
-                <div class="col-12 col-lg-6">
-                    <div class="single-blog-post d-flex style-3 mb-30">
-                        <div class="post-thumbnail">
-                            <img src="../img/bg-img/vh/dl1.jpg" alt="">
-                        </div>
-                        <div class="post-content">
-                            <a href="dienanhdetail.html" class="post-title">Những điểm đến không thể bỏ qua ở Phú Thọ
-                                dịp
-                                giỗ Tổ Hùng Vương</a>
-                            <div class="post-meta d-flex">
-                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div> --}}
     </div>
 
     <!-- >>>>>>>>>>>>>>>>>>>>
@@ -439,7 +352,7 @@
             </ul>
         </div>
 
-         <!-- Sidebar Widget -->
+        <!-- Sidebar Widget -->
         <div class="single-sidebar-widget p-30">
             <!-- Section Title -->
             <div class="section-heading">
@@ -449,8 +362,7 @@
             <!-- Tag Widget -->
             <ul class="catagory-widgets">
                 {{#each Tag}}
-                <li><a href="/tag/{{IDTag}}"><span><i
-                                class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <li><a href="/tag/{{IDTag}}"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i>
                             #{{TenTag}}</span>
                     </a></li>
                 {{/each}}

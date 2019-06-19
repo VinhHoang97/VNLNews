@@ -1,6 +1,7 @@
 var db = require("../utils/db");
 
 module.exports = {
+
   all: () => {
     return db.load(`select * from NguoiDung`);
   },
@@ -18,6 +19,9 @@ module.exports = {
   },
   add:entity=>{
       return db.add("NguoiDung",entity);
+  },
+  update:entity=>{
+    return db.update("NguoiDung","ID",entity)
   }
 };
 

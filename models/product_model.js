@@ -20,7 +20,7 @@ module.exports = {
 
   pageByCategory: (id, limit, offset) => {
     return db.load(
-      `select * from BaiViet where ChuyenMuc='${id}' and DaDuyet!=4 limit ${limit} offset ${offset}`
+      `select * from BaiViet where ChuyenMuc='${id}' and DaDuyet=2 and TinhTrangBV= 0 limit ${limit} offset ${offset}`
     );
   },
 
@@ -34,7 +34,7 @@ module.exports = {
 
   countByCategory: id => {
     return db.load(
-      `select count(*) as total from BaiViet where ChuyenMuc='${id}' and DaDuyet=2`
+      `select count(*) as total from BaiViet where ChuyenMuc='${id}' and DaDuyet=2 and TinhTrangBV= 0` 
     );
   },
 
@@ -42,7 +42,7 @@ module.exports = {
     return db.load(
       `select * from BaiViet bv 
       join Nhan_BaiViet nbv on bv.IDBaiViet = nbv.IDBaiViet 
-      where nbv.IDTag=${id} and bv.DaDuyet= 2
+      where nbv.IDTag=${id} and bv.DaDuyet= 2 and bv.TinhTrangBV= 0
       limit ${limit} offset ${offset}`
     );
   },
@@ -51,7 +51,7 @@ module.exports = {
     return db.load(
       `select count(*) as total from BaiViet bv 
       join Nhan_BaiViet nbv on bv.IDBaiViet = nbv.IDBaiViet 
-      where nbv.IDTag=${id} and bv.DaDuyet= 2`
+      where nbv.IDTag=${id} and bv.DaDuyet= 2 and bv.TinhTrangBV= 0`
     );
   },
 
@@ -59,7 +59,7 @@ module.exports = {
     return db.load(
       `select * from BaiViet bv
       join ChuyenMuc cm on bv.ChuyenMuc= cm.IDChuyenMuc
-      where cm.ChuyenMucCha='${id}' and bv.DaDuyet= 2
+      where cm.ChuyenMucCha='${id}' and bv.DaDuyet= 2 and bv.TinhTrangBV= 0
       limit ${limit} offset ${offset}`
     );
   },
@@ -68,21 +68,21 @@ module.exports = {
     return db.load(
       `select count(*) as total from BaiViet bv
       join ChuyenMuc cm on bv.ChuyenMuc= cm.IDChuyenMuc
-      where cm.ChuyenMucCha='${id}' and bv.DaDuyet= 2`
+      where cm.ChuyenMucCha='${id}' and bv.DaDuyet= 2 and bv.TinhTrangBV= 0`
     );
   },
 
   getMostView: amount => {
     return db.load(`select  *
         from BaiViet bv
-        where bv.DaDuyet= 2
+        where bv.DaDuyet= 2 and bv.TinhTrangBV=0
         order by  LuotXem desc
         LIMIT ${amount};`);
   },
 
   getNewest: amount => {
     return db.load(`select * from BaiViet bv
-    where bv.DaDuyet= 2
+    where bv.DaDuyet= 2 and bv.TinhTrangBV=0
     order by bv.NgayDang desc
     limit ${amount};`);
   },
@@ -95,7 +95,7 @@ module.exports = {
 
   getNewestByCat: (idCat, amount) => {
     return db.load(`select * from BaiViet bv
-    where bv.ChuyenMuc =${idCat} and bv.DaDuyet= 2
+    where bv.ChuyenMuc =${idCat} and bv.DaDuyet= 2 and bv.TinhTrangBV= 0
     order by bv.NgayDang desc
     limit ${amount};`);
   },
@@ -177,5 +177,7 @@ module.exports = {
       set DaDuyet = 2
       where IDBaiViet=${id}`
     );
-  }
+  },
+ 
+
 };
