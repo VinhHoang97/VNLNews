@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- Title -->
     <title>Báo Điện Tử TH16-News</title>
-
+       <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     {{{_sections.css}}}
     <!-- Favicon -->
     <link rel="icon" href="/img/core-img/favicon.ico">
@@ -21,6 +21,7 @@
 </head>
 
 <body>
+   
     <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="spinner">
@@ -96,8 +97,9 @@
                             <!-- Submit Video -->
 
                             {{#if isAuthenticated}}<form id="logOut" action="/account/logout" method="POST"></form>
-                                <a class="submit-video" href="javascript:$('#logOut').submit();"><span><i
-                                        class="fa fa-cloud-upload"></i></span> <span class="video-text">Đăng xuất</span></a>
+                            <a class="submit-video" href="javascript:$('#logOut').submit();"><span><i
+                                        class="fa fa-cloud-upload"></i></span> <span class="video-text">Đăng
+                                    xuất</span></a>
 
                             {{else}}
                             <a href="/admin/admin_login" class="submit-video"><span><i
@@ -193,7 +195,10 @@
                         </div>
                     </div>
                 </div>
-                <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+                <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a
+                        href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a
+                        href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
+                        target="_blank">CC 3.0 BY</a></div>
     </footer>
     <!-- ##### Footer Area End ##### -->
 
@@ -215,7 +220,7 @@
     <script src="/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="/js/active.js"></script>
-    
+
     {{{_sections.js}}}
 </body>
 

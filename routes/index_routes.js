@@ -9,7 +9,7 @@ var moment = require("moment");
 var router = express.Router();
 
 router.get("/", (req, res, next) => {
-  res.locals.isPremium = true;
+  //res.locals.isPremium = true;
   if (!res.locals.isPremium) {
     var carousel = [];
     var top10 = [];

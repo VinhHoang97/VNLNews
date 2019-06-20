@@ -19,11 +19,7 @@ module.exports = function(app) {
           if (rows.length === 0) {
             return done(null, false, { message: "Invalid username." });
           }
-          console.log(username);
-          console.log(password);
-          console.log(rows[0].Password);
           var user = rows[0];
-          console.log(user)
           var ret;
           if (user.PhanHe =='PH004') {
              ret = bcrypt.compareSync(password,user.Password);
@@ -31,7 +27,6 @@ module.exports = function(app) {
           else{
              ret = password == rows[0].Password;
           }
-          console.log(ret);
           if (ret) {
             console.log(user);
             return done(null, user);

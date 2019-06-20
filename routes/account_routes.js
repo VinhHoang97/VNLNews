@@ -11,6 +11,24 @@ router.get("/register", (req, res, next) => {
 });
 
 router.post("/register", (req, res, next) => {
+  // g-recaptcha-response is the key that browser will generate upon form submit.
+  // if its blank or null means user has not selected the captcha, so return the error.
+  if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+    return res.json({"responseCode" : 1,"responseDesc" : "Please select captcha"});
+  }
+  // Put your secret key here.
+  var secretKey = "6Lcj7qkUAAAAAKWZgGiTcVT-bwNa5g4bCHcLfNPu";
+  // req.connection.remoteAddress will provide IP address of connected user.
+  var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+  // Hitting GET request to the URL, Google will respond with success or error scenario.
+  request(verificationUrl,function(error,response,body) {
+    body = JSON.parse(body);
+    // Success will be true or false depending upon captcha validation.
+    if(body.success !== undefined && !body.success) {
+      return res.json({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
+    }}
+  );
+
   var saltRound = 10;
   console.log(req.body);
   var hash = bcrypt.hashSync(req.body.password, saltRound);
@@ -36,9 +54,11 @@ router.post("/register", (req, res, next) => {
     GioiTinh: req.body.gioitinh,
     Email: req.body.email,
     SDT: req.body.phoneNumber,
+    NgayDangKy:moment().format(),
+    NgayHetHan:moment().add(7, 'days').format(),
     PhanHe: "PH004",
     NgaySinh: dob,
-    TinhTrang: "NOT VIP"
+    TinhTrang: "VIP"
   };
   userModel
     .add(entity)
@@ -67,13 +87,22 @@ router.post("/login", (req, res, next) => {
       if (err) {
         return next(err);
       }
-      return res.redirect("/");
+      else{
+        res.redirect(req.session.returnTo || '/');
+        delete req.session.returnTo;
+      }
     });
   })(req, res, next);
 });
 
 router.get("/profile", authUser, (req, res, next) => {
-  res.render("profile");
+  var split = res.locals.authAccount.NgaySinh.split('-');
+  res.render("profile",
+  {
+    day:split[2],
+    month:split[1],
+    year:split[0]
+  });
 });
 
 router.post("/profile", authUser, (req, res, next) => {
@@ -88,13 +117,6 @@ router.post("/profile", authUser, (req, res, next) => {
     next();
   }
   var hash = bcrypt.hashSync(req.body.newPassword, saltRound);
-  console.log(
-    (req.body.day.length === 1 ? 0 + req.body.day : req.body.day) +
-      "/" +
-      (req.body.month.length === 1 ? 0 + req.body.month : req.body.month) +
-      "/" +
-      req.body.year
-  );
   var tmp =
     (req.body.day.length === 1 ? 0 + req.body.day : req.body.day) +
     "/" +
@@ -104,12 +126,12 @@ router.post("/profile", authUser, (req, res, next) => {
   var dob = moment(tmp, "DD/MM/YYYY").format("YYYY-MM-DD");
   console.log(dob);
   var entity = {
-    UserName: req.body.username,
+    ID: res.locals.authAccount.ID,
     Password: hash,
-    HoTen: req.body.hoten,
+    HoTen: req.body.hoten===undefined?res.locals.authAccount.HoTen:req.body.hoten,
     GioiTinh: req.body.gioitinh,
-    Email: req.body.email,
-    SDT: req.body.phoneNumber,
+    Email: req.body.email===undefined?res.locals.authAccount.Email:req.body.email,
+    SDT: req.body.phoneNumber===undefined?res.locals.authAccount.SDT:req.body.phoneNumber,
     NgaySinh: dob,
   };
   userModel

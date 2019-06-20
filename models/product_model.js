@@ -184,9 +184,10 @@ countAllEditor: id=>{
     return db.load(
       `SELECT * FROM  BaiViet
       WHERE MATCH(TieuDe, TomTat,NoiDung) 
-      AGAINST ('${string}' IN NATURAL LANGUAGE MODE) limit 5; `
+      AGAINST ('${string}' IN NATURAL LANGUAGE MODE) and DaDuyet = 2 and TinhTrangBV=0 limit 7; `
     );
   },
+
   allProduct: () => {
     return db.load(
       `select bv.IDBaiViet,cm.TenChuyenMuc,bv.TieuDe, nd.HoTen as PhongVien, nd1.HoTen as BienTapVien, bv.DaDuyet, d.Loai  from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID 

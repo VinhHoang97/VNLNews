@@ -43,9 +43,8 @@ module.exports = {
   countByParentCategory: id => {
     return db.load(
       `select count(*) as total from BaiViet bv
-          join ChuyenMuc cm on bv.ChuyenMuc= cm.IDChuyenMuc
-          where cm.ChuyenMucCha='${id}' and bv.DaDuyet= 2 order by TinhTrangBV desc`
-    );
+          join ChuyenMuc cm on bv.ChuyenMuc= cm.IDChuyenMuc where cm.ChuyenMucCha='${id}' and bv.DaDuyet= 2 order by TinhTrangBV desc`
+    )
   },
 
   getMostView: amount => {
@@ -68,5 +67,13 @@ module.exports = {
         where bv.ChuyenMuc =${idCat} and bv.DaDuyet= 2
         order by bv.NgayDang desc
         limit ${amount};`);
-  }
+  },
+
+  seachProductFullText: string => {
+    return db.load(
+      `SELECT * FROM  BaiViet
+      WHERE MATCH(TieuDe, TomTat,NoiDung) 
+      AGAINST ('${string}' IN NATURAL LANGUAGE MODE) and DaDuyet = 2 order by TinhTrangBV desc  limit 7; `
+    );
+  },
 };

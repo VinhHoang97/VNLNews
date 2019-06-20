@@ -26,10 +26,16 @@
                             <p>{{content.TomTat}} </p>
 
                             <ul class="tag">
-							{{#each Tag}}
-							<li><a href="/tag/{{IDTag}}">{{TenTag}}</a></li>
-							{{/each}}
-						</ul>
+                                {{#each Tag}}
+                                <li><a href="/tag/{{IDTag}}">{{TenTag}}</a></li>
+                                {{/each}}
+                            </ul>
+                            {{#if isPremium}}
+                            <a href="/products/{{product.IDBaiViet}}">
+                                <img src="/img/bg-img/favourites.png"
+                                    style="max-width: 100%;height: auto;text-align: left" />
+                            </a>
+                            {{/if}}
                         </div>
                     </div>
                     {{/each}}

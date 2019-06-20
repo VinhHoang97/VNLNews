@@ -23,6 +23,12 @@
                                 chủ</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><a
                                 href="/productByCategory/{{category.IDChuyenMuc}}">{{category.TenChuyenMuc}}</a></li>
+                        {{#if isPremium}}
+                        <a href="/products/{{product.IDBaiViet}}">
+                            <img src="/img/bg-img/favourites.png"
+                                style="max-width: 100%;height: auto;text-align: left" />
+                        </a>
+                        {{/if}}
                     </ol>
                 </nav>
             </div>
@@ -72,7 +78,7 @@
                         </div>
                     </div>
                 </li>
-                 {{/each}}
+                {{/each}}
             </ol>
         </div>
 
@@ -85,17 +91,19 @@
 
             <!-- Reply Form -->
             <div class="contact-form-area">
-                <form action="#" method="post">
+                <form action="/products/{{product.IDBaiViet}}/comment" method="post">
                     <div class="row">
+                        {{#if isAuthenticatedAccount}}
                         <div class="col-12 col-lg-6">
-                            <input type="text" class="form-control" id="name" placeholder="Tên bạn*" required>
+                            <input type="text" class="form-control" id="name" value="{{authAccount.HoTen}}" required>
                         </div>
                         <div class="col-12 col-lg-6">
-                            <input type="email" class="form-control" id="email" placeholder="Email*" required>
+                            <input type="email" class="form-control" id="email" value="{{authAccount.Email}}" required>
                         </div>
+                        {{/if}}
                         <div class="col-12">
                             <textarea name="message" class="form-control" id="message" cols="30" rows="10"
-                                placeholder="Bình luận*" required></textarea>
+                                placeholder="Bình luận*"  required>{{message}}</textarea>
                         </div>
                         <div class="col-12">
                             <button class="btn mag-btn mt-30" type="submit">Bình luận</button>

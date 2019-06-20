@@ -7,19 +7,19 @@
                 hoten: {
                     required: true
                 },
-                username:{
+                username: {
                     required: true
                 },
-                password:{
+                password: {
                     required: true,
-                    minlenght:6
+                    minlenght: 6
                 },
-                rePassword:{
+                rePassword: {
                     required: true,
-                    equalTo:$('[name="password"]')
+                    equalTo: $('[name="password"]')
                 },
-                email:{
-                    required:true,
+                email: {
+                    required: true,
                     email: true
                 }
             },
@@ -27,28 +27,28 @@
                 hoten: {
                     required: "Họ và tên không được để trống"
                 },
-                username:{
+                username: {
                     required: "Tên người dùng không được để trống"
                 },
-                password:{
+                password: {
                     required: "Mật khẩu không được để trống",
                     minlenght: "Mật khẩu phải có ít nhất 6 kí tự"
                 },
-                rePassword:{
+                rePassword: {
                     required: "Không được để trống phần này",
                     equalTo: "Không giống với mật khẩu"
                 },
-                email:{
-                    required:"Không được để trống phần này",
-                    email:"Hãy nhập một email hợp lý"
+                email: {
+                    required: "Không được để trống phần này",
+                    email: "Hãy nhập một email hợp lý"
                 }
             },
             errorElement: 'small',
             errorClass: 'help-block text-danger',
-            highlight:function(e){
+            highlight: function (e) {
                 $(e).removeClass('is-valid').add('is-invalid');
             },
-            unhighlight:function(e){
+            unhighlight: function (e) {
                 $(e).removeClass('is-invalid').add('is-valid');
             }
         });
@@ -82,17 +82,18 @@
 
                     <form novalidate name="myform" action="/account/register" method="post" id="registerForm">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="hoten" id="hoten" placeholder="Họ và tên" autofocus>
+                            <input type="text" class="form-control" name="hoten" id="hoten" placeholder="Họ và tên"
+                                autofocus>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2" id="gioitinh" >Giới tính:</label>
+                            <label class="col-lg-2" id="gioitinh">Giới tính:</label>
                             <label class="col-lg-2" for="nam"><input id="nam" type="radio" name="gioitinh" value="Nam">
                                 Nam</label>
                             <label class="col-lg-2" for="nu"><input id="nu" type="radio" name="gioitinh" value="Nữ"
                                     checked> Nữ</label>
                         </div>
                         <div class="form-group row">
-                            <label id="ngaysinh"  class="control-label col-sm-2" for="day">Ngày sinh:</label>
+                            <label id="ngaysinh" class="control-label col-sm-2" for="day">Ngày sinh:</label>
                             <div class="col-lg-2">
                                 <select id="day" name="day" class="form-control"
                                     style="background-image: linear-gradient(#f7f8f9,#e5e8ea, #dee1e5)">
@@ -128,25 +129,27 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email">
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="email"
+                                placeholder="Email">
                         </div>
                         <div class="form-group">
-                            <input id="sdt" type="text" class="form-control" name="phoneNumber" placeholder="Số điện thoại">
+                            <input id="sdt" type="text" class="form-control" name="phoneNumber"
+                                placeholder="Số điện thoại">
                         </div>
                         <div class="form-group">
-                            <input id="ten" type="text" class="form-control" name="username" placeholder="Tên người dùng">
+                            <input id="ten" type="text" class="form-control" name="username"
+                                placeholder="Tên người dùng">
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" name="password" id="exampleInputPassword1"
                                 placeholder="Mật khẩu">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" name="rePassword" placeholder="Nhập lại mật khẩu"
-                                name="psw-repeat" id="psw-repeat">
+                            <input type="password" class="form-control" name="rePassword"
+                                placeholder="Nhập lại mật khẩu" name="psw-repeat" id="psw-repeat">
                         </div>
 
-                        <div class="g-recaptcha" data-sitekey="6LelNakUAAAAAIK7Kq7XI6Q7ep4psAvh9n3A-SmO"></div>
-
+                        <div class="g-recaptcha" data-sitekey="6Lcj7qkUAAAAANoPm-PCF4Z9I9x9PHK4eCXiLior"></div>
                         <div style="display: flex; justify-content:center">
                             <button type="submit" class="btn mag-btn mt-30">Đăng kí</button>
                         </div>
