@@ -12,7 +12,7 @@ var indexRoutes = require("./routes/index_routes");
 var accountRoutes = require("./routes/account_routes");
 var searchRoutes = require("./routes/search_routes");
 var productModel = require("./models/product_model");
-var admin = require("./routes/admin/admin_categories_routes");
+var admin = require("./routes/admin/admin_account_routers");
 var moment= require('moment');
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));

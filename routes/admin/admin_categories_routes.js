@@ -25,11 +25,13 @@ var upload = multer({ storage });
 
 //require('../../middlewares/view-engine')(router);
 
-router.use("/admin_login", adminLogin);
+
 router.get("/", (req, res) => {
+  if(res.locals.isAdmin){
   res.render("admin/admin", {
     layout: "main_admin.hbs"
   });
+  }
 });
 
 router.post("/logout", auth, (req, res, next) => {
@@ -37,7 +39,7 @@ router.post("/logout", auth, (req, res, next) => {
   res.redirect("/admin/admin_login");
 });
 
-router.get("/trang_chu", (req, res) => {
+router.get("/trang_chu",auth, (req, res) => {
   Promise.all([
     category.allCount(),
     productModel.allCountBV(),
@@ -56,21 +58,8 @@ router.get("/trang_chu", (req, res) => {
     });
 });
 
-router.get("/them_danh_muc", (req, res) => {
-  catModel
-    .getParentCat()
-    .then(rows => {
-      res.render("admin/them_danh_muc", {
-        layout: "main_admin.hbs",
-        cat: rows
-      });
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
 
-router.get("/xem_phong_vien", (req, res) => {
+router.get("/xem_phong_vien",auth, (req, res) => {
   userModel
     .allPV()
     .then(rows => {
@@ -84,7 +73,7 @@ router.get("/xem_phong_vien", (req, res) => {
     });
 });
 
-router.get("/xem_thanh_vien", (req, res) => {
+router.get("/xem_thanh_vien",auth, (req, res) => {
   userModel
     .allDG()
     .then(rows => {
@@ -98,7 +87,7 @@ router.get("/xem_thanh_vien", (req, res) => {
     });
 });
 
-router.get("/xem_editor", (req, res) => {
+router.get("/xem_editor",auth, (req, res) => {
   userModel
     .allBTV()
     .then(rows => {
@@ -112,7 +101,7 @@ router.get("/xem_editor", (req, res) => {
     });
 });
 
-router.get("/xem_danh_muc", (req, res) => {
+router.get("/xem_danh_muc",auth, (req, res) => {
   category
     .all()
     .then(rows => {
@@ -134,7 +123,7 @@ router.get("/xem_danh_muc", (req, res) => {
     });
 });
 
-router.get("/xem_bai_viet", (req, res) => {
+router.get("/xem_bai_viet",auth, (req, res) => {
   productModel
     .allProduct()
     .then(rows => {
@@ -156,7 +145,7 @@ router.get("/xem_bai_viet", (req, res) => {
     });
 });
 
-router.get('/them_danh_muc', (req, res) => {
+router.get('/them_danh_muc',auth, (req, res) => {
     catModel.getParentCat().then(rows => {
         res.render('admin/them_danh_muc', {
             layout: 'main_admin.hbs',
@@ -165,60 +154,7 @@ router.get('/them_danh_muc', (req, res) => {
     })
 
 })
-router.get('/xem_danh_muc', (req, res) => {
-    res.render('admin/xem_danh_muc', {
-        layout: 'main_admin.hbs'
-    })
-})
-
-router.get('/xem_phong_vien', (req, res) => {
-    res.render('admin/xem_phong_vien', {
-        layout: 'main_admin.hbs'
-    })
-})
-
-
-router.use('/xem_thanh_vien', (req, res) => {
-    res.render('admin/xem_thanh_vien', {
-        layout: 'main_admin.hbs'
-    })
-})
-
-router.use('/xem_editor', (req, res) => {
-    res.render('admin/xem_editor', {
-        layout: 'main_admin.hbs'
-    })
-})
-
-router.get('/xem_bai_viet', (req, res) => {
-  productModel.allProduct().then(rows => {
-      console.log(rows);
-      var dsbaivietadmin = [];
-      rows.forEach(element => {
-          dsbaivietadmin.push({
-              product: element,
-              isApprove: element.DaDuyet === 1 ? true : false,
-          })
-      })
-      res.render('admin/xem_bai_viet', {
-          layout: 'main_admin.hbs',
-          dsbaivietadmin: dsbaivietadmin
-      })
-  }).catch(err => {
-      console.log(err);
-  })
-})
-
-router.get('/xuat_ban/:id', (req, res) => {
-  var id = req.params.id
-  productModel.allProductUpdate(id).then(rows => {
-      res.redirect('../xem_bai_viet')
-  }).catch(err => {
-      console.log(err);
-  })
-})
-
-router.post('/them_danh_muc', (req, res, next) => {
+router.post('/them_danh_muc', auth, (req, res, next) => {
   var title = req.body.title.trim();
   var cat = req.body.cat;
   catModel.singleCatName(title).then(rows => {
@@ -243,53 +179,82 @@ router.post('/them_danh_muc', (req, res, next) => {
   }).catch(next);
 })
 
-router.post("/them_danh_muc", (req, res, next) => {
-  var title = req.body.title.trim();
-  var cat = req.body.cat;
-  catModel
-    .singleCatName(title)
-    .then(rows => {
-      if (rows.length > 0) {
-        catModel.getParentCat().then(rows => {
-          res.render("admin/them_danh_muc", {
-            layout: "main_admin.hbs",
-            cat: rows,
-            isDup: true
-          });
-        });
-      } else {
-        var catEntity = {
-          TenChuyenMuc: title,
-          ChuyenMucCha: cat === "0" ? null : cat
-        };
-        catModel.add(catEntity).then(id => {
-          res.redirect("/admin/them_danh_muc");
-        });
-      }
-    })
-    .catch(next);
-});
+// router.post("/them_danh_muc", (req, res, next) => {
+//   var title = req.body.title.trim();
+//   var cat = req.body.cat;
+//   catModel
+//     .singleCatName(title)
+//     .then(rows => {
+//       if (rows.length > 0) {
+//         catModel.getParentCat().then(rows => {
+//           res.render("admin/them_danh_muc", {
+//             layout: "main_admin.hbs",
+//             cat: rows,
+//             isDup: true
+//           });
+//         });
+//       } else {
+//         var catEntity = {
+//           TenChuyenMuc: title,
+//           ChuyenMucCha: cat === "0" ? null : cat
+//         };
+//         catModel.add(catEntity).then(id => {
+//           res.redirect("/admin/them_danh_muc");
+//         });
+//       }
+//     })
+//     .catch(next);
+// });
 
+// router.get('/xem_bai_viet', (req, res) => {
+//   productModel.allProduct().then(rows => {
+//       console.log(rows);
+//       var dsbaivietadmin = [];
+//       rows.forEach(element => {
+//           dsbaivietadmin.push({
+//               product: element,
+//               isApprove: element.DaDuyet === 1 ? true : false,
+//           })
+//       })
+//       res.render('admin/xem_bai_viet', {
+//           layout: 'main_admin.hbs',
+//           dsbaivietadmin: dsbaivietadmin
+//       })
+//   }).catch(err => {
+//       console.log(err);
+//   })
+// })
 
-/*---------------------------------------*/
+router.get('/xuat_ban/:id',auth, (req, res) => {
+  var id = req.params.id
+  productModel.allProductUpdate(id).then(rows => {
+      res.redirect('../xem_bai_viet')
+  }).catch(err => {
+      console.log(err);
+  })
+})
 
+// router.get("/xuat_ban/:id", (req, res) => {
+//   var id = req.params.id;
+//   productModel
+//     .allProductUpdate(id)
+//     .then(rows => {
+//       res.redirect("../xem_bai_viet");
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// });
 
-
-
-
-
-
-
-
-
-
-
-router.get("/xuat_ban/:id", (req, res) => {
+router.get("/sua_danh_muc/:id", (req, res) => {
   var id = req.params.id;
-  productModel
-    .allProductUpdate(id)
+  catModel
+    .singleForCate(id)
     .then(rows => {
-      res.redirect("../xem_bai_viet");
+      res.render("admin/sua_danh_muc", {
+        layout: "main_admin.hbs",
+        cat: rows[0]
+      });
     })
     .catch(err => {
       console.log(err);
