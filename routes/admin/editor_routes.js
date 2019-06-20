@@ -148,4 +148,45 @@ router.get("/tu_choi/:id", (req, res) => {
     });
 });
 
+router.get('/duyet_bai_viet' ,(req, res) => {
+    productModel.updateEditor(4).then(rows => {
+        res.render('admin/duyet_bai_viet', {
+            layout: 'main_bien_tap_vien.hbs',
+            dsbaiduyet: rows
+        })
+    }).catch(err => {
+        console.log(err);
+    })
+})
+
+router.get('/bai_viet_da_duyet', (req, res) => {
+    productModel.allEditor(4).then(rows => {
+        res.render('admin/bai_viet_da_duyet', {
+            layout: 'main_bien_tap_vien.hbs',
+            dsbaidaduyet: rows
+        })
+    }).catch(err => {
+        console.log(err);
+    })
+})
+
+router.get('/bien_tap_vien', (req, res) => {
+    Promise.all([productModel.countAllEditor(4), productModel.countEditor(4)]).then(([rows, rows1]) => {
+        res.render('admin/bien_tap_vien', {
+            layout: 'main_bien_tap_vien.hbs',
+            dsdaduyet: rows[0].Tong1,
+            dschuaduyet: rows1[0].Tong2,
+        })
+    })
+})
+
+router.get('/tu_choi/:id', (req, res) => {
+    var id = req.params.id
+    productModel.updateDenied(id).then(rows => {
+        res.redirect('../duyet_bai_viet')
+    }).catch(err => {
+        console.log(err);
+    })
+})
+
 module.exports = router;

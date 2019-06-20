@@ -6,6 +6,6 @@ module.exports = {
     },
 
     update: entity => {
-        return db.update('Nhan_BaiViet', 'ID', entity);
+        return db.update('Nhan_BaiViet', 'IDBaiViet', entity);
       },
 }
