@@ -76,4 +76,10 @@ module.exports = {
       AGAINST ('${string}' IN NATURAL LANGUAGE MODE) and DaDuyet = 2 order by TinhTrangBV desc  limit 7; `
     );
   },
+
+  similarCategoryProduct: (category,id) =>{
+    return db.load(
+      `select * from BaiViet where ChuyenMuc='${category}' and IDBaiViet!=${id} and DaDuyet= 2`
+    );
+  },
 };

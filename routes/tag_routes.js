@@ -23,7 +23,7 @@ router.get("/:id", (req, res,next) => {
     .then(([rows, count_rows]) => {
         console.log(rows.length);
         if(rows.length <1){
-            throw new Error("Don't found any product")
+            throw new Error("Don't found any product or you not sign in yet")
         }
       for (const c of res.locals.categoryFull) {
         if (c.Id === +id) {
@@ -80,7 +80,7 @@ router.get("/:id", (req, res,next) => {
     .then(([rows, count_rows]) => {
         console.log(rows.length);
         if(rows.length <1){
-            throw new Error("Don't found any product")
+            throw new Error("Don't found any product or you not sign in yet")
         }
       for (const c of res.locals.categoryFull) {
         if (c.Id === +id) {
