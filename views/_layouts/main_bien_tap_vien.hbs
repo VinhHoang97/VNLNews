@@ -23,13 +23,14 @@
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
+                     <form id="frmSignout" action="/admin/logout" method="POST"></form>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <p class="text-center" style="padding-top: 15px;">Xin chào <span
                                         style="color: red">Biên tập viên</span></p>
                             </li>
-                            <li><a href="/admin/admin_login"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+                            <li><a href="javascript: $('#frmSignout').submit();"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

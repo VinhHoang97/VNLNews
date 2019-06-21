@@ -50,6 +50,10 @@ router.post('/', (req, res, next) => {
 router.use('/manager',manager);
 router.use('/editor',editorRoutes);
 router.use('/writer',writerRoutes);
+router.post("/logout", auth, (req, res, next) => {
+    req.logOut();
+    res.redirect("/admin");
+  });
 router.get('/profile', auth , (req, res, next)=>{
     console.log("da toi day 4");
     res.end('admin');

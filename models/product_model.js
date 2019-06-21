@@ -10,7 +10,6 @@ module.exports = {
       `select * from BaiViet where ChuyenMuc='${category}' and IDBaiViet!=${id} and DaDuyet= 2 and TinhTrangBV=0`
     );
   },
-
   singleByCategory: id => {
     return db.load(
       `select * from BaiViet where ChuyenMuc='${id}' and DaDuyet= 2`
@@ -234,4 +233,5 @@ countAllEditor: id=>{
       where IDBaiViet=${id}`
     );
   }
+
 };

@@ -13,10 +13,10 @@ var category = require("../../models/categories_model.js");
 var multer = require("multer");
 var userModel = require("../../models/user_model");
 var storage = multer.diskStorage({
-  destination: function(req, file, cb) {
+  destination: function (req, file, cb) {
     cb(null, "./public/img/product_img");
   },
-  filename: function(req, file, cb) {
+  filename: function (req, file, cb) {
     cb(null, file.originalname);
   }
 });
@@ -27,19 +27,13 @@ var upload = multer({ storage });
 
 
 router.get("/", (req, res) => {
-  if(res.locals.isAdmin){
-  res.render("admin/admin", {
-    layout: "main_admin.hbs"
-  });
+  if (res.locals.isAdmin) {
+    res.redirect('/admin/manager/trang_chu')
   }
 });
 
-router.post("/logout", auth, (req, res, next) => {
-  req.logOut();
-  res.redirect("/admin/admin_login");
-});
 
-router.get("/trang_chu",auth, (req, res) => {
+router.get("/trang_chu", auth, (req, res) => {
   Promise.all([
     category.allCount(),
     productModel.allCountBV(),
@@ -59,7 +53,7 @@ router.get("/trang_chu",auth, (req, res) => {
 });
 
 
-router.get("/xem_phong_vien",auth, (req, res) => {
+router.get("/xem_phong_vien", auth, (req, res) => {
   userModel
     .allPV()
     .then(rows => {
@@ -73,7 +67,7 @@ router.get("/xem_phong_vien",auth, (req, res) => {
     });
 });
 
-router.get("/xem_thanh_vien",auth, (req, res) => {
+router.get("/xem_thanh_vien", auth, (req, res) => {
   userModel
     .allDG()
     .then(rows => {
@@ -87,7 +81,7 @@ router.get("/xem_thanh_vien",auth, (req, res) => {
     });
 });
 
-router.get("/xem_editor",auth, (req, res) => {
+router.get("/xem_editor", auth, (req, res) => {
   userModel
     .allBTV()
     .then(rows => {
@@ -101,7 +95,7 @@ router.get("/xem_editor",auth, (req, res) => {
     });
 });
 
-router.get("/xem_danh_muc",auth, (req, res) => {
+router.get("/xem_danh_muc", auth, (req, res) => {
   category
     .all()
     .then(rows => {
@@ -123,7 +117,7 @@ router.get("/xem_danh_muc",auth, (req, res) => {
     });
 });
 
-router.get("/xem_bai_viet",auth, (req, res) => {
+router.get("/xem_bai_viet", auth, (req, res) => {
   productModel
     .allProduct()
     .then(rows => {
@@ -145,37 +139,37 @@ router.get("/xem_bai_viet",auth, (req, res) => {
     });
 });
 
-router.get('/them_danh_muc',auth, (req, res) => {
-    catModel.getParentCat().then(rows => {
-        res.render('admin/them_danh_muc', {
-            layout: 'main_admin.hbs',
-            cat: rows
-        })
+router.get('/them_danh_muc', auth, (req, res) => {
+  catModel.getParentCat().then(rows => {
+    res.render('admin/them_danh_muc', {
+      layout: 'main_admin.hbs',
+      cat: rows
     })
+  })
 
 })
 router.post('/them_danh_muc', auth, (req, res, next) => {
   var title = req.body.title.trim();
   var cat = req.body.cat;
   catModel.singleCatName(title).then(rows => {
-      if (rows.length > 0) {
-          catModel.getParentCat().then(rows => {
-              res.render('admin/them_danh_muc', {
-                  layout: 'main_admin.hbs',
-                  cat: rows,
-                  isDup: true
-              })
-          })
+    if (rows.length > 0) {
+      catModel.getParentCat().then(rows => {
+        res.render('admin/them_danh_muc', {
+          layout: 'main_admin.hbs',
+          cat: rows,
+          isDup: true
+        })
+      })
+    }
+    else {
+      var catEntity = {
+        TenChuyenMuc: title,
+        ChuyenMucCha: cat === '0' ? null : cat
       }
-      else {
-          var catEntity = {
-              TenChuyenMuc: title,
-              ChuyenMucCha: cat === '0' ? null : cat
-          }
-          catModel.add(catEntity).then(id => {
-              res.redirect('/admin/them_danh_muc');
-          });
-      }
+      catModel.add(catEntity).then(id => {
+        res.redirect('/admin/them_danh_muc');
+      });
+    }
   }).catch(next);
 })
 
@@ -225,12 +219,12 @@ router.post('/them_danh_muc', auth, (req, res, next) => {
 //   })
 // })
 
-router.get('/xuat_ban/:id',auth, (req, res) => {
+router.get('/xuat_ban/:id', auth, (req, res) => {
   var id = req.params.id
   productModel.allProductUpdate(id).then(rows => {
-      res.redirect('../xem_bai_viet')
+    res.redirect('../xem_bai_viet')
   }).catch(err => {
-      console.log(err);
+    console.log(err);
   })
 })
 
@@ -246,21 +240,39 @@ router.get('/xuat_ban/:id',auth, (req, res) => {
 //     });
 // });
 
-router.get("/sua_danh_muc/:id", (req, res) => {
+router.get("/sua_danh_muc/:id", auth, (req, res, next) => {
   var id = req.params.id;
-  catModel
-    .singleForCate(id)
-    .then(rows => {
+  Promise.all([catModel.getParentCat(), catModel
+    .singleForCate(id)])
+    .then(([listCat, rows]) => {
+      var listTemp = []
+      listCat.forEach(element => {
+        listTemp.push({
+          singleCat: element,
+          isParent: rows[0].ChuyenMucCha === element.IDChuyenMuc ? true : false
+        })
+      })
       res.render("admin/sua_danh_muc", {
         layout: "main_admin.hbs",
-        cat: rows[0]
+        cat: rows[0],
+        listCat: listTemp,
       });
     })
-    .catch(err => {
-      console.log(err);
-    });
+    .catch(next);
 });
 
+
+router.post("/sua_danh_muc/:id", auth, (req, res, next) => {
+  var id = req.params.id;
+  console.log(req.body.cat);
+  var entity = {
+    IDChuyenMuc: id,
+    ChuyenMucCha: req.body.cat==="0"?null:req.body.cat,
+  }
+  catModel.update(entity).then(() => {
+    res.redirect('/admin/manager/sua_danh_muc/' + id);
+  })
+});
 
 
 

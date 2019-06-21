@@ -5,7 +5,7 @@
                 <h4 class="text-center">Sửa danh mục</h4>
             </div>
             <div class="clearfix"></div>
-            <form>
+            <form method="POST" action="/admin/manager/sua_danh_muc/{{cat.IDChuyenMuc}}">
                 <div class="form">
                     <table class="table">
                         <tr>
@@ -14,7 +14,7 @@
                             </td>
                             <td>
                             {{!-- <td>{{#if isDup}}<input type="text" name="title" class="form-control"><small>Đã bị trùng</small>{{else}} --}}
-                            <input type="text" name="title" class="form-control" value="{{cat.TenChuyenMuc}}">
+                            <input type="text" name="title" class="form-control" value="{{cat.TenChuyenMuc}}" disabled>
                             {{!-- {{/if}} --}}
                             </td>
                         </tr>
@@ -24,8 +24,12 @@
                             </td>
                             <td><select name="cat" class="form-control">
                                     <option value="0">Là danh mục cha</option>
-                                    {{#each cat}}
-                                    <option value="{{IDChuyenMuc}}">{{TenChuyenMuc}}</option>
+                                    {{#each listCat}}
+                                    {{#if isParent}}
+                                    <option value="{{singleCat.IDChuyenMuc}}" selected>{{singleCat.TenChuyenMuc}}</option>
+                                    {{else}}
+                                    <option value="{{singleCat.IDChuyenMuc}}">{{singleCat.TenChuyenMuc}}</option>
+                                    {{/if}}
                                     {{/each}}
                                 </select>
                             </td>
