@@ -87,7 +87,7 @@
                                             aria-hidden="true"></i></button>
                                 </form>
                             </div>
-                            {{#if isAuthenticated}}
+                            {{#if isAuthenticatedAccount}}
                             <!-- Login -->
                             <a href="/account/profile" class="login-btn"><i class="fa fa-user"
                                     aria-hidden="true"></i></a>
@@ -96,7 +96,7 @@
                             {{/if}}
                             <!-- Submit Video -->
 
-                            {{#if isAuthenticated}}<form id="logOut" action="/account/logout" method="POST"></form>
+                            {{#if isAuthenticatedAccount}}<form id="logOut" action="/account/logout" method="POST"></form>
                             <a class="submit-video" href="javascript:$('#logOut').submit();"><span><i
                                         class="fa fa-cloud-upload"></i></span> <span class="video-text">Đăng
                                     xuất</span></a>
