@@ -248,10 +248,10 @@ insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT,
 insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG4','123456','Lê Thiên Thiên','Nữ','1999-11-21', 'ltthien@gmail.com', '0346677804', 'PH004','2019-05-12', '2019-05-19','VIP');
 insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG5','123456','Lê Ý Nhan','Nữ','1991-06-07', 'lynhan@gmail.com', '0987901844', 'PH004','2019-05-11', '2019-05-18','VIP');
 -- insert table BienTapVien_ChuyenMuc
-insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(1,6);
-insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(1,7);
-insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(1,8);
-insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(1,9);
+insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(4,6);
+insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(4,7);
+insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(4,8);
+insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(4,9);
 insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(2,10);
 insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(2,11);
 insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(2,12);
