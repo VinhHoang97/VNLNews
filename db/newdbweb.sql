@@ -10,7 +10,7 @@ create table TaiKhoanThe
 create table NguoiDung
 ( ID INT  not null primary KEY auto_increment,
 	UserName varchar(50) not null unique,
-	Password varchar(100) not null,
+	Password varchar(50) not null,
 	HoTen varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
 	GioiTinh varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
 	NgaySinh date,
@@ -19,7 +19,8 @@ create table NguoiDung
 	PhanHe varchar(10),
 	NgayDangKy datetime,
 	NgayHetHan datetime,
-	TinhTrang varchar(20)
+	TinhTrang varchar(20),
+    Xoa int default 0
 	 );
 
 create table ChuyenMuc #category
@@ -30,12 +31,13 @@ create table ChuyenMuc #category
 );
 create table Nhan #tag
 ( IDTag int not null primary key auto_increment,
-  TenTag varchar(20)  CHARACTER SET utf8 COLLATE utf8_unicode_ci not null
+  TenTag varchar(20) not null
   );
 create table Duyet
 ( IDDuyet int not null primary key auto_increment,
 Loai varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci
 );
+
 create table BaiViet #0 is not vip
 ( IDBaiViet int not null primary key auto_increment,
   TieuDe varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci not null,
@@ -48,31 +50,35 @@ create table BaiViet #0 is not vip
   PhongVien int,
   BienTapVien int,
   DaDuyet int,
-  TinhTrangBV int default 0
+  TinhTrangBV int default 0, 
+  Xoa int default 0
   );
   
 create table urlHinhAnh
 ( IDHinh INT  primary KEY auto_increment,
-  urllinkHinh VARCHAR(255) not null 
+  urllinkHinh VARCHAR(255) not null UNIQUE
   );
-		
 create table BinhLuan
 ( IDBinhLuan int auto_increment,
   BaiViet int not null,
   DocGia int not null,
   NoiDung text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   TinhTrang INT, # 1 : an, 0 : hien thi
+  NgayBinhLuan datetime default '2019-06-17 16:29:00',
+   Xoa int default 0,
    primary key(IDBinhLuan,BaiViet,DocGia)
    );
-  
+
 create table Nhan_BaiViet
 (  IDBaiViet int not null,
 	IDTag int not null,
+	Xoa int default 0,
 	primary key(IDBaiViet,IDTag)
 	);
 create table BaiViet_HinhAnh
 ( IDBaiViet int,
   IDHinh int,
+   Xoa int default 0,
   primary key(IDBaiViet,IDHinh)
   );
   ----------------------------	KHOA NGOAI	
@@ -191,43 +197,43 @@ insert into Nhan( TenTag) values('Nhà');
 insert into Nhan( TenTag) values('Giang hồ');
 insert into Nhan( TenTag) values('Chém');
 -- insert table chuyenmuc
-insert into ChuyenMuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Đời sống','Doi song', null);
-insert into ChuyenMuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Kinh doanh','Kinh doanh', null);
-insert into ChuyenMuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Văn hóa','Van hoa', null);
-insert into ChuyenMuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Giải trí','Giai tri', null);
-insert into ChuyenMuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Thể thao','The thao', null);
-insert into ChuyenMuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Xã hội','Xa hoi', 1);
-insert into ChuyenMuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Pháp luật','Phap luat', 1);
-insert into ChuyenMuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Nông sản','Nong san', 2);
-insert into ChuyenMuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Hải sản','Hai san', 2);
-insert into ChuyenMuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Du lịch','Du lich', 3);
-insert into ChuyenMuc(TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Ẩm thực','Am thuc', 3);
-insert into ChuyenMuc(TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Âm nhạc','Am nhac', 4);
-insert into ChuyenMuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Điện ảnh, Truyền hình','Dien anh, Truyen hinh', 4);
-insert into ChuyenMuc(TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Bóng đá','Bong da', 5);
-insert into ChuyenMuc(TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Các môn khác','Cac mon khac', 5);
+insert into chuyenmuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Đời sống','Doi song', null);
+insert into chuyenmuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Kinh doanh','Kinh doanh', null);
+insert into chuyenmuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Văn hóa','Van hoa', null);
+insert into chuyenmuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Giải trí','Giai tri', null);
+insert into chuyenmuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Thể thao','The thao', null);
+insert into chuyenmuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Xã hội','Xa hoi', 1);
+insert into chuyenmuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Pháp luật','Phap luat', 1);
+insert into chuyenmuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Nông sản','Nong san', 2);
+insert into chuyenmuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Hải sản','Hai san', 2);
+insert into chuyenmuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Du lịch','Du lich', 3);
+insert into chuyenmuc(TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Ẩm thực','Am thuc', 3);
+insert into chuyenmuc(TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Âm nhạc','Am nhac', 4);
+insert into chuyenmuc( TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Điện ảnh, Truyền hình','Dien anh, Truyen hinh', 4);
+insert into chuyenmuc(TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Bóng đá','Bong da', 5);
+insert into chuyenmuc(TenChuyenMuc, TenChuyenMuc_KhongDau, ChuyenMucCha) values('Các môn khác','Cac mon khac', 5);
 -- insert table PhanHeNguoiDung
-insert into PhanHeNguoiDung(IDPhanHe, TenPhanHe) values('PH001','Admin');
-insert into PhanHeNguoiDung(IDPhanHe, TenPhanHe) values('PH002','Biên tập viên');
-insert into PhanHeNguoiDung(IDPhanHe, TenPhanHe) values('PH003','Phóng viên');
-insert into PhanHeNguoiDung(IDPhanHe, TenPhanHe) values('PH004','Độc giả');
+insert into phanhenguoidung(IDPhanHe, TenPhanHe) values('PH001','Admin');
+insert into phanhenguoidung(IDPhanHe, TenPhanHe) values('PH002','Biên tập viên');
+insert into phanhenguoidung(IDPhanHe, TenPhanHe) values('PH003','Phóng viên');
+insert into phanhenguoidung(IDPhanHe, TenPhanHe) values('PH004','Độc giả');
 
 
 -- insert table select * from NguoiDung
-insert into NguoiDung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('Admin','123456','Admin','Nam/Nữ',Null, 'abc@gmail.com', '0326418677', 'PH001',Null, Null,Null);
-insert into NguoiDung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('BTV1','123456','Nguyễn Mỹ Linh','Nữ','1997-09-09', 'nmlinh@gmail.com', '0923456177', 'PH002',Null, Null,Null);
-insert into NguoiDung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('BTV2','123456','Bùi Thanh Nguyệt','Nữ','1997-01-29', 'btnguyet@gmail.com', '0977776566', 'PH002',Null, Null,Null);
-insert into NguoiDung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('BTV3','123456','Hoàng Nguyễn Quốc Vinh','Nam','1997-02-07', 'hnqvinh@gmail.com', '0325656899', 'PH002',Null, Null,Null);
-insert into NguoiDung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('PV1','123456','Nguyễn Văn An','Nam','1990-11-01', 'nvan@gmail.com', '0901220007', 'PH003',Null, Null,Null);
-insert into NguoiDung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('PV2','123456','Nguyễn Thành Thái','Nam','1892-01-02', 'ntthai@gmail.com', '0911110007', 'PH003',Null, Null,Null);
-insert into NguoiDung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('PV3','123456','Hoàng Hồng Hà','Nữ','1899-05-03', 'hhha@gmail.com', '0322130007', 'PH003',Null, Null,Null);
-insert into NguoiDung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('PV4','123456','Tống Thiện Hưng','Nam','1992-09-04', 'tthung@gmail.com', '0909992349', 'PH003',Null, Null,Null);
-insert into NguoiDung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('PV5','123456','Tăng Thanh Hằng','Nữ','1890-10-05', 'tthang@gmail.com', '0928761894', 'PH003',Null, Null,Null);
-insert into NguoiDung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG1','123456','Nguyễn Thanh Tâm','Nữ','1995-12-17', 'nttam@gmail.com', '0655410009', 'PH004','2019-05-16', '2019-05-23','VIP');
-insert into NguoiDung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG2','123456','Nguyễn Thành Nam','Nam','1992-10-19', 'ntnam@gmail.com', '0305416089', 'PH004','2019-04-16', '2019-04-23','NOT VIP');
-insert into NguoiDung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG3','123456','Lê Quang Nhật','Nam','1998-10-19', 'lqnhat@gmail.com', '0356742844', 'PH004','2019-05-12', '2019-05-19','VIP');
-insert into NguoiDung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG4','123456','Lê Thiên Thiên','Nữ','1999-11-21', 'ltthien@gmail.com', '0346677804', 'PH004','2019-05-12', '2019-05-19','VIP');
-insert into NguoiDung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG5','123456','Lê Ý Nhan','Nữ','1991-06-07', 'lynhan@gmail.com', '0987901844', 'PH004','2019-05-11', '2019-05-18','VIP');
+insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('Admin','123456','Admin','Nam/Nữ',Null, 'abc@gmail.com', '0326418677', 'PH001',Null, Null,Null);
+insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('BTV1','123456','Nguyễn Mỹ Linh','Nữ','1997-09-09', 'nmlinh@gmail.com', '0923456177', 'PH002',Null, Null,Null);
+insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('BTV2','123456','Bùi Thanh Nguyệt','Nữ','1997-01-29', 'btnguyet@gmail.com', '0977776566', 'PH002',Null, Null,Null);
+insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('BTV3','123456','Hoàng Nguyễn Quốc Vinh','Nam','1997-02-07', 'hnqvinh@gmail.com', '0325656899', 'PH002',Null, Null,Null);
+insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('PV1','123456','Nguyễn Văn An','Nam','1990-11-01', 'nvan@gmail.com', '0901220007', 'PH003',Null, Null,Null);
+insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('PV2','123456','Nguyễn Thành Thái','Nam','1892-01-02', 'ntthai@gmail.com', '0911110007', 'PH003',Null, Null,Null);
+insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('PV3','123456','Hoàng Hồng Hà','Nữ','1899-05-03', 'hhha@gmail.com', '0322130007', 'PH003',Null, Null,Null);
+insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('PV4','123456','Tống Thiện Hưng','Nam','1992-09-04', 'tthung@gmail.com', '0909992349', 'PH003',Null, Null,Null);
+insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('PV5','123456','Tăng Thanh Hằng','Nữ','1890-10-05', 'tthang@gmail.com', '0928761894', 'PH003',Null, Null,Null);
+insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG1','123456','Nguyễn Thanh Tâm','Nữ','1995-12-17', 'nttam@gmail.com', '0655410009', 'PH004','2019-05-16', '2019-05-23','VIP');
+insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG2','123456','Nguyễn Thành Nam','Nam','1992-10-19', 'ntnam@gmail.com', '0305416089', 'PH004','2019-04-16', '2019-04-23','NOT VIP');
+insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG3','123456','Lê Quang Nhật','Nam','1998-10-19', 'lqnhat@gmail.com', '0356742844', 'PH004','2019-05-12', '2019-05-19','VIP');
+insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG4','123456','Lê Thiên Thiên','Nữ','1999-11-21', 'ltthien@gmail.com', '0346677804', 'PH004','2019-05-12', '2019-05-19','VIP');
+insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG5','123456','Lê Ý Nhan','Nữ','1991-06-07', 'lynhan@gmail.com', '0987901844', 'PH004','2019-05-11', '2019-05-18','VIP');
 -- insert table TaiKhoanThe
 insert into TaiKhoanThe(SKT,ChuSoHuu, SoDu) values('123456789',2, 500000);
 insert into TaiKhoanThe(SKT,ChuSoHuu, SoDu) values('091248973',3, 1500000);
@@ -553,7 +559,6 @@ insert into baiviet_hinhanh(IDBaiViet,IDHinh) values(21,21);
 insert into baiviet_hinhanh(IDBaiViet,IDHinh) values(22,22);
 insert into baiviet_hinhanh(IDBaiViet,IDHinh) values(23,23);
 insert into baiviet_hinhanh(IDBaiViet,IDHinh) values(5,5);
-
 --------------- insert table BinhLuan
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (1, 10, 'Hay qua', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (1, 11, 'Thật mong đợi', 0);
@@ -566,7 +571,5 @@ insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (17, 10, 'Thíc
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (19, 11, 'Thành đập đá rồi trời ạ', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (21, 11, 'Karate mà đẹp trai nhỉ', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (21, 10, 'Không biết ông này là ai luôn', 1);
-
-alter table BaiViet add FULLTEXT INDEX(TieuDe, NoiDung,TomTat);
 
 
