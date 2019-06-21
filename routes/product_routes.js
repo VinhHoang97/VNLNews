@@ -109,7 +109,7 @@ router.get("/productByCategory/:id", (req, res, next) => {
                   content: element,
                   img: result[0],
                   Tag: tag,
-                  isPremium:element.TinhTrangBV===1?true:false,
+                  isPremium: element.TinhTrangBV === 1 ? true : false
                 });
                 if (index === array.length - 1) resolve();
               })
@@ -224,7 +224,7 @@ router.get("/productByParentCategory/:id", (req, res, next) => {
                   content: element,
                   img: result[0],
                   Tag: tag,
-                  isPremium: element.TinhTrangBV===1?true:false
+                  isPremium: element.TinhTrangBV === 1 ? true : false
                 });
                 if (index === array.length - 1) resolve();
               })
@@ -241,28 +241,149 @@ router.get("/productByParentCategory/:id", (req, res, next) => {
 });
 
 router.get("/:id", (req, res, next) => {
-  var id = req.params.id;
-  productModel
-    .single(id)
-    .then(rows => {
-      var bar = Promise.all([
-        categoryModel.single(rows[0].ChuyenMuc),
-        imageModel.getImgByProduct(rows[0].IDBaiViet),
-        commentModel.singelByBaiViet(rows[0].IDBaiViet)
-      ]).then(([category, img, comment]) => {
-        rows[0].NgayDang = moment(rows[0].NgayDang).format("LL");
-        img[0].urllinkHinh = img[0].urllinkHinh.replace(/\\/g, "/");
-        res.render("single_product", {
-          product: rows[0],
-          category: category[0],
-          img: img[0],
-          comment: comment,
-          isPremium: rows[0].TinhTrangBV === 1 ? true : false,
-          message: req.session.message
-        });
-      });
-    })
-    .catch(next);
+  if (!res.locals.isPremium) {
+    var similarProduct = [];
+    var id = req.params.id;
+    productModel
+      .single(id)
+      .then(rows => {
+        var bar = Promise.all([
+          categoryModel.single(rows[0].ChuyenMuc),
+          imageModel.getImgByProduct(rows[0].IDBaiViet),
+          commentModel.singelByBaiViet(rows[0].IDBaiViet)
+        ])
+          .then(([category, img, comment]) => {
+            rows[0].NgayDang = moment(rows[0].NgayDang).format("LL");
+            img[0].urllinkHinh = img[0].urllinkHinh.replace(/\\/g, "/");
+            productModel
+              .similarCategoryProduct(category[0].IDChuyenMuc, id)
+              .then(listResult => {
+                if(listResult.length!=0){
+                  var bar = new Promise((resolve, reject) => {
+                    listResult.forEach((element, index, array) => {
+                      Promise.all([
+                        imageModel.getImgByProduct(element.IDBaiViet),
+                        tagModel.singelByBaiViet(element.IDBaiViet),
+                        commentModel.countByBaiViet(element.IDBaiViet)
+                      ])
+                        .then(([result, tag, commentCount]) => {
+                          element.NgayDang = moment(element.NgayDang).format(
+                            "LL"
+                          );
+                          similarProduct.push({
+                            content: element,
+                            img: result[0],
+                            Tag: tag,
+                            countCmt: commentCount.total,
+                            isPremium: element.TinhTrangBV === 1 ? true : false
+                          });
+                          if (index === array.length - 1) resolve();
+                        })
+                        .catch(next);
+                    });
+                  })
+                    .then(() => {
+                      res.render("single_product", {
+                        product: rows[0],
+                        category: category[0],
+                        img: img[0],
+                        comment: comment,
+                        isPremium: rows[0].TinhTrangBV === 1 ? true : false,
+                        message: req.session.message,
+                        similarProduct: similarProduct
+                      });
+                    })
+                    .catch(next);
+                }
+                else{
+                  res.render("single_product", {
+                    product: rows[0],
+                    category: category[0],
+                    img: img[0],
+                    comment: comment,
+                    isPremium: rows[0].TinhTrangBV === 1 ? true : false,
+                    message: req.session.message,
+                    similarProduct: similarProduct
+                  });
+                }
+              })
+              .catch(next);
+          })
+          .catch(next);
+      })
+      .catch(next);
+  } else {
+    var similarProduct = [];
+    var id = req.params.id;
+    productModel
+      .single(id)
+      .then(rows => {
+        var bar = Promise.all([
+          categoryModel.single(rows[0].ChuyenMuc),
+          imageModel.getImgByProduct(rows[0].IDBaiViet),
+          commentModel.singelByBaiViet(rows[0].IDBaiViet)
+        ])
+          .then(([category, img, comment]) => {
+            rows[0].NgayDang = moment(rows[0].NgayDang).format("LL");
+            img[0].urllinkHinh = img[0].urllinkHinh.replace(/\\/g, "/");
+            preProductModel
+              .similarCategoryProduct(category[0].IDChuyenMuc, id)
+              .then(listResult => {
+                if(listResult.length!=0){
+                  var bar = new Promise((resolve, reject) => {
+                    listResult.forEach((element, index, array) => {
+                      Promise.all([
+                        imageModel.getImgByProduct(element.IDBaiViet),
+                        tagModel.singelByBaiViet(element.IDBaiViet),
+                        commentModel.countByBaiViet(element.IDBaiViet)
+                      ])
+                        .then(([result, tag, commentCount]) => {
+                          element.NgayDang = moment(element.NgayDang).format(
+                            "LL"
+                          );
+                          similarProduct.push({
+                            content: element,
+                            img: result[0],
+                            Tag: tag,
+                            countCmt: commentCount.total,
+                            isPremium: element.TinhTrangBV === 1 ? true : false
+                          });
+                          if (index === array.length - 1) resolve();
+                        })
+                        .catch(next);
+                    });
+                  })
+                    .then(() => {
+                      res.render("single_product", {
+                        product: rows[0],
+                        category: category[0],
+                        img: img[0],
+                        comment: comment,
+                        isPremium: rows[0].TinhTrangBV === 1 ? true : false,
+                        message: req.session.message,
+                        similarProduct: similarProduct
+                      });
+                    })
+                    .catch(next);
+                }
+                else{
+                  res.render("single_product", {
+                    product: rows[0],
+                    category: category[0],
+                    img: img[0],
+                    comment: comment,
+                    isPremium: rows[0].TinhTrangBV === 1 ? true : false,
+                    message: req.session.message,
+                    similarProduct: similarProduct
+                  });
+                }
+              })
+              .catch(next);
+          })
+          .catch(next);
+      })
+      .catch(next);
+  }
 });
 
 router.post("/:id/comment", authUser, (req, res, next) => {
@@ -282,7 +403,7 @@ router.post("/:id/comment", authUser, (req, res, next) => {
     .catch(next);
 });
 
-router.get("/:id/comment",authUser,(req, res, next)=>{
+router.get("/:id/comment", authUser, (req, res, next) => {
   res.redirect("/products/" + req.params.id);
-})
+});
 module.exports = router;

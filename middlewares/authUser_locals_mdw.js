@@ -5,7 +5,6 @@ module.exports = (req, res, next) => {
         res.locals.authAccount = req.user;
         res.locals.gender = req.user.GioiTinh == 'Nam'?true:false
         if(moment().isBefore(req.user.NgayHetHan)){
-            console.log("tôi có tới đây");
             res.locals.isPremium = true;
         }else{
             res.locals.isPremium = false;

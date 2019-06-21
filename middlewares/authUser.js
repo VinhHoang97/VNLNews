@@ -3,5 +3,7 @@ module.exports = (req, res, next) => {
         req.session.message = req.body.message;
         req.session.returnTo = req.originalUrl; 
         res.redirect('/account/login');
-    } else next();
+    } else if(req.user.PhanHe!='PH004'){
+        res.redirect('/account/login');
+    }else{next()};
 }
