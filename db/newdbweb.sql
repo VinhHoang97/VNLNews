@@ -20,18 +20,20 @@ create table NguoiDung
 	NgayDangKy datetime,
 	NgayHetHan datetime,
 	TinhTrang varchar(20),
-    Xoa int default 0
+    XoaNguoiDung int default 0
 	 );
 
 create table ChuyenMuc #category
 ( IDChuyenMuc int not null primary key auto_increment,
 	TenChuyenMuc varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci not null,
 	TenChuyenMuc_KhongDau varchar(50),
-	ChuyenMucCha int
+	ChuyenMucCha int,
+    XoaChuyenMuc int default 0 
 );
 create table Nhan #tag
 ( IDTag int not null primary key auto_increment,
-  TenTag varchar(20) not null
+  TenTag varchar(20) not null,
+  XoaTag int default 0 
   );
 create table Duyet
 ( IDDuyet int not null primary key auto_increment,
@@ -51,7 +53,7 @@ create table BaiViet #0 is not vip
   BienTapVien int,
   DaDuyet int,
   TinhTrangBV int default 0, 
-  Xoa int default 0
+  XoaBaiViet int default 0
   );
   
 create table urlHinhAnh
@@ -65,20 +67,20 @@ create table BinhLuan
   NoiDung text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   TinhTrang INT, # 1 : an, 0 : hien thi
   NgayBinhLuan datetime default '2019-06-17 16:29:00',
-   Xoa int default 0,
+   XoaBinhLuan int default 0,
    primary key(IDBinhLuan,BaiViet,DocGia)
    );
 
 create table Nhan_BaiViet
 (  IDBaiViet int not null,
 	IDTag int not null,
-	Xoa int default 0,
+	XoaNhan_BaiViet int default 0,
 	primary key(IDBaiViet,IDTag)
 	);
 create table BaiViet_HinhAnh
 ( IDBaiViet int,
   IDHinh int,
-   Xoa int default 0,
+   XoaBaiViet_HinhAnh int default 0,
   primary key(IDBaiViet,IDHinh)
   );
   ----------------------------	KHOA NGOAI	
@@ -573,3 +575,5 @@ insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (21, 11, 'Karat
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (21, 10, 'Không biết ông này là ai luôn', 1);
 
 
+ALTER TABLE BaiViet  
+ADD FULLTEXT(TieuDe,TomTat,NoiDung)
