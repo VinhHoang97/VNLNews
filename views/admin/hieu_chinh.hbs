@@ -19,17 +19,6 @@
 		});
 	}( jQuery ));
 </script>
-<script>
-	$(function () {
-		$('#fuMain2').fileinput({
-			theme: 'fa',
-			dropZoneEnabled: false,
-			allowedFileExtensions: ['png', 'jpg', 'mp3', 'mp4'],
-			uploadUrl: '/admin/writer/hieu_chinh',
-			uploadAsync: false,
-		});
-	})
-</script>
 <div class="right">
 	<div class="col-md-10">
 		<div class="content">
@@ -37,7 +26,7 @@
 				<h4 class="text-center">Chỉnh sửa bài viết</h4>
 			</div>
 			<div class="clearfix"></div>
-			<form method="POST" action="/admin/writer/hieu_chinh/{{product.IDBaiViet}}" enctype="multipart/form-data">
+			<form method="POST" action="/admin/hieu_chinh/{{product.IDBaiViet}}" enctype="multipart/form-data">
 				<div class="form">
 					<table class="table">
 						<tr>
@@ -77,15 +66,9 @@
 							</td>
 							<td>
 								<P>Ảnh bìa</p>
-								<div class="card shadow">
-									<div class="card-body">
-										<div class="form-group">
-											<div class="file-loading">
-												<input id="fuMain2" name="fuMain2" type="file" multiple>
-											</div>
-										</div>
-									</div>
-								</div>
+								<div style="width:300px; height:300px"> 
+								<img style="width: 100%; height:100%; object-fit: contain"
+									src="/{{img.urllinkHinh}}" />
 							</td>
 						</tr>
 						<tr>
@@ -104,7 +87,7 @@
 							</td>
 							<td>
 								<P>Nhãn tag</p>
-								<input type="text" name="tag" class="form-control" value="{{tag}}">
+								<p> {{tag}}</p>
 							</td>
 
 							{{!-- </div> --}}

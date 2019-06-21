@@ -24,8 +24,8 @@
 		$('#fuMain').fileinput({
 			theme: 'fa',
 			dropZoneEnabled: false,
-			allowedFileExtensions: ['png', 'jpg', 'mp3', 'mp4'],
-			uploadUrl: '/admin/upload',
+			allowedFileExtensions: ['png', 'jpg'],
+			uploadUrl: '/admin/writer/upload',
 			uploadAsync: false,
 		});
 	})
@@ -37,7 +37,7 @@
 				<h4 class="text-center">Thêm bài viết</h4>
 			</div>
 			<div class="clearfix"></div>
-			<form method="POST" action="/admin/upload"  enctype="multipart/form-data">
+			<form method="POST" action="/admin/writer/upload/"  enctype="multipart/form-data">
 				<div class="form">
 					<table class="table">
 						<tr>

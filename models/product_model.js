@@ -131,7 +131,7 @@ module.exports = {
   },
 writer: id=>{
   return db.load(
-    `select count(*) as Tong from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID where nd.ID= ${id}`
+    `select count(*) as Tong from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID where nd.ID= ${id} group by nd.ID`
   );
 },
 
@@ -154,18 +154,6 @@ writer: id=>{
                   where nd.ID=${id} and (d.IDDuyet=3 or d.IDDuyet=4) order by bv.DaDuyet desc`
     );
   },
-countEditor: id=>{
-  return db.load(
-    `select count(*) as Tong2 from BaiViet bv join NguoiDung nd on bv.BienTapVien = nd.ID where nd.ID= ${id} and bv.DaDuyet=4 `
-  );
-},
-
-countAllEditor: id=>{
-  return db.load(
-    `select count(*) as Tong1 from BaiViet bv join NguoiDung nd on bv.BienTapVien = nd.ID where nd.ID= ${id} and  (bv.DaDuyet=1 or bv.DaDuyet=2 or bv.DaDuyet=3 ) `
-  );
-},
-
   updateEditor: id =>{
     return db.load(
     ` select cm.TenChuyenMuc,bv.*,nd1.HoTen,d.Loai from BaiViet bv join NguoiDung nd on bv.BienTapVien = nd.ID
