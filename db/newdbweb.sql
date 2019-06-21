@@ -1,3 +1,4 @@
+
 create table PhanHeNguoiDung
 (	IDPhanHe varchar(10) not null primary key,
 	TenPhanHe varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci not null 
@@ -50,7 +51,6 @@ create table BaiViet #0 is not vip
   TomTat text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   LuotXem int,
   PhongVien int,
-  BienTapVien int,
   DaDuyet int,
   TinhTrangBV int default 0, 
   XoaBaiViet int default 0
@@ -83,6 +83,12 @@ create table BaiViet_HinhAnh
    XoaBaiViet_HinhAnh int default 0,
   primary key(IDBaiViet,IDHinh)
   );
+  create table BienTapVien_ChuyenMuc
+  (
+  BienTapVien int,
+  IDChuyenMuc int,
+  primary key(BienTapVien,IDChuyenMuc)
+  );
   ----------------------------	KHOA NGOAI	
 
 alter table ChuyenMuc
@@ -105,8 +111,13 @@ add constraint Fk_BV_PV
 foreign key (PhongVien)
 references NguoiDung(ID);
 
-alter table BaiViet
-add constraint Fk_BV_BTV
+alter table BienTapVien_ChuyenMuc
+add constraint Fk_CM_BTV_CM
+foreign key (IDChuyenMuc)
+references ChuyenMuc(IDChuyenMuc);
+
+alter table BienTapVien_ChuyenMuc
+add constraint Fk_ND_BTV_CM
 foreign key (BienTapVien)
 references NguoiDung(ID);
 
@@ -236,6 +247,17 @@ insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT,
 insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG3','123456','Lê Quang Nhật','Nam','1998-10-19', 'lqnhat@gmail.com', '0356742844', 'PH004','2019-05-12', '2019-05-19','VIP');
 insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG4','123456','Lê Thiên Thiên','Nữ','1999-11-21', 'ltthien@gmail.com', '0346677804', 'PH004','2019-05-12', '2019-05-19','VIP');
 insert into nguoidung(UserName, Password, HoTen, GioiTinh, NgaySinh, Email, SDT, PhanHe,  NgayDangKy, NgayHetHan, TinhTrang) values('DG5','123456','Lê Ý Nhan','Nữ','1991-06-07', 'lynhan@gmail.com', '0987901844', 'PH004','2019-05-11', '2019-05-18','VIP');
+-- insert table BienTapVien_ChuyenMuc
+insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(4,6);
+insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(4,7);
+insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(4,8);
+insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(4,9);
+insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(2,10);
+insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(2,11);
+insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(2,12);
+insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(2,13);
+insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(3,14);
+insert into BienTapVien_ChuyenMuc(BienTapVien, IDChuyenMuc) values(3,15);
 -- insert table TaiKhoanThe
 insert into TaiKhoanThe(SKT,ChuSoHuu, SoDu) values('123456789',2, 500000);
 insert into TaiKhoanThe(SKT,ChuSoHuu, SoDu) values('091248973',3, 1500000);
@@ -251,16 +273,16 @@ insert into TaiKhoanThe(SKT,ChuSoHuu, SoDu) values('192870972',12, 3200000);
 insert into TaiKhoanThe(SKT,ChuSoHuu, SoDu) values('197489891',13, 1600000);
 insert into TaiKhoanThe(SKT,ChuSoHuu, SoDu) values('889102383',14, 1500000);
 ---------------- insert table BaiViet
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet, TinhTrangBV)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet, TinhTrangBV)
 values('Iron Man & Captain America bắt tay làm hòa trong trailer Avengers: Endgame chỉ là cảnh quay giả?', 'Iron Man & Captain America bat tay lam hoa trong trailer Avengers: Endgame chi la canh quay gia?', 13, '2019-04-10 16:00:00',
 'Mặc dù liên tục quảng bá cho Avengers: Endgame (Hồi kết) suốt nhiều tháng trời nhưng Marvel Studios đặc biệt giữ bí mật về nội dung phim, không để lộ ra ngoài dù chỉ là một chi tiết nhỏ. Chính vì thế, những gì mà fan biết được qua các teaser, trailer hầu hết chỉ là hình ảnh rời rạc, không thể dự đoán chuyện gì sẽ xảy ra. Tuy nhiên gần đây, trong trailer mới nhất, các fan đã vô cùng thích thú khi chứng kiến cảnh hội ngộ giữa Iron Man và Captain America.
 Sau khi Iron Man bị kẹt ở hành tinh Titan không rõ sống chết, nhiều người cho rằng anh và Nebula sẽ trở về trái đất, tìm cách hội ngộ với các Avengers còn lại. Và cảnh Iron Man gặp Captain America cũng là một phân đoạn khi tất cả đoàn tụ. Thế nhưng khi được hỏi về điều này, chính đạo diễn Joe Russo cho biết cảnh đặc biệt đó sẽ không xuất hiện trong phim.
 Mặc dù câu trả lời khá bâng quơ và kết thúc bằng một nụ cười nhưng có lẽ điều mà Joe nói là sự thật. Sau đó, Anthony Russo cố gắng kể nhiều hơn về câu chuyện và đánh lạc hướng khán giả, nhằm không để Joe tiết lộ về nội dung phim. Cuối cùng, Joe cũng nói: “Cũng có thể cảnh đó sẽ xuất hiện trong phim”. Tuy nhiên lúc này, có rất ít người tin vào cách cả hai đang cố gắng che giấu sự thật.
 Iron Man & Captain America bắt tay làm hòa trong trailer Avengers: Endgame chỉ là cảnh quay giả? SaoStar 10/04/19 16:00 GMT+7122 liên quanGốc Thông tin được úp mở bởi chính Joe Russo - một trong cặp đôi anh em đạo diễn trong phim Avengers: Endgame (Hồi kết). Mặc dù liên tục quảng bá cho Avengers: Endgame (Hồi kết)suốt nhiều tháng trời nhưng Marvel Studios đặc biệt giữ bí mật về nội dung phim, không để lộ ra ngoài dù chỉ là một chi tiết nhỏ. Chính vì thế, những gì mà fan biết được qua các teaser, trailer hầu hết chỉ là hình ảnh rời rạc, không thể dự đoán chuyện gì sẽ xảy ra. Tuy nhiên gần đây, trong trailer mới nhất, các fan đã vô cùng thích thú khi chứng kiến cảnh hội ngộ giữa Iron Man và Captain America. Cảnh gặp nhau giữa 2 nhân vật trong trailer. Sau khi Iron Man bị kẹt ở hành tinh Titan không rõ sống chết, nhiều người cho rằng anh và Nebula sẽ trở về trái đất, tìm cách hội ngộ với các Avengers còn lại. Và cảnh Iron Man gặp Captain America cũng là một phân đoạn khi tất cả đoàn tụ. Thế nhưng khi được hỏi về điều này, chính đạo diễn Joe Russo cho biết cảnh đặc biệt đó sẽ không xuất hiện trong phim. Trailer cuối của Avengers: Endgame Mặc dù câu trả lời khá bâng quơ và kết thúc bằng một nụ cười nhưng có lẽ điều mà Joe nói là sự thật. Sau đó, Anthony Russo cố gắng kể nhiều hơn về câu chuyện và đánh lạc hướng khán giả, nhằm không để Joe tiết lộ về nội dung phim. Cuối cùng, Joe cũng nói: “Cũng có thể cảnh đó sẽ xuất hiện trong phim”. Tuy nhiên lúc này, có rất ít người tin vào cách cả hai đang cố gắng che giấu sự thật. Mặc dù nhiều lần bị sự cố “lỡ miệng” do diễn viên, những người được thưởng thức trước bộ phim hay chính ekip, thế nhưng nhìn chung, việc giữ bí mật về nội dung Avengers: Endgameđược thực hiện khá tốt. Chính bộ đôi đạo diễn cũng thừa nhận rằng đã đưa những cảnh quay không có trong phim vào trailer để nhằm đánh lạc hướng suy nghĩ và tạo bất ngờ cho mọi người khi thưởng thức tác phẩm. Đây là một điều khá thú vị, thúc đẩy trí tưởng tượng của khán giả về nội dung phim và nhận lại một cái kết bất ngờ nằm ngoài mong đợi. 
 Iron Man & Captain America bắt tay làm hòa trong trailer Avengers: Endgame chỉ là cảnh quay giả? SaoStar 10/04/19 16:00 GMT+7122 liên quanGốc Thông tin được úp mở bởi chính Joe Russo - một trong cặp đôi anh em đạo diễn trong phim Avengers: Endgame (Hồi kết). Mặc dù liên tục quảng bá cho Avengers: Endgame (Hồi kết)suốt nhiều tháng trời nhưng Marvel Studios đặc biệt giữ bí mật về nội dung phim, không để lộ ra ngoài dù chỉ là một chi tiết nhỏ. Chính vì thế, những gì mà fan biết được qua các teaser, trailer hầu hết chỉ là hình ảnh rời rạc, không thể dự đoán chuyện gì sẽ xảy ra. Tuy nhiên gần đây, trong trailer mới nhất, các fan đã vô cùng thích thú khi chứng kiến cảnh hội ngộ giữa Iron Man và Captain America. Cảnh gặp nhau giữa 2 nhân vật trong trailer. Sau khi Iron Man bị kẹt ở hành tinh Titan không rõ sống chết, nhiều người cho rằng anh và Nebula sẽ trở về trái đất, tìm cách hội ngộ với các Avengers còn lại. Và cảnh Iron Man gặp Captain America cũng là một phân đoạn khi tất cả đoàn tụ. Thế nhưng khi được hỏi về điều này, chính đạo diễn Joe Russo cho biết cảnh đặc biệt đó sẽ không xuất hiện trong phim. Trailer cuối của Avengers: Endgame Mặc dù câu trả lời khá bâng quơ và kết thúc bằng một nụ cười nhưng có lẽ điều mà Joe nói là sự thật. Sau đó, Anthony Russo cố gắng kể nhiều hơn về câu chuyện và đánh lạc hướng khán giả, nhằm không để Joe tiết lộ về nội dung phim. Cuối cùng, Joe cũng nói: “Cũng có thể cảnh đó sẽ xuất hiện trong phim”. Tuy nhiên lúc này, có rất ít người tin vào cách cả hai đang cố gắng che giấu sự thật. Mặc dù nhiều lần bị sự cố “lỡ miệng” do diễn viên, những người được thưởng thức trước bộ phim hay chính ekip, thế nhưng nhìn chung, việc giữ bí mật về nội dung Avengers: Endgameđược thực hiện khá tốt. Chính bộ đôi đạo diễn cũng thừa nhận rằng đã đưa những cảnh quay không có trong phim vào trailer để nhằm đánh lạc hướng suy nghĩ và tạo bất ngờ cho mọi người khi thưởng thức tác phẩm. Đây là một điều khá thú vị, thúc đẩy trí tưởng tượng của khán giả về nội dung phim và nhận lại một cái kết bất ngờ nằm ngoài mong đợi. Hơn ai hết, có lẽ anh em nhà Russo là những người mong chờ bộ phim lên sóng nhất, vì đến lúc họ được chứng kiến thành quả mà mình dày công tạo ra trong suốt thời gian dài. Đâu là những cảnh thật và đâu là cảnh thêm vào để “tung hỏa mù” trước người hâm mộ trong trailer của bộ phim? Câu trả lời sẽ được hé lộ khi tác phẩm chính thức công chiếu ngày 26/4 này!'
-,'Iron Man & Captain America bắt tay làm hòa trong trailer Avengers: Endgame chỉ là cảnh quay giả?', 1000, 5, 2, 2,1);
+,'Iron Man & Captain America bắt tay làm hòa trong trailer Avengers: Endgame chỉ là cảnh quay giả?', 1000, 5, 2, 1);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet,TinhTrangBV)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet,TinhTrangBV)
 values('Triệu Lệ Dĩnh che kín mặt trong lần đầu xuất hiện sau 2 tháng sinh con','Trieu Le Dinh che kin mat trong lan dau xuat hien sau 2 thang sinh con', 13, '2019-04-04 09:40:00',
 'Triệu Lệ Dĩnh không xuất hiện trước công chúng kể từ khi sinh con cách đây 2 tháng. Mới đây, phóng viên bắt gặp cô và chồng đến một trung tâm nghệ thuật.
 Ngày 4/6, trang Sohu đưa tin Triệu Lệ Dĩnh cùng chồng là nam diễn viên Phùng Thiệu Phong bị bắt gặp khi đi ăn cùng bạn bè. Đây là lần đầu tiên nữ diễn viên Minh Lan truyện xuất hiện sau thời gian ở cữ. Sohu cho rằng Triệu Lệ Dĩnh đang chuẩn bị cho sự trở lại của mình sau khoảng 10 tháng rời xa làng giải trí.
@@ -270,9 +292,9 @@ Ngoài ra cũng có tin đồn nữ diễn viên đang tích cực giảm cân �
 Triệu Lệ Dĩnh và Phùng Thiệu Phong thông báo kết hôn vào ngày 16/10/2018, trùng với ngày sinh nhật của nữ diễn viên. Cô sinh con trai đầu lòng vào ngày 8/3.
 Hiện tại, Triệu Lệ Dĩnh vẫn chưa nhận dự án nghệ thuật mới. Trong khi vợ ở nhà, Phùng Thiệu Phong vẫn chăm chỉ tham dự các sự kiện và chuẩn bị đóng phim. Anh thỉnh thoảng chia sẻ một số tin tức về con trai nhỏ.
 Triệu Lệ Dĩnh đã ký hợp đồng với công ty Hòa Tụng của Lý Băng Băng, nên người hâm mộ hy vọng cô sẽ tìm được những vai diễn hay. Mới đây, Triệu Lệ Dĩnh cũng được đề cử tranh giải Nữ chính xuất sắc nhất của Bạch Ngọc Lan cho phim Minh Lan truyện. Đây là một trong những giải thưởng truyền hình danh giá nhất của làng giải trí Trung Quốc.
-', 'Triệu Lệ Dĩnh che kín mặt trong lần đầu xuất hiện sau 2 tháng sinh con', 250, 7, 3, 2, 1);
+', 'Triệu Lệ Dĩnh che kín mặt trong lần đầu xuất hiện sau 2 tháng sinh con', 250, 7,  2, 1);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Tuấn Ngọc chê học trò Hồ Hoài Anh hát nhạc Trịnh rời rạc', 'Tuan Ngoc che hoc tro Ho Hoai Anh hat nhac Trinh roi rac', 12, '2019-06-03 06:10:00',
 'Anh nhận xét nhóm S2 và Mystery hát nhạc Trịnh chưa tốt. Cách hát rời rạc của thí sinh đội Hồ Hoài Anh khiến nam HLV không hài lòng.
 Chiếc ghế nóng đặc biệt nhất chương trình thuộc về Hồ Hoài Anh. Vòng Đối đầu, anh tự chọn cách thức lựa chọn thí sinh cho đội mình. Cụ thể, trước khi chính thức bước vào vòng thi, anh đưa học trò tới ký túc xá Đại học Quốc gia và biểu diễn trước khán giả. Ý định ban đầu, anh muốn chọn ra ba thí sinh chinh phục khán giả tốt nhất để vào vòng trong. Cuối cùng, một phút yếu lòng khiến huấn luyện viên (HLV) thay đổi quyết định. Tất cả thí sinh có thêm cơ hội ở vòng Đối đầu.
@@ -292,9 +314,9 @@ Riêng Tuấn Ngọc có ý kiến ngược lại: "Các em chưa thoải mái, 
 "Một người đã đành, đây là 7 người hát. Không thể nào để tất cả hòa hợp với bài hát. Thế nhưng, em vẫn muốn cho khán giả thấy được cá tính của từng người", anh nói thêm.
 Lúc này, HLV Tuấn Ngọc xin cắt lời và đưa ra ví dụ là Lady Gaga. Theo anh, khi hát sang bất cứ dòng nhạc nào, nữ ca sĩ nổi tiếng thế giới đều hát theo cách của mình nhưng chạm đến trái tim khán giả. Anh nhấn mạnh rằng có nhiều hướng để hát một bài hát nhưng cách xử lý cần trau chuốt, thoải mái.
 Kết thúc tập thi, Hồ Hoài Anh chọn Juky San và Công Luận vào vòng tiếp theo. Những thí sinh còn lại phải vượt qua thử thách mới do chính anh đặt ra để giành cơ hội đồng hành cùng chương trình. Cụ thể, họ tự chọn một ca khúc, quay video thể hiện sự sáng tạo trong cách hát, dàn dựng… để làm bài thi quyết định việc ai đi, ai ở.
-', 'Tuấn Ngọc chê học trò Hồ Hoài Anh hát nhạc Trịnh rời rạc', 500, 8, 4, 2);
+', 'Tuấn Ngọc chê học trò Hồ Hoài Anh hát nhạc Trịnh rời rạc', 500, 8,  2);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien ,  DaDuyet)
 values('Hòa Minzy hát ballad ngọt ngào sau nửa năm bị bệnh, mất giọng', 'Hoa Minzy hat ballad ngot ngao sau nua nam bi benh, mat giong' , 12, '2019-05-29 19:40:00',
 'Hòa Minzy cho biết nửa năm qua, cô bị viêm xoang, ảnh hưởng đến giọng hát. Thời gian đó, cô sợ phòng thu vì không thể thu âm hoàn chỉnh một ca khúc.
 Hòa Minzy cho biết nửa năm qua, cô bị viêm xoang, ảnh hưởng đến giọng hát. Thời gian đó, cô sợ phòng thu vì không thể thu âm hoàn chỉnh một ca khúc.
@@ -307,9 +329,9 @@ Chỉ là tình cờ đánh dấu sự trở lại của Hòa Minzy sau thời g
 Cuối năm 2018, cô bị cộng đồng fan Kpop tẩy chay vì đeo thẻ nhân viên, vào hậu trường một lễ trao giải để gặp nhóm nhạc BTS. Đây là tranh cãi nghiêm trọng nhất, khiến Hòa Minzy vấp phải nhiều lời chỉ trích. 
 Cộng thêm việc bị viêm xoang, cô không có sản phẩm mới sau Chấp nhận ra mắt cách đây 6 tháng. 
 Theo ca sĩ gốc Bắc Ninh, đó là giai đoạn cô thấy khó khăn. Bệnh viêm xoang ảnh hưởng đến giọng hát khiến cô không thể hoàn thành tốt bài hát. Nữ ca sĩ không dám bước vào phòng thu, thậm chí sợ hãi mỗi khi nghe đến thu âm. Sau nửa năm chữa trị dứt điểm, lấy lại giọng hát, cô nhanh chóng hoàn thành ca khúc mới. 
-', 'Hòa Minzy hát ballad ngọt ngào sau nửa năm bị bệnh, mất giọng', 620, 5,2,2);
+', 'Hòa Minzy hát ballad ngọt ngào sau nửa năm bị bệnh, mất giọng', 620, 5,2);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien ,  DaDuyet)
 values('Lễ hội văn hóa Ẩm thực Hà Nội 2019','Le hoi van hoa Am thuc Ha Noi 2019', 11, '2019-05-19 11:44:00',
 'Lễ hội văn hóa ẩm thực Hà Nội 2019 sẽ diễn ra trong thời gian từ 7 – 9/6 tại Công viên Thống Nhất, Hà Nội.
 Thành phố Hà Nội đã mời Hội Đầu Bếp Việt Nam (VICA), Hiệp Hội Du lịch Việt Nam, Hội ẩm thực văn hóa Việt Nam, một số tỉnh, thành phố tham gia Lễ hội văn hóa ẩm thực Hà Nội 2019.
@@ -318,26 +340,26 @@ Các món ăn đại diện của Hà Nội như: Phở cuốn diếp Hà Nội,
 Khu ẩm thực miền Trung giới thiệu các món: Súp lươn Nghệ An, mỳ Quảng, cơm gà Hội An, bún bò Huế, bánh bột lọc, nem lụi... và khu ẩm thực miền Nam với các món xôi chiên phồng quả bóng ăn kèm gà quay lá trúc, gỏi cuốn, chạo tôm bao mía ăn, bánh xèo Cần Thơ và hải sản nướng Nha Trang.  
 Cùng với đó, trong không gian lễ hội, du khách sẽ được thưởng lãm các tác phẩm nghệ thuật chủ đề 3 miền Bắc - Trung - Nam xưa và nay, những ký ức 3 miền về lịch sử văn hóa nói chung và văn hóa ẩm thực nói riêng; khu gian hàng giới thiệu sản phẩm và thưởng thức ẩm thực.
 Đến với lễ hội, du khách còn được tham gia vào các hoạt động giao lưu, trải nghiệm ẩm thực Hà Nội với các nghệ nhân, các nhà nghiên cứu về Hà Nội, trình diễn một số loại hình nghệ thuật, trò chơi truyền thống, không gian trải nghiệm ẩm thực dành riêng cho thiếu nhi.
-Lễ hội văn hóa ẩm thực Hà Nội 2019 sẽ chính thức khai mạc vào lúc 20h00 ngày 7/6/2019 tại Công viên Thống Nhất.', 'Lễ hội văn hóa Ẩm thực Hà Nội 2019', 739, 9, 3, 2);
+Lễ hội văn hóa ẩm thực Hà Nội 2019 sẽ chính thức khai mạc vào lúc 20h00 ngày 7/6/2019 tại Công viên Thống Nhất.', 'Lễ hội văn hóa Ẩm thực Hà Nội 2019', 739, 9,  2);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Cá nướng Pa pỉnh tộp Tây Bắc tham dự Lễ hội văn hoá ẩm thực Hà Nội', 'Ca nuong Pa pinh top Tay Bac tham du Le hoi van hoa am thuc Ha Noi', 11, '2019-05-19 11:49:00',
 'Cá nướng Pa pỉnh tộp Tây Bắc, gà nướng mắc kén, các món ăn của vùng cao Hà Giang, cơm lam Pắc Bó (Cao Bằng) sẽ xuất hiện tại Lễ hội văn hoá ẩm thực Hà Nội năm 2019.
 Cá nướng Pa pỉnh tộp, cái tên nghe là lạ, là món cá nướng đặc biệt của người Thái ở Tây Bắc. Pa pỉnh tộp theo tiếng Thái có nghĩa là cá nướng gập. Nét độc đáo của món này là cách chế biến. Pa pỉnh tộp được ướp rất nhiều loại gia vị như gừng, xả, ớt tươi, rau mùi, rau thơm, hành tươi, húng… Đặc biệt, Pa pỉnh tộp không thể thiếu mắc khén, một loại gia vị đặc trưng Tây Bắc.
 Pa pỉnh tộp nướng trên lửa than, khi nướng phải dùng thanh tre kẹp lại để vị cá thêm đậm đà, các loại gia vị thấm sâu vào từng thớ thịt và tỏa hương thơm.
 Lễ hội văn hoá ẩm thực Hà Nội năm 2019 được tổ chức tại Công viên Thống Nhất (Hà Nội) từ 19h00 ngày 07/6/2019 đến 20h ngày 09/6/2019.
 Với sự tham gia của Hội Đầu Bếp Việt Nam (VICA), Hiệp Hội Du lịch Việt Nam, Hội ẩm thực văn hóa Việt Nam, Lễ hội văn hoá ẩm thực Hà Nội năm nay gồm 30 gian, được chia thành 3 khu vực giới thiệu các món ăn do các cơ sở, gia đình có nghề chế biến ẩm thực gia truyền, các nghệ nhân ẩm thực đại diện cho các vùng miền.
-', 'Cá nướng Pa pỉnh tộp Tây Bắc tham dự Lễ hội văn hoá ẩm thực Hà Nội', 0, 6, 2, 1);
+', 'Cá nướng Pa pỉnh tộp Tây Bắc tham dự Lễ hội văn hoá ẩm thực Hà Nội', 0, 6,  1);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Chương trình "Khai trương mùa du lịch biển" Đà Nẵng 2019 có gì mới?','Chuong trinh "Khai truong mua du lich bien" Da Nang 2019 co gi moi?', 10, '2019-04-20 01:39:00',
 'Chương trình "Khai trương mùa du lịch biển" Đà Nẵng 2019 sẽ tiếp tục diễn ra từ ngày 26/4 đến ngày 01/5/2019 tại Công viên Biển Đông, các bãi biển du lịch Đà Nẵng.
 Chiều 22/3, Sở Du lịch Đà Nẵng cho hay, chương trình "Khai trương mùa du lịch biển Đà Nẵng" là sự kiện được UBND thành phố Đà Nẵng cho phép Ban quản lý bán đảo Sơn Trà và các bãi biển du lịch Đà Nẵng tổ chức thường niên vào dịp lễ 30/4 – 1/5 hàng năm, chương trình đã trở thành một sự kiện văn hóa, thể thao và du lịch thu hút đông đảo người dân và du khách tham gia.
 Năm 2019, Chương trình "Khai trương mùa du lịch biển" sẽ tiếp tục diễn ra từ ngày 26/4 đến ngày 01/5/2019 tại Công viên Biển Đông, các bãi biển du lịch Đà Nẵng, khu vực Lăng Ông và bán đảo Sơn Trà với các hoạt động tuyên truyền bảo vệ môi trường, quảng bá du lịch tại bán đảo Sơn Trà và các bãi biển du lịch Đà Nẵng.
 Năm nay, bên cạnh việc duy trì chuỗi hoạt động đặc trưng như: Chương trình ca nhạc hàng đêm; trưng bày ảnh "Đa dạng sinh học Sơn Trà"; khu lưu niệm - ẩm thực; thả diều nghệ thuật; cuộc thi Đắp tượng cát; các khu vực Check in: thuyền thúng, ván lướt, không gian sắp đặt đèn lồng, chong chóng… Ban tổ chức sẽ giới thiệu các hoạt động mới phục vụ du khách tham quan trong dịp lễ 30/4 – 1/5 như: Chương trình "Nhặt rác trao yêu thương", trưng bày sản phẩm tái chế từ rác thải, hội thi cờ tướng tại Đỉnh Bàn Cờ - bán đảo Sơn Trà, hội thi bơi cho người yêu biển, trình diễn khinh khí cầu, chạy bộ bãi biển, đêm đại nhạc hội với sự góp mặt của các ca sỹ nổi tiếng.
-Đặc biệt, chương trình Lễ khai mạc 16h30 - thứ 6 ngày 26/4 sẽ đem đến những tiết mục đặc sắc phục vụ người dân và du khách.', 'Chương trình "Khai trương mùa du lịch biển" Đà Nẵng 2019 có gì mới?', 0, 7,2,1);
+Đặc biệt, chương trình Lễ khai mạc 16h30 - thứ 6 ngày 26/4 sẽ đem đến những tiết mục đặc sắc phục vụ người dân và du khách.', 'Chương trình "Khai trương mùa du lịch biển" Đà Nẵng 2019 có gì mới?', 0, 7,1);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Ninh Thuận - trung tâm du lịch mới bên bờ biển Đông', 'Ninh Thuan - trung tam du lich moi ben bo bien Dong', 10 , '2019-05-20 05:39:00',
 'Sở hữu nhiều hạ tầng lưu trú 5 sao, tiện ích - dịch vụ quy mô lớn hiện đại... Ninh Thuận được kỳ vọng sẽ thu hút nhiều du khách.
 Ở vị trí "trái tim" của du lịch Nam miền Trung, Ninh Thuận được chọn để đặt nền móng cho những trải nghiệm đẳng cấp. Hệ sinh thái du lịch hoàn chỉnh từ lưu trú, nghỉ dưỡng, dịch vụ, giải trí... chuẩn 5 sao sẽ giúp Ninh Thuận thu hút du khách đến trải nghiệm và khám phá.
@@ -347,15 +369,15 @@ Bên cạnh vịnh Vĩnh Hy thuộc Top 40 vịnh đẹp nhất thế giới, v�
 Vùng đất này còn được bao phủ bởi khí hậu nắng quanh năm, gió khô mát, thuận lợi cho mọi hoạt động của du khách. Ở Ninh Thuận, du lịch không có mùa vụ. 105km đường bờ biển, cùng 2 vườn quốc gia, bát ngát những cánh đồng nho, nhiều làng nghề truyền thống lâu đời, các tiểu sa mạc với cảnh quan độc đáo... là những lợi thế của Ninh Thuận.
 Tiềm năng tự nhiên đã biến Ninh Thuận thành xứ sở hội tụ của mọi hình thái du lịch xu hướng và hấp dẫn như: sinh thái, nghỉ dưỡng, du lịch biển, thể thao, trải nghiệm, MICE hay mạo hiểm.
 Nhờ tiềm năng tự nhiên phong phú, lại được mở đường bởi những chính sách ưu đãi đầu tư lớn, Ninh Thuận đang là trong những miền đất tụ hội các nhà phát triển du lịch, doanh nghiệp hàng đầu cả nước. Ngoài ra, những dự án hấp dẫn cùng nhau xuất hiện tạo điểu kiện cho Ninh Thuận triển toàn diện theo cả chiều rộng lẫn chiều sâu.
-', 'Ninh Thuận - trung tâm du lịch mới bên bờ biển Đông', 149, 7, 3, 2);
+', 'Ninh Thuận - trung tâm du lịch mới bên bờ biển Đông', 149, 7,  2);
 
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Hải sản bình thường ở Việt Nam, chích máu bán 300 triệu/lít', 'Hai san binh thuong o Viet Nam, chich mau ban 300 trieu/lit', 9, '2019-05-22 05:13:00',
 'Máu sam có giá trị rất lớn trong lĩnh vực y tế với những công dụng tuyệt vời. Máu của loài vật này có giá lên tới 60.000 USD cho 1 gallon (tương đương 3,8 lít).
-','Hải sản bình thường ở Việt Nam, chích máu bán 300 triệu/lít', 0, 8, 3, 4);
+','Hải sản bình thường ở Việt Nam, chích máu bán 300 triệu/lít', 0, 8,  4);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet, TinhTrangBV)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet, TinhTrangBV)
 values('Nếu hay ăn cá biển, tốt nhất đừng ham... cá to, vì sao vậy?','Neu hay an ca bien, tot nhat dung ham... ca to, vi sao vay?', 9 ,  '2019-05-26 07:13:00',
 'Gia đình chị Hoa (Hà Nội) được biếu một khúc cá Thu to hơn 10kg. Nghĩ rằng cá ngon nên chị Hoa chế biến và mời bố mẹ hai bên nội ngoại sang ăn tối cùng gia đình.
 Tuy nhiên, nửa đêm hai con gái chị Hoa bị đau bụng, nôn mửa, tiêu chảy. Rất may sau gần một đêm cả nhà thức trắng vì các con chạy ra chạy vào toilet, gần sáng hai bé cũng yên bụng và ngủ tiếp.
@@ -366,9 +388,9 @@ Trong hải sản có thể chứa các độc tố từ tảo gây nguy hiểm 
 Cá biển cũng có thể nhiễm kim loại nặng như: asen, thủy ngân do môi trường ô nhiễm. Cá càng to thì thường bị nhiễm độc nặng hơn do quá trình tích lũy thức ăn. Vì vậy, các nhà khoa học khuyến cáo, không nên ăn các loại cá lớn như: cá mập, cá kiếm, cá thu loại lớn, cá kình… vì hàm lượng thủy ngân tích lũy trong chúng khá lớn. Ngoài ra, do các chất độc hại thường lắng đọng ở lớp bùn nên ngoài các loài cá biển to, các loài sống ở tầng đáy như: ngao, sò, ốc, hến… rất dễ bị nhiễm độc.
 Hải sản là loại thực phẩm có hàm lượng protein cao, chứa các axít béo omega 3, nhiều canxi, kẽm rất tốt cho sức khỏe trẻ em. Tuy nhiên, thủy - hải sản là một trong 20 loại thực phẩm dễ gây dị ứng, ngộ độc nhất.
 Các triệu chứng của dị ứng thường là mẩn ngứa, nổi mề đay, sổ mũi, mắt ngứa đỏ, tụt huyết áp, khó thở, nôn mửa, tiêu chảy… Nhiều người vẫn nghĩ rằng tiêu chảy là do thức ăn này lạnh, nhưng thực ra là do trong hải sản có độc tố.
-', 'Nếu hay ăn cá biển, tốt nhất đừng ham... cá to, vì sao vậy?', 780, 9, 4, 2, 1);
+', 'Nếu hay ăn cá biển, tốt nhất đừng ham... cá to, vì sao vậy?', 780, 9,  2, 1);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Trái vú sữa Việt tại Mỹ có giá 350.000 đồng/kg','Trai vu sua Viet tai My co gia 350.000 dong/kg', 8, '2019-05-28 09:15:00',
 'Tại Mỹ trái vú sữa có giá 60 USD/thùng 4 kg (tương đương 15 USD/kg, khoảng 350.000 đồng/kg). 
 Theo tin tức từ báo Đầu tư,  lễ xuất khẩu lô hàng trái vú sữa đầu tiên sang thị trường Mỹ vừa được Công ty TNHH Thương mại Dịch vụ Xuất nhập khẩu Vina T&T tổ chức tại  ấp Phèn Đen, thị trấn An Lạc Thôn, huyện Kế Sách, tỉnh Sóc Trăng.
@@ -377,10 +399,10 @@ Theo hợp đồng, mỗi tuần công ty sẽ thu mua 10 tấn trái vú sữa 
 Trái vú sữa tươi xuất khẩu sang thị trường Mỹ phải được thu mua từ vùng nguyên liệu đã được Cục Bảo vệ thực vật cấp mã số. Vùng nguyên liệu này phải tuân thủ đúng việc sử dụng thuốc bảo vệ thực vật theo quy định của Mỹ để bảo đảm an toàn thực phẩm. Sau khi thu hoạch, quả phải được đóng gói tại nhà máy đã được Mỹ cấp mã số, bảo đảm không có dịch hại, sâu bệnh và xử lý chiếu xạ trước khi xuất khẩu.
 Theo các DN, do trái vú sữa mua hư, vòng đời ngắn, nếu bảo quản tốt chỉ được 7 ngày kể từ thời điểm hái nên thời gian bán hàng tại Mỹ rất ngắn, tối đa chỉ được 4 ngày. Vì những yếu tố đặc thù trên, để bán được trái vú sữa vào thị trường Mỹ là không dễ dàng. Nhưng bù lại, thị trường lại chấp nhận giá cao để thưởng thức đặc sản của Việt Nam.
 Ông Nguyễn Đình Tùng - giám đốc T&T cho biết trên tờ Người lao động vào đầu vụ, tại Mỹ trái vú sữa có giá 60 USD/thùng 4 kg (tương đương 15 USD/kg, khoảng 350.000 đồng/kg). Thời điểm hiện tại vú sữa đã vào mùa nên giá giảm còn 50 USD/thùng 4 kg, vẫn bảo đảm hiệu quả cho DN xuất khẩu.
-Với mức giá này, vú sữa Việt Nam nằm trong tốp những loại quả đắt đỏ ở thị trường Mỹ.', 'Trái vú sữa Việt tại Mỹ có giá 350.000 đồng/kg', 999, 6,2,2
+Với mức giá này, vú sữa Việt Nam nằm trong tốp những loại quả đắt đỏ ở thị trường Mỹ.', 'Trái vú sữa Việt tại Mỹ có giá 350.000 đồng/kg', 999, 6,2
 );
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Nông dân "đắng lòng" phá bỏ đồng ớt cao sản', 'Nong dan "dang long" pha bo dong ot cao san', 8, '2019-05-11 19:15:00',
 'Cho rằng bị doanh nghiệp "ép giá" nên mặc dù mới thí điểm được 2 năm nhưng nhiều hộ nông dân đã mang cả máy lồng, cuốc, liềm phá bỏ những thửa ớt cao sản để lấy đất trồng lại các loại hoa màu truyền thống.
 Vụ việc ớt cao sản bị rớt giá thảm hại khiến bà con bức xúc tới mức phá bỏ cả cánh đồng ớt xảy ra tại xã Thăng Bình, huyện Nông Cống, tỉnh Thanh Hóa. 
@@ -389,27 +411,27 @@ Bức xúc vì tiền bán ớt quá "bèo", không đủ bù lại chi phí ph�
 Thông tin về vụ việc, ông Lê Văn Chiến - Chủ tịch UBND xã cho biết, trước đây, khi ký hợp đồng, doanh nghiệp cam kết thu mua ớt của bà con giá 4.500 đồng/kg ớt chín. Giống ớt là do phía doanh nghiệp cung cấp, còn bà con tự trang trải các chi phí về phân bón, thuốc bảo vệ thực vật. Tổng diện tích trồng ớt tại địa bàn của cả 3 thôn vào khoảng 7 ha. 
 Được biết, ớt sau khi thu mua tại ruộng sẽ được công ty chuyển sang bên Trung Quốc. Năm ngoái, dù ký kết mua ớt chín nhưng do nhu cầu của thị trường bên kia thay đổi nên doanh nghiệp thu mua ớt của bà con khi còn xanh. Giá mua cao nhất thời điểm đó khoảng 9 nghìn đồng/kg. Còn năm nay, doanh nghiệp lại quay lại thu mua ớt chín như với giá cam kết trước đó là 4.500 đồng/kg. 
 "Bà con thì muốn bán ớt khi còn xanh để kịp thời gian làm đất trồng hoa màu, trong khi doanh nghiệp lại chỉ mua ớt chín. Chiều ngày 15/2 vừa qua, doanh nghiệp vẫn cân ớt chín cho bà con bình thường với khối lượng lên tới hơn 10 tấn. Tuy nhiên, cũng cần nhìn nhận thực tế rằng, nếu giá ớt cao hơn chút thì bà con còn có đồng lời, chứ giá mua như hiện nay thì có khi chỉ đủ cho tiền vật tư đầu tư ban đầu. Đấy cũng là vấn đề khó khăn không riêng gì ở Thăng Bình, mà ngay các xã lân cận tham gia trồng ớt cao sản cũng đang phải đối mặt " - ông Chiến cho biết.
-', 'Nông dân "đắng lòng" phá bỏ đồng ớt cao sản', 235, 5, 3, 2);
+', 'Nông dân "đắng lòng" phá bỏ đồng ớt cao sản', 235, 5,  2);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Nguyên nhân chủ tiệm may tử vong với nhiều vết cắt trên cổ tay', 'Nguyen nhan chu tiem may tu vong voi nhieu vet cat tren co tay', 7, '2019-06-06 18:15:00',
 'Lộ nguyên nhân chủ tiệm may chết gục với nhiều vết cắt trên cổ tay.
 Theo thông tin trên báo Người Đưa Tin, sáng 5/6, người dân sống gần tiệm may Sinh Sài Gòn (thuộc địa bàn phường Quang Trung, TP.Thái Nguyên, tỉnh Thái Nguyên) không thấy tiệm này mở cửa, khi nhìn vào thì phát hiện chủ tiệm tử vong trong tư thế nằm gục dưới sàn nhà, cổ tay nạn nhân có vết cắt, máu chảy nhiều, cạnh đó là 1 con dao.
 Nhận được tin báo, cơ quan chức năng đã có mặt khám nghiệm hiện trường, điều tra nguyên nhân tử vong của nạn nhân. Theo đó, danh tính nạn nhân được xác định là anh Nghiêm Văn S. (SN 1973, ngụ tại huyện Ứng Hòa, TP.Hà Nội).
 Trao đổi với phóng viên, Đại tá Phạm Thanh Hải - Trưởng Công an TP.Thái Nguyên cho biết: “Sau khi khám nghiệm thì xác định nạn nhân tử vong là do tự tử. Còn nguyên nhân khiến nạn nhân vì sao phải tự tử thì vẫn đang được công an tích cực điều tra và làm rõ”.
 Được biết, nơi phát hiện thi thể được nạn nhân thuê lại và mở tiệm may quần áo khoảng vài năm trở lại đây. Hiện vụ việc đang được điều tra làm rõ theo quy định pháp luật.
-', 'Nguyên nhân chủ tiệm may tử vong với nhiều vết cắt trên cổ tay', 0, 7,2,3);
+', 'Nguyên nhân chủ tiệm may tử vong với nhiều vết cắt trên cổ tay', 0, 7,3);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Hàng chục "giang hồ" hỗn chiến giữa trung tâm Sài Gòn', 'Hang chuc "giang ho" hon chien giua trung tam Sai Gon', 7, '2019-06-05 17:15:00',
 'Công an quận Phú Nhuận (TP HCM) đang điều tra, truy xét các đối tượng tham gia vụ hỗn chiến xảy ra vào chiều 4/6 ngay giữa trung tâm TP.
 Nhiều nhân chứng cho hay, 14h chiều 4/6 một nhóm khoảng 5 người đi trên xe ô tô dừng lại ở 1 địa điểm trên đường Lê Văn Sỹ (đoạn qua P.13, Q.Phú Nhuận). Khi nhóm này vừa đến thì một nhóm khác khoảng 20 đối tượng đi trên nhiều xe gắn máy ập đến.
 2 nhóm gặp nhau cự cãi lớn tiếng và lao vào hỗn chiến. Nhiều người dân cho hay, nhóm đông người có mang theo hung khí gậy gộc.
 Nhóm 5 người bị yếu thế, trong đó có 1 người bị tấn công, gục tại chỗ. 1 người khác trong nhóm bị thương tích ở đầu nhưng cố gắng chạy về hướng trung tâm TP để thoát thân. Nhóm đi xe máy nhanh chóng rời hiện trường. 2 người bị thương tích được đưa vào bệnh viện cấp cứu.
 Hiện trường chiếc ô tô của nhóm 5 người bị đập bể cửa kính sau. Thông tin ban đầu, 2 nhóm này có phát sinh mâu thuẫn trong việc thuê mặt bằng kinh doanh.
-Công an quận Phú Nhuận đã vào cuộc điều tra, truy xét các đối tượng liên quan.', 'Hàng chục "giang hồ" hỗn chiến giữa trung tâm Sài Gòn', 0, 7, 2, 4);
+Công an quận Phú Nhuận đã vào cuộc điều tra, truy xét các đối tượng liên quan.', 'Hàng chục "giang hồ" hỗn chiến giữa trung tâm Sài Gòn', 0, 7,  4);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Khoảnh khắc kinh hoàng khi xe tải đối đầu xe khách, 41 người thương vong ở Hòa Bình', 'Khoanh khac kinh hoang khi xe tai doi dau xe khach, 41 nguoi thuong vong o Hoa Binh', 6, '2019-06-15 18:15:00',
 'Cú va chạm nghiêm trọng giữa xe tải chở sắt và xe giường nằm xảy ra trên QL6, Km134+300 đoạn qua ngã ba Đồng Bảng (xã Đồng Bảng, huyện Mai Châu, Hòa Bình) khiến 3 người tử vong và 38 người bị thương.
 Chiếc xe tải vào cua với tốc độ cao tông trực diện vào phần đầu của xe khách lưu thông chiều ngược lại. Cú va chạm khiến 2 chiếc xe gần như nát vụn. 
@@ -417,9 +439,9 @@ Theo nội dung báo cáo sơ bộ, vào khoảng 0h30 ngày 17/6, xe tải ch�
 Trong số người bị thương có 5 người bị thương nặng phải chuyển lên bệnh viện tuyến trên, Chủ tịch UBND tỉnh Hòa Bình đã có mặt tại hiện trường để trực tiếp chỉ đạo khắc phục hậu quả.
 Qua điều tra, cơ quan chức năng xác định các nạn nhân tử vong gồm Cao Xuân Hồng (1974, trú tại Thanh Ba, Phú Thọ) - lái xe khách, Trần Văn Khiên (1986, Đồng Văn, Vĩnh Phúc), và Lương Thu Hà (2002, Tuần Giáo, Điện Biên).
 Hiện lực lượng chức năng đang khẩn trương điều tra, làm rõ nguyên nhân vụ tai nạn.
-', 'Khoảnh khắc kinh hoàng khi xe tải đối đầu xe khách, 41 người thương vong ở Hòa Bình', 0, 6, 4, 1);
+', 'Khoảnh khắc kinh hoàng khi xe tải đối đầu xe khách, 41 người thương vong ở Hòa Bình', 0, 6,  1);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Bệnh nhân 67 tuổi nhảy lầu, được cứu nhờ vướng giàn lưới sắt', 'Benh nhan 67 tuoi nhay lau, duoc cuu nho vuong gian luoi sat', 6 ,  '2019-06-16 19:09:00',
 'Ông Ngô Đức Tuấn, Giám đốc Bệnh viện đa khoa Đồng Nai, cho biết: đã cấp cứu kịp một người nhảy lầu tự tử tại cầu thang bộ nối lầu 9 và lầu 10 của bệnh viện này.
 Nạn nhân tên T.S.C, 67 tuổi, ngụ P.Tân Phong, TP.Biên Hòa, Đồng Nai. Hiện tình trạng bệnh nhân đã tạm thời ổn định, chỉ bị gãy 2 xương cẳng tay trái và gãy hở hàm dưới bên trái đang được các bác sĩ cấp cứu.
@@ -427,9 +449,9 @@ Thông tin ban đầu, khoảng 9h15 sáng 17.6, người dân thấy một cụ
 Ngay sau đó, các bác sĩ bệnh viện đã nhanh chóng đưa bệnh nhân đi cấp cứu. Người nhà nạn nhân cũng đã có mặt.
 Ông C trước đây là bệnh nhân của bệnh viện, khi tái khám tại bệnh viện thì xảy ra vụ việc trên.
 Ông Ngô Đức Tuấn cho biết: Để đảm bảo an toàn cho người dân tới bệnh viện khám chữa bệnh, Bệnh viện đa khoa Đồng Nai đã lắp đặt các thiết bị an toàn phòng tránh rủi ro cho bệnh nhân và người nhà bệnh nhân đến thăm khám. “Chúng tôi cũng đã đầu tư hơn 200 triệu đồng để che chắn các khoảng hở ở cầu thang bộ để đảm bảo an toàn cho người dân” - ông Tuấn nói.
-', 'Bệnh nhân 67 tuổi nhảy lầu, được cứu nhờ vướng giàn lưới sắt', 0, 5, 3, 3);
+', 'Bệnh nhân 67 tuổi nhảy lầu, được cứu nhờ vướng giàn lưới sắt', 0, 5,  3);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('﻿Điểm tin bóng đá Việt Nam tối 17/06: HLV Park Hang-seo ưu tiên gia hạn hợp đồng với VFF', '﻿Diem tin bong đa Viet Nam toi 17/06: HLV Park Hang-seo uu tien gia han hop dong voi VFF', 14, '2019-06-17 10:09:00',
 'HLV Park Hang-seo: "Tôi có trách nhiệm đền đáp tình cảm của người hâm mộ Việt Nam"
 Trở về sau thành công từ King`s Cup, mới đây HLV Park Hang-seo đã tham dự sự kiện "Tiếp bước kỳ tích" vừa được tổ chức tại TP. HCM.
@@ -439,8 +461,8 @@ Trả lời về vấn đề này, nhà cầm quân người Hàn Quốc khẳng
 CLB Hàn Quốc chơi chiêu bẩn, cựu tiền đạo U23 Việt Nam vẫn chưa thể ra sân tại V-League.
 "Sau khi không thể sử dụng Hữu Khôi ở lượt đi, chúng tôi rất kỳ vọng vào việc em ấy sẽ có thể thi đấu ở lượt về. Ngay khi chuẩn bị cho trận đấu này, chúng tôi cũng đã tính đến những phương án có Hữu Khôi trong đội hình, bản thân Khôi cũng dứt điểm rất ổn trong những buổi tập. Tuy nhiên, những thủ tục thanh lý từ phía Siheung City vẫn chưa được FIFA chấp thuận nên Hữu Khôi chưa thể ra sân.
 Tôi không thể hiểu nổi vì sao một đội bóng Hàn Quốc lại có thể bê bối đến vậy. Họ đã ký giấy thanh lý cho Hữu Khôi và ghi ngày 31/11 trong khi thực tế chúng ta đều hiểu là không hề tồn tại ngày đó và đương nhiên FIFA không thể chấp thuận giấy thanh lý như vậy. Đến khi chúng tôi cố gắng để yêu cầu phía họ sửa đổi ngày tháng cho đúng thì họ lại thay đổi cơ cấu ban lãnh đạo nên mọi việc tốn rất nhiều thời gian. Tôi thật sự thất vọng." HLV Võ Đình Tân bức xúc về trường hợp của Hữu Khôi.
-', '﻿Điểm tin bóng đá Việt Nam tối 17/06: HLV Park Hang-seo ưu tiên gia hạn hợp đồng với VFF', 1012, 8, 4, 2);
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+', '﻿Điểm tin bóng đá Việt Nam tối 17/06: HLV Park Hang-seo ưu tiên gia hạn hợp đồng với VFF', 1012, 8,  2);
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Bất đồng chấm dứt, Man Utd sắp ký hợp đồng mới với nhà vô địch EURO', 'Bat dong cham dut, Man Utd sap ky hop dong moi voi nha vo dich EURO', 14, '2019-05-17 10:09:00',
 'Sau nhiều lần bất đồng quan điểm, Manchester United cũng sắp gia hạn hợp đồng mới với một cái tên.
 Juan Mata đầu quân cho Manchester United từ Chelsea vào năm 2014 với mức phí 37.5 triệu bảng. Đến thời điểm hiện tại, Mata đang là một trong những cái tên gắn bó với "Quỷ đỏ" lâu nhất khi anh đã ở đây được 5 năm.
@@ -448,9 +470,9 @@ Dù không phải là cái tên quá quan trọng tại Old Trafford nhưng mỗ
 Vấn đề duy nhất giữa Man Utd và Mata chính là mức lương mà cựu tiền vệ Valencia muốn nhận được. Lúc này, cầu thủ 31 tuổi đang nhận 140.000 bảng/tuần và anh mong muốn có được đãi ngộ tốt hơn trong giao kèo mới. Còn về phía Man Utd, họ lại không sẵn sàng đáp ứng nhu cầu đó.
 Nhưng sau cùng, trải qua khoảng thời gian bế tắc, mọi thỏa thuận gần như sắp được hoàn tất ở tuần này khi nhiều khả năng Mata sẽ đồng ý gia hạn thêm 1 năm hợp đồng với câu lạc bộ chủ quản.
 Mùa hè này, nửa đỏ thành Manchester đã mất Ander Herrera và Antonio Valencia. Trong khi đó, tương lai của Paul Pogba cùng với David de Gea hiện không rõ ràng. Có thể nhận thấy Man Utd đang trong tình trạng chảy máu nhân sự nên họ rất quyết tâm thể hiện mong muốn giữ chân bằng được Mata.',
-'Bất đồng chấm dứt, Man Utd sắp ký hợp đồng mới với nhà vô địch EURO', 1243,6,2,2);
+'Bất đồng chấm dứt, Man Utd sắp ký hợp đồng mới với nhà vô địch EURO', 1243,6,2);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Hot girl bóng chuyền Việt Nam cao 1m93 được HLV Mỹ mời sang thi đấu', 'Hot girl bong chuyen Viet Nam cao 1m93 duoc HLV My moi sang thi đau', 15,  '2019-06-17 11:09:00',
 'Trần Thị Thanh Thuý đã nhận được lời mời trực tiếp từ HLV CLB BIP (Mỹ) sau màn trình diễn ấn tượng tại VTV9 Bình Điền.
 Trần Thị Thanh Thúy sinh ngày 12 tháng 11 năm 1997, thành viên của Đội tuyển bóng chuyền nữ quốc gia Việt Nam, đồng thời là nữ VĐV bóng chuyền cao nhất Việt Nam với chiều cao 1m93.
@@ -459,15 +481,15 @@ Thanh Thuý đã gây ấn tượng mạnh ở giải đấu VTV9 Bình Điền 
 Thanh Thuý đã thi đấu ấn tượng, tuy nhiên cô không thể giúp VTV Bình Điền Long An đánh bại BIP (Mỹ) ở bán kết.
 Thanh Thuý đã chính thức chuyển sang CLB Denso Airy (Nhật Bản) thi đấu. Ở một môi trường chuyên nghiệp hơn, Thanh Thuý sẽ có cơ hội thi đấu với nhiều VĐV có đẳng cấp và kinh nghiệm.
 Đây là cơ hội tuyệt vời để Thúy rèn luyện bản lĩnh và nâng cao khả năng thi đấu, trước khi trở về cống hiến cho đội tuyển Việt Nam tại SEA Games 30.',
- 'Hot girl bóng chuyền Việt Nam cao 1m93 được HLV Mỹ mời sang thi đấu', 160, 7,3,2);
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+ 'Hot girl bóng chuyền Việt Nam cao 1m93 được HLV Mỹ mời sang thi đấu', 160, 7,2);
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Đổ máu vào Chung kết, võ sĩ Việt vẫn lỡ HCV đáng tiếc', 'Do mau vào Chung ket, vo si Viet van lo HCV dang tiec', 15,  '2019-04-19 11:09:00',
 'Võ sĩ Minh Phụng đã vô cùng nỗ lực ở nội dung Karate 84 kg nhưng chỉ có thể mang về chiếc HCB cho thể thao Việt Nam.
 Cách đây ít phút, võ sĩ Karate Việt Nam Minh Phụng đã thi đấu trận Chung kết đối kháng hạng cân 84 kg. Đáng tiếc, anh thất bại trước võ sĩ người Iran, Sajadgan Jzadeh với tỷ số 5-2. Minh Phụng và Sajadgan Jzadeh đều ghi được 2 điểm Yuko, tuy nhiên võ sĩ người Iran ghi được 1 đòn Ippon.
 Trước đó, Minh Phụng đã gây ấn tượng khi đổ máu để vượt qua võ sĩ người Kazakhstan ở Bán kết.
 Trước HCB của Minh Phụng, đoàn TTVN đứng thứ 17 trên BXH huy chương với 1 HCV, 6 HCB và 9 HCĐ. Có thêm 1 HCB, Việt Nam không thay đổi được thứ hạng, do 16 nước xếp trên đều đã có ít nhất 2 HCV.
-','Đổ máu vào Chung kết, võ sĩ Việt vẫn lỡ HCV đáng tiếc',  0, 9, 4, 4);
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+','Đổ máu vào Chung kết, võ sĩ Việt vẫn lỡ HCV đáng tiếc',  0, 9,  4);
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Cuộc đời vị đệ tử thành công nhất của Lý Tiểu Long, đồng thời là cha đẻ của bộ môn Kickboxing',' Cuoc doi vi de tu thanh cong nhat cua Ly Tieu Long, dong thoi la cha de cua bo mon Kickboxing', 15,  '2019-04-29 14:19:00',
 'Lý Tiểu Long từng nói: “Tôi có thể biến người yếu thành mạnh, kẻ mạnh càng mạnh hơn”. Joe Lewis chính là minh chứng hoàn hảo nhất cho điều đó.
 Nhắc đến vua Kungfu, người ta sẽ nghĩ ngay đến Lý Tiểu Long. Ông là người đặt nền móng cho dòng phim Kungfu và mở đường cho sự "tiến quân" của diễn viên người Hoa vào Hollywood. Đáng tiếc, ngôi sao võ thuật này tài hoa mà bạc mệnh. Ông sớm qua đời ở tuổi 32, khi đang trên đỉnh cao của sự nghiệp. 
@@ -486,9 +508,9 @@ Năm 1971, Lý Tiểu Long từng có ý định mời Lewis diễn vai phản d
 Vai diễn này sau đó được giao cho Chuck Norris. Đây cũng là người mà sau khi Lý Tiểu Long qua đời đã nổi danh với hàng loạt phim võ thuật kiểu Mỹ. Thế nhưng có một sự thật là, bản thân Chuck Norris và anh trai đều từng chiến bại dưới tay Joe Lewis.
 Vào tháng 7 năm 2011, Joe Lewis bị chẩn đoán có một khối u ác tính trong não. Các bác sĩ cho biết nếu không làm gì, ông sẽ chỉ có thể sống 6-8 tuần. Ngày 18 tháng đó, Joe Lewis được phẫu thuật cắt bỏ khối u. Phẫu thuật rất thành công nhưng chỉ 1 năm và 45 ngày sau, vào ngày 31 tháng 8 năm 2012, Joe Lewis qua đời tại Pennsylvania.
 Trong thời đại của Lewis, ông là một trong những võ sĩ ưu tú nhất. Ông đã chứng minh hiệu quả của Triệt Quyền Đạo và là người thể nghiệm thành công lý luận võ thuật lôi đài của Lý Tiểu Long. Bởi vậy, nói Joe Lewis chính là vị đệ tử thành công nhất của ông vua Kungfu Lý Tiểu Long cũng không hề ngoa.
-', 'Cuộc đời vị đệ tử thành công nhất của Lý Tiểu Long, đồng thời là cha đẻ của bộ môn Kickboxing', 1532, 9, 4, 2);
+', 'Cuộc đời vị đệ tử thành công nhất của Lý Tiểu Long, đồng thời là cha đẻ của bộ môn Kickboxing', 1532, 9,  2);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Những vụ lấy `số má` của đại ca giang hồ vây ôtô chở công an','Nhung vu lay `so ma` cua dai ca giang ho vay ota cho cong an',7, '2019-06-17 14:29:00',
 'Sau khi ra tù, Giang "36" dung nạp nhiều người nghiện để gây thanh thế trong hoạt động bảo kê, đòi nợ thuê ở Đồng Nai.
 Ngày 17/6, Công an TP Biên Hòa (Đồng Nai) bắt giữ Nguyễn Duy Kỷ (30 tuổi, tự Tuấn "Nhóc" - đàn em của Ngô Văn Giang (Giang "36", quê Thanh Hóa). Kỷ được xác định có vai trò tích cực trong việc hô hào các thanh niên xăm trổ bao vây ôtô chở nhóm Công an Đồng Nai năm ngày trước.
@@ -501,9 +523,9 @@ Khi đó, Hiền đang ăn cùng trung tá Đinh Tú Anh (Đội trưởng Cản
 Biết đối thủ đi cùng "sếp" công an, Giang vẫn huy động đàn em ở các phường Long Bình, Trảng Dài, Tân Phong... đến bao vây ôtô. Lương và Giang đứng đầu xe liên tục yêu cầu bốn người ra ngoài "nói chuyện". Kỷ cùng nhiều người khác chỉ tay vào trong ôtô đe dọa, rồi dùng hung khí đâm thủng 4 bánh xe.
 Hơn 2 giờ gây náo loạn tuyến đường, nhóm giang hồ mới rút đi, sau khi lãnh đạo Công an TP Biên Hòa có mặt giải quyết.
 Ba ngày sau, Giang "36" bị bắt để điều tra về hành vi Gây rối trật tự công cộng, trong khi nhiều đàn em của đại ca giang hồ này đã lẩn trốn. Cảnh sát đang truy xét những người khác có liên quan.
-', 'Những vụ lấy `số má` của đại ca giang hồ vây ôtô chở công an', 1987,8, 3,2);
+', 'Những vụ lấy `số má` của đại ca giang hồ vây ôtô chở công an', 1987,8, 2);
 
-insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , BienTapVien, DaDuyet)
+insert into BaiViet( TieuDe, TieuDe_KhongDau, ChuyenMuc, NgayDang, NoiDung, TomTat, LuotXem, PhongVien , DaDuyet)
 values('Kẻ cầm đầu vụ chém ba bố con bị khởi tố', 'Ke cam dau vu chem ba bo con bi khoi to' , 7, '2019-06-17 16:29:00',
 '34 giờ đi qua trốn ở nhiều tỉnh thành, Nguyễn Xuân Công (Quảng Nam) bị cảnh sát bắt để điều tra hành vi giết người.
 Ngày 17/6, Công an tỉnh Quảng Nam khởi tố vụ án điều tra việc ông Phạm Hồng Văn (62 tuổi) bị chém tử vong và hai người con bị thương ở xã Tam Thăng, thành phố Tam Kỳ.
@@ -512,7 +534,7 @@ Công khai chiều 14/6 nhận được điện thoại của Niên kể nhà c�
 Tại nhà ông Văn, nhóm Công bị anh Cấp và Phát (hai con của ông Văn) cầm cuốc chống trả.
 Công bỏ về và một tiếng sau rủ thêm khoảng 20 người mang hung khí quay lại truy sát. Công chém ông Văn tử vong; gây thương tích cho anh Cấp và Phát.
 Công rời khỏi hiện trường và đưa kiếm cho Thành đi vứt. Khoảng 2h ngày 16/6, Công vừa xuống xe ở TP Tam Kỳ vào quán ngồi uống nước thì bị các trinh sát ấp đến bắt.', 'Kẻ cầm đầu vụ chém ba bố con bị khởi tố',
-1234,6,3,2);
+1234,6,2);
 ---------------- insert table nhan_baiViet
 insert into Nhan_BaiViet(IDBaiViet, IDTag) values(1,1);
 insert into Nhan_BaiViet(IDBaiViet, IDTag) values(2,2);
