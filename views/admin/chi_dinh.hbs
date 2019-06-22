@@ -2,27 +2,26 @@
     <div class="col-md-10">
         <div class="content">
             <div class="col-md-4 add-dm">
-                <h4 class="text-center">Thêm danh mục</h4>
+                <h4 class="text-center">Chỉ định
+                </h4>
             </div>
             <div class="clearfix"></div>
-            <form method="post" action="/admin/manager/them_danh_muc">
+            <form method="post" action="/admin/manager/chi_dinh/{{btv.ID}}">
                 <div class="form">
                     <table class="table">
                         <tr>
                             <td>
-                                <P>Tiêu đề danh mục</p>
+                                <P>Tên Biên Tập viên</p>
                             </td>
-                            <td>{{#if isDup}}<input type="text" name="title" class="form-control"><small>Đã bị trùng</small>{{else}}
-                            <input type="text" name="title" class="form-control">
-                            {{/if}}
+                            <td>
+                            <input type="text" name="title" value="{{btv.HoTen}}" class="form-control" disabled> 
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p>Lựa chọn danh mục cha</p>
+                                <p>Lựa chọn chuyên mục</p>
                             </td>
                             <td><select name="cat" class="form-control">
-                                    <option value="0">Là danh mục cha</option>
                                     {{#each cat}}
                                     <option value="{{IDChuyenMuc}}">{{TenChuyenMuc}}</option>
                                     {{/each}}

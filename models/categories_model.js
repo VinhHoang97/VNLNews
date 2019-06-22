@@ -40,7 +40,21 @@ module.exports={
     return db.load(
       `select * from ChuyenMuc cm  where cm.IDChuyenMuc= '${id}'`
     );
+  },
+
+  getCatByEditor: id =>{
+    return db.load(
+        `select * from ChuyenMuc cm
+        join bientapvien_chuyenmuc btv_cm on cm.IDChuyenMuc=btv_cm.IDChuyenMuc
+          where btv_cm.BienTapVien= '${id}'`
+      );
+  },
+
+  getNotManageCat: id =>{
+    return db.load(
+        `select * from ChuyenMuc cm
+        join bientapvien_chuyenmuc btv_cm on cm.IDChuyenMuc=btv_cm.IDChuyenMuc
+          where btv_cm.BienTapVien != '${id}'`
+      );
   }
-
-
 }

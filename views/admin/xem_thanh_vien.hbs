@@ -1,41 +1,46 @@
- <div class="right">
-            <div class="col-md-10">
-                <div class="content">
-                    <div class="col-md-4 add-dm">
-                        <h4 class="text-center">Xem độc giả</h4>
-                    </div>
-                    <div class="clearfix"></div>
-                    <form method="post">
-                        <div class="form">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <P>Tên đăng nhập</p>
-                                    </td>
-                                   
-                                    <td>
-                                        <P>Họ và tên</p>
-                                    </td>
-                                    <td>Hành động</Td>
-                                </tr>
-                                 {{#each dsdocgia}}
-                                <tr>
-                                    <td>
-                                        <P>{{UserName}}</p>
-                                    </td>
-                        
-                                    <td>{{HoTen}}</td>
-                                    <td>
-                                        <a href="#">Xóa</a></td>
-                                </tr>
-                                 {{/each}}
-                            </table>
-                        </div>
-                        <div class="col-md-3 form-group pull-right">
-                            <input type="submit" name="ok" value="Lưu" class="btn btn-primary btn-block">
-                        </div>
-                    </form>
-                </div>
-                <!--end .content-->
+<div class="right">
+    <div class="col-md-10">
+        <div class="content">
+            <div class="col-md-4 add-dm">
+                <h4 class="text-center">Xem độc giả</h4>
             </div>
+            <div class="clearfix"></div>
+            <form method="post">
+                <div class="form">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <P>Tên đăng nhập</p>
+                            </td>
+
+                            <td>
+                                <P>Họ và tên</p>
+                            </td>
+                           
+                            <td>Ngày Đăng ký</Td>
+                            <td>Ngày Hết hạn</Td>
+                             <td>Hành động</Td>
+                        </tr>
+                        {{#each dsdocgia}}
+                        <tr>
+                            <td>
+                                <P>{{UserName}}</p>
+                            </td>
+
+                            <td>{{HoTen}}</td>
+                            <td>{{NgayDangKy}}</td>
+                            <td>{{NgayHetHan}}</td>
+                            <td>
+                                <a href="/admin/manager/giahan/{{ID}}">Gia hạn</a></td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                </div>
+                <div class="col-md-3 form-group pull-right">
+                    <input type="submit" name="ok" value="Lưu" class="btn btn-primary btn-block">
+                </div>
+            </form>
         </div>
+        <!--end .content-->
+    </div>
+</div>

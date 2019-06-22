@@ -5,7 +5,7 @@ module.exports = {
     return db.load(`select * from BaiViet where  DaDuyet= 2`);
   },
 
-  similarCategoryProduct: (category,id) =>{
+  similarCategoryProduct: (category, id) => {
     return db.load(
       `select * from BaiViet where ChuyenMuc='${category}' and IDBaiViet!=${id} and DaDuyet= 2 and TinhTrangBV=0`
     );
@@ -29,7 +29,6 @@ module.exports = {
     );
   },
 
-  
   add: entity => {
     return db.add("BaiViet", entity);
   },
@@ -44,7 +43,7 @@ module.exports = {
 
   countByCategory: id => {
     return db.load(
-      `select count(*) as total from BaiViet where ChuyenMuc='${id}' and DaDuyet=2 and TinhTrangBV= 0` 
+      `select count(*) as total from BaiViet where ChuyenMuc='${id}' and DaDuyet=2 and TinhTrangBV= 0`
     );
   },
 
@@ -110,14 +109,13 @@ module.exports = {
     limit ${amount};`);
   },
 
-
   single: id => {
     return db.load(
       `select * from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID where bv.IDBaiViet= '${id}' and bv.DaDuyet= 2`
     );
   },
 
-  updatesingle:id=>{
+  updatesingle: id => {
     return db.load(
       `select * from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID where bv.IDBaiViet= '${id}'`
     );
@@ -128,17 +126,18 @@ module.exports = {
       `select * from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID where bv.IDBaiViet= '${id}' and bv.DaDuyet= 4`
     );
   },
-writer: id=>{
-  return db.load(
-    `select count(*) as Tong from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID where nd.ID= ${id} group by nd.ID`
-  );
-},
-
-  allProductOfWriter: id =>{
+  writer: id => {
     return db.load(
-      `select cm.TenChuyenMuc,bv.TieuDe,nd1.HoTen,d.Loai from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID
+      `select count(*) as Tong from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID where nd.ID= ${id} group by nd.ID`
+    );
+  },
+
+  allProductOfWriter: id => {
+    return db.load(
+      `select * from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID
       join chuyenmuc cm on cm.IDChuyenMuc=bv.ChuyenMuc
-                  join NguoiDung nd1 on bv.BienTapVien=nd1.ID
+      join bientapvien_chuyenmuc btv_cm on cm.IDChuyenMuc=btv_cm.IDChuyenMuc
+      join NguoiDung btv on btv.ID = btv_cm.BienTapVien
                   join duyet d on bv.DaDuyet=d.IDDuyet
                   where nd.ID=${id} order by bv.DaDuyet desc`
     );
@@ -146,31 +145,34 @@ writer: id=>{
 
   updateProductOfWriter: id => {
     return db.load(
-      `select cm.TenChuyenMuc,bv.*,nd1.HoTen,d.Loai  from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID
+      `select *  from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID
       join chuyenmuc cm on cm.IDChuyenMuc=bv.ChuyenMuc
-                  join NguoiDung nd1 on bv.BienTapVien=nd1.ID
+      join bientapvien_chuyenmuc btv_cm on cm.IDChuyenMuc=btv_cm.IDChuyenMuc
+      join NguoiDung btv on btv.ID = btv_cm.BienTapVien
                   join duyet d on bv.DaDuyet=d.IDDuyet
                   where nd.ID=${id} and (d.IDDuyet=3 or d.IDDuyet=4) order by bv.DaDuyet desc`
     );
   },
-  updateEditor: id =>{
+  updateEditor: id => {
     return db.load(
-    ` select cm.TenChuyenMuc,bv.*,nd1.HoTen,d.Loai from BaiViet bv join NguoiDung nd on bv.BienTapVien = nd.ID
+      ` select cm.TenChuyenMuc,bv.*,nd1.HoTen,d.Loai from BaiViet bv 
     join chuyenmuc cm on cm.IDChuyenMuc=bv.ChuyenMuc
+    join bientapvien_chuyenmuc btv_cm on cm.IDChuyenMuc=btv_cm.IDChuyenMuc
                 join NguoiDung nd1 on bv.PhongVien=nd1.ID
                 join duyet d on bv.DaDuyet=d.IDDuyet
-                where nd.ID=${id} and d.IDDuyet=4`
-    )
+                where btv_cm.BienTapVien=${id} and d.IDDuyet=4`
+    );
   },
 
-  allEditor: id =>{
+  allEditor: id => {
     return db.load(
-    ` select cm.TenChuyenMuc,bv.*,nd1.HoTen,d.Loai  from BaiViet bv join NguoiDung nd on bv.BienTapVien = nd.ID
+      ` select cm.TenChuyenMuc,bv.*,nd1.HoTen,d.Loai  from BaiViet bv
     join chuyenmuc cm on cm.IDChuyenMuc=bv.ChuyenMuc
+    join bientapvien_chuyenmuc btv_cm on cm.IDChuyenMuc=btv_cm.IDChuyenMuc
                 join NguoiDung nd1 on bv.PhongVien=nd1.ID
                 join duyet d on bv.DaDuyet=d.IDDuyet
-                where nd.ID=${id} and (d.IDDuyet=3 or d.IDDuyet=1 or d.IDDuyet=2)`
-    )
+                where btv_cm.BienTapVien=${id} and (d.IDDuyet=3 or d.IDDuyet=1 or d.IDDuyet=2)`
+    );
   },
 
   seachProductFullText: string => {
@@ -184,8 +186,9 @@ writer: id=>{
   allProduct: () => {
     return db.load(
       `select bv.IDBaiViet,cm.TenChuyenMuc,bv.TieuDe, nd.HoTen as PhongVien, nd1.HoTen as BienTapVien, bv.DaDuyet, d.Loai  from BaiViet bv join NguoiDung nd on bv.PhongVien = nd.ID 
-      join NguoiDung nd1 on  bv.BienTapVien=nd1.ID
       join chuyenmuc cm on cm.IDChuyenMuc=bv.ChuyenMuc
+      join bientapvien_chuyenmuc btv_cm on cm.IDChuyenMuc=btv_cm.IDChuyenMuc
+      join NguoiDung nd1 on  btv_cm.BienTapVien=nd1.ID
       join duyet d on bv.DaDuyet=d.IDDuyet`
     );
   },
@@ -196,7 +199,7 @@ writer: id=>{
       where IDBaiViet=${id}`
     );
   },
-  singleProductDelete:is=>{
+  singleProductDelete: is => {
     return db.load(
       `delete from BaiViet bv
       join urlHinhAnh ha on bvha.IDHinh=ha.IDHinh
@@ -221,5 +224,4 @@ writer: id=>{
       where IDBaiViet=${id}`
     );
   }
-
 };

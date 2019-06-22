@@ -15,6 +15,7 @@ var productModel = require("./models/product_model");
 var admin = require("./routes/admin/admin_account_routers");
 var moment= require('moment');
 app.use(morgan("dev"));
+app.use(body_parser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 require("./middlewares/session")(app);
@@ -28,7 +29,7 @@ app.use(require('./middlewares/authUser_locals_mdw'));
 
 // view engine setup
 
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views/"));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "hbs");
 app.engine(

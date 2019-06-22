@@ -16,17 +16,24 @@
                                     <td>
                                         <P>Họ và tên</p>
                                     </td>
+                                    <td>
+                                        <P>Các chuyên mục đang quản lý</p>
+                                    </td>
                                     <Td>Hành động</Td>
                                 </tr>
                                    {{#each dsbientapvien}}
                                 <tr>
                                     <td>
-                                        <P>{{UserName}}</p>
+                                        <P>{{editor.UserName}}</p>
                                     </td>
                         
-                                    <td>{{HoTen}}</td>
+                                    <td>{{editor.HoTen}}</td>
+                                    <td>{{#each cat}}
+                                        <p>{{TenChuyenMuc}}</p>
+                                        {{/each}}
+                                    </td>
                                     <td>
-                                        <a href="#">Xóa</a></td>
+                                        <a href="/admin/manager/chi_dinh/{{editor.ID}}">Chỉ định</a></td>
                                 </tr>
                                 {{/each}}
                             </table>

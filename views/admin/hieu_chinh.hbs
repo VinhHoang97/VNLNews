@@ -17,7 +17,7 @@
 				'table link image media',
 			],
 		});
-	}( jQuery ));
+	}(jQuery));
 </script>
 <div class="right">
 	<div class="col-md-10">
@@ -26,7 +26,7 @@
 				<h4 class="text-center">Chỉnh sửa bài viết</h4>
 			</div>
 			<div class="clearfix"></div>
-			<form method="POST" action="/admin/hieu_chinh/{{product.IDBaiViet}}" enctype="multipart/form-data">
+			<form method="POST" action="/admin/writer/hieu_chinh/{{product.IDBaiViet}}">
 				<div class="form">
 					<table class="table">
 						<tr>
@@ -47,28 +47,29 @@
 							</td>
 							<td>
 								<div class="card-body">
-									<textarea class="form-control" id="txtFullDes" name="FullDes">{{product.NoiDung}}</textarea>
+									<textarea class="form-control" id="txtFullDes"
+										name="FullDes">{{product.NoiDung}}</textarea>
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<td>
 								<p>Tình trạng bài viết</p>
-								<select name="premium" class="form-control" >
+								<select name="premium" class="form-control">
 									{{#if isVip}}
 									<option value="1" selected>VIP</option>
-									<option value="0"  >Thường</option>
+									<option value="0">Thường</option>
 									{{else}}
 									<option value="0" selected>Thường</option>
-									<option value="1"  >VIP</option>
+									<option value="1">VIP</option>
 									{{/if}}
 								</select>
 							</td>
 							<td>
 								<P>Ảnh bìa</p>
-								<div style="width:300px; height:300px"> 
-								<img style="width: 100%; height:100%; object-fit: contain"
-									src="/{{img.urllinkHinh}}" />
+								<div style="width:300px; height:300px">
+									<img style="width: 100%; height:100%; object-fit: contain"
+										src="/{{img.urllinkHinh}}" />
 							</td>
 						</tr>
 						<tr>
@@ -77,10 +78,11 @@
 								<p>Lựa chọn danh mục </p>
 								<select name="cat" class="form-control">
 									{{#each cat}}
-									{{#if product.IDChuyenMuc}}
-									<option value="{{IDChuyenMuc}}" selected>{{TenChuyenMuc}}</option>
+									{{#if thisCat}}
+									<option value="{{singleCat.IDChuyenMuc}}" selected>{{singleCat.TenChuyenMuc}}
+									</option>
 									{{else}}
-									<option value="{{IDChuyenMuc}}">{{TenChuyenMuc}}</option>
+									<option value="{{singleCat.IDChuyenMuc}}">{{singleCat.TenChuyenMuc}}</option>
 									{{/if}}
 									{{/each}}
 								</select>
@@ -92,16 +94,17 @@
 
 							{{!-- </div> --}}
 						</tr>
+					</table>
+				</div>
+				<div class="col-md-3 form-group pull-right">
+					<button type="submit" class="btn btn-primary btn-block">
+						<i class="fa fa-check" aria-hidden="true"></i>Lưu</button>
+				</div>
+				</form>
+				
 
-			</form>
-
-			</table>
+			
 		</div>
-		<div class="col-md-3 form-group pull-right">
-			<button type="submit" class="btn btn-primary btn-block">
-				<i class="fa fa-check" aria-hidden="true"></i>Lưu</button></div>
-		</div>
-		</form>
 	</div>
 	<!--end .content-->
 </div>

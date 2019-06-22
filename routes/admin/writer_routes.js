@@ -22,12 +22,11 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({ storage });
-router.get("/", (req, res, next) => {
+router.get("/", auth,(req, res, next) => {
   if (res.locals.isPV) {
     res.render("admin/phong_vien", {
       layout: "main_phong_vien.hbs"
     })
-      .catch(next);
   }
 });
 
@@ -77,12 +76,19 @@ router.get("/hieu_chinh/:id", auth, (req, res) => {
         strTag += "#" + element.TenTag + ",";
       }
     });
-    console.log(rows[0]);
+    img[0].urllinkHinh = img[0].urllinkHinh.replace(/\\/g, "/");
+    var listTemp = []
+      cat.forEach(element => {
+        listTemp.push({
+          singleCat: element,
+          thisCat: rows[0].ChuyenMuc === element.IDChuyenMuc ? true : false
+        })
+      })
     res.render("admin/hieu_chinh", {
       layout: "main_phong_vien.hbs",
       product: rows[0],
       isVip: rows[0].TinhTrangBV === 1 ? true : false,
-      cat: cat,
+      cat: listTemp,
       tag: strTag,
       img: img[0]
     });
@@ -90,6 +96,7 @@ router.get("/hieu_chinh/:id", auth, (req, res) => {
 });
 
 router.post("/hieu_chinh/:id", auth, (req, res, next) => {
+
   var id = req.params.id;
   var cat = req.body.cat;
   var title = req.body.title;
@@ -105,16 +112,12 @@ router.post("/hieu_chinh/:id", auth, (req, res, next) => {
     NoiDung: FullDes,
     TomTat: summary,
     PhongVien: res.locals.authUser.ID,
-    BienTapVien: 3,
     DaDuyet: 4,
     TinhTrangBV: premium
   };
   Promise.all([productModel.update(entityProduct)]).then(([product]) => {
-    res.redirect("/admin/hieu_chinh_bai_viet");
-  })
-    .catch(next);
-  // var link = req.file.path;
-  console.log(cat, title, FullDes, summary, tag, premium);
+    res.redirect("/admin/writer/hieu_chinh_bai_viet");
+  }).catch(next);
 });
 
 router.get("/upload", auth, (req, res, next) => {
@@ -146,7 +149,6 @@ router.post("/upload", auth, upload.single("fuMain"), (req, res, next) => {
       NoiDung: FullDes,
       TomTat: summary,
       PhongVien: res.locals.authUser.ID,
-      BienTapVien: 3,
       DaDuyet: 4,
       TinhTrangBV: premium
     };

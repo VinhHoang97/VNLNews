@@ -33,7 +33,7 @@ create table ChuyenMuc #category
 );
 create table Nhan #tag
 ( IDTag int not null primary key auto_increment,
-  TenTag varchar(20) not null,
+  TenTag varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci not null not null ,
   XoaTag int default 0 
   );
 create table Duyet
@@ -595,7 +595,6 @@ insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (17, 10, 'Thíc
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (19, 11, 'Thành đập đá rồi trời ạ', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (21, 11, 'Karate mà đẹp trai nhỉ', 1);
 insert into BinhLuan(baiviet, DocGia, NoiDung, TinhTrang) values (21, 10, 'Không biết ông này là ai luôn', 1);
-
 
 ALTER TABLE BaiViet  
 ADD FULLTEXT(TieuDe,TomTat,NoiDung)

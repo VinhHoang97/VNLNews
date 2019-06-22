@@ -12,23 +12,26 @@ var auth = require("../../middlewares/auth");
 var category = require("../../models/categories_model.js");
 var multer = require("multer");
 var userModel = require("../../models/user_model");
-router.get("/", (req, res, next) => {
+router.get("/", auth, (req, res, next) => {
   if (res.locals.isBTV) {
-    res.render("admin/bien_tap_vien", {
-      layout: "main_bien_tap_vien.hbs"
-    }).catch(next);
+    var id = res.locals.authUser.ID;
+    console.log(id);
+    Promise.all([productModel.updateEditor(id), productModel.allEditor(id)]).then(([rows1,rows2])=>{
+      res.render("admin/bien_tap_vien", {
+        layout: "main_bien_tap_vien.hbs",
+        dsdaduyet:rows2.length,
+        dschuaduyet:rows1.length
+    });
+    });
   }
 });
 
-router.get("/da_duyet/:id", auth, (req, res) => {
+router.get("/da_duyet/:id", auth, (req, res, next) => {
   var id = req.params.id;
   productModel
     .updateApprove(id)
     .then(rows => {
       res.redirect("/admin/editor/duyet_bai_viet");
-    })
-    .catch(err => {
-      console.log(err);
     })
     .catch(next);
 });
@@ -50,6 +53,7 @@ router.get("/duyet/:id", auth, (req, res) => {
     });
     console.log(rows[0]);
     console.log(img);
+    img[0].urllinkHinh = img[0].urllinkHinh.replace(/\\/g, "/");
     res.render("admin/duyet", {
       layout: "main_bien_tap_vien.hbs",
       product: rows[0],
@@ -61,23 +65,23 @@ router.get("/duyet/:id", auth, (req, res) => {
   });
 });
 
-router.get("/duyet_bai_viet", auth, (req, res) => {
-  var id = res.locals.authUser.ID
+router.get("/duyet_bai_viet", auth, (req, res, next) => {
+  var id = res.locals.authUser.ID;
+  console.log(id);
   productModel
     .updateEditor(id)
     .then(rows => {
+      console.log(rows);
       res.render("admin/duyet_bai_viet", {
         layout: "main_bien_tap_vien.hbs",
         dsbaiduyet: rows
       });
     })
-    .catch(err => {
-      console.log(err);
-    })
+    .catch(next);
 });
 
 router.get("/bai_viet_da_duyet", auth, (req, res) => {
-  var id = res.locals.authUser.ID
+  var id = res.locals.authUser.ID;
   productModel
     .allEditor(id)
     .then(rows => {

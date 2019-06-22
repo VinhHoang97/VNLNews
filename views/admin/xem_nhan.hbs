@@ -2,7 +2,7 @@
     <div class="col-md-10">
         <div class="content">
             <div class="col-md-4 add-dm">
-                <h4 class="text-center">Xem bản thảo</h4>
+                <h4 class="text-center">Xem nhãn</h4>
             </div>
             <div class="clearfix"></div>
             <form method="post">
@@ -10,35 +10,19 @@
                     <table class="table">
                         <tr>
                             <td>
-                                <P>Danh mục</p>
-                            </td>
-                            <td>
-                                <P>Tên bài viết</p>
-                            </td>
-                            <td>
-                                <P>Phóng viên</p>
-                            </td>
-                            <td>
-                                <p>Biên tập viên</p>
-                            </td>
-                            <td>
-                                <p>Trạng thái</p>
+                                <P>Tên nhãn</p>
                             </td>
                             <td>
                                 <p>Hành động</p>
                             </td>
                         </tr>
-                        {{#each dsbaivietadmin}}
+                        {{#each tag}}
                         <tr>
                             <td>
-                                <P>{{product.TenChuyenMuc}}</p>
+                                <P>#{{TenTag}}</p>
                             </td>
-                            <td>{{product.TieuDe}}</td>
-                            <td>{{product.PhongVien}}</td>
-                            <td>{{product.BienTapVien}}</td>
-                            <td>{{product.Loai}}</td>
-                            <td><a href="/admin/manager/hieu_chinh/{{product.IDBaiViet}}">Sửa</a>
-                                <a href="/admin/manager/delete/{{product.IDBaiViet}}">Xóa</a>
+                            <td><a href="#">Sửa</a>
+                                <a href="#">Xóa</a>
                                 {{#if isApprove}}
                                 <a href="/admin//manager/xuat_ban/{{product.IDBaiViet}}">Xuất bản</a>
                             {{else}}
